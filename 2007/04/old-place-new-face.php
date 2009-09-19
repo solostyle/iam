@@ -1,0 +1,16 @@
+<?		session_start();
+	include '../../235/func.php';
+	include '../../235/storevars.php';
+	include '../../inc/header.php';?><? $_SESSION['entry_id'] = "tag:iam.solostyle.net,2007-04-03:/2007/04/old-place-new-face"; ?>
+		<div class="publishedentry">
+			<h2>Old place, new face</h2>
+			<h3>03 April 2007  @ 22:33</h3>
+			<p>I said a lot of things today that I feel just came out of me without hesitation. Things that I had been feeling for a while but never uttered.</p><p>I also drummed in my head and with my limbs a great deal today. Always thinking about sounds and rhythms and feeling different parts of songs that I remember. Mostly just the Ruins and Hella, actually. (Yeah, I never thought I would find another band that I loved as much as the Ruins.) I took my drumsticks with me everywhere I went.</p><p>Oh. And I went to Chicago for surgery.</p><p>Anyway, the nice thing was the weather has been great all day, with only a little slap of rain splatter here and there. The sky six miles above the ground, shrouded from view of Earth by a low blanket of clouds, exploded with lightning almost ceaselessly the whole time.</p><p>Hence the delay of both arrival and departure flights.</p><p>So much for rushing out of the doctor's office after the final x-rays and impressions. <span class="dream" style="font-style:oblique">Knock me out. Smash out my brains. If I take a chair. And start to talk shiiiiaaat.</span> Not wanting to be conscious. A desire I've had for a while now. It recurs. Like today. Yes, I was under local anaesthesia, but I wish I could be sedated not just for this but for the rest of my life.</p><p>On the other hand, I also want to be totally conscious and aware. The nurse, Barbara, after talking to me for a little before the procedure, said something about me being so conscious. I can't remember what exactly she meant. Feels like a dream. Feels like I've been there before. Gary? Said something like that. Whatever. It's strange how so many of the moments that I'm apparently alive and existing through.. later just feel like dreams. I think maybe I'm only conscious in the moment? And later on, I can't remember much about the previous moments because I'm still in the present? And that's why everything is dreamlike?</p><p>Even dreams feel strange. If I remember a dream from a few nights ago, it feels like a very vivid reality, far more vivid than non-dream reality. Same with dreams from years and decades ago. I wonder why I get reality and dreams swapped like that. I mean, if you think dreams feel one way and reality another, then why should you interpret that as the opposite of what they are?</p><p>Now I have two major things that have to heal. And I might get another surgery soon--hopefully to dislodge a large foreign object from my leg.</p>
+			<div style="clear:both; padding-bottom: 0.25em;"></div>
+			<p>
+				<em><a name="bot" href="http://iam.solostyle.net/comment.php">comments</a></em>
+			</p>
+		</div>
+	<?	include '../../comment.html';
+	include '../../right.php';
+	include '../../inc/footer.php';	?>

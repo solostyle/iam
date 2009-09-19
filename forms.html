@@ -1,0 +1,175 @@
+<html>
+	<head>
+		    <script type="text/javascript">
+      var Dom = {
+        get: function(el) {
+          if (typeof el === 'string') {
+            return document.getElementById(el);
+          } else {
+            return el;
+          }
+        },
+        add: function(el, dest) {
+          var el = this.get(el);
+          var dest = this.get(dest);
+          dest.appendChild(el);
+        },
+        remove: function(el) {
+          var el = this.get(el);
+          el.parentNode.removeChild(el);
+        }
+      };
+      var Event = {
+        add: function() {
+          if (window.addEventListener) {
+            return function(el, type, fn) {
+              Dom.get(el).addEventListener(type, fn, false);
+            };
+          } else if (window.attachEvent) {
+            return function(el, type, fn) {
+              var f = function() {
+                fn.call(Dom.get(el), window.event);
+              };
+              Dom.get(el).attachEvent('on' + type, f);
+            };
+          }
+        }()
+      };
+      Event.add(window, 'load', function() {
+        var i = 0;
+        Event.add('add-element', 'click', function() {
+          var el = document.createElement('label');
+          el.innerHTML = 'Relation';
+	  el.attributes.for = 'relation' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+          });
+        });
+        Event.add('add-element', 'click', function() {
+          var el = document.createElement('select');
+	  el.attributes.id = 'relation' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+          });
+        });
+        Event.add('add-element', 'click', function() {
+          var el = document.createElement('label');
+          el.innerHTML = 'First Name';
+	  el.attributes.for = 'firstName' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+          });
+        });
+        Event.add('add-element', 'click', function() {
+          var el = document.createElement('input');
+	  el.attributes.id = 'firstName' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+          });
+        });
+        Event.add('add-element', 'click', function() {
+          var el = document.createElement('label');
+          el.innerHTML = 'Last Name';
+	  el.attributes.for = 'lastName' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+	    });
+	  });
+	Event.add('add-element', 'click', function() {
+          var el = document.createElement('input');
+          el.innerHTML = 'Last Name';
+	  el.attributes.id = 'lastName' + i;
+          Dom.add(el, 'content');
+          Event.add(el, 'keyup', function(e) {
+            Dom.remove(this);
+          });
+        });
+      });
+    </script>
+</head>
+<body>
+<form id="plainForm" action="">
+	<fieldset id="content">
+		<legend>
+			Names
+		</legend>
+		<label class="first" for="relation1">
+			Relation
+			<select id="relation1" name="relation1">
+				<option selected="selected">Adult</option>
+				<option>Child</option>
+			</select>
+		</label>
+		<label for="firstName1">
+			First name
+			<input id="firstName1" name="firstName1" type="text" value="First name" />
+		</label>
+		<label for="lastName1">
+			Last name
+			<input id="lastName1" name="lastName1" type="text" value="Last name" />
+		</label>
+		<p id="add-element">add family member</p>
+		<!-- have a thing that dynamically adds more rows -->
+		<!-- dynamically generate id's labels and options -->
+	</fieldset>
+	<fieldset>
+		<legend>
+			Address
+		</legend>
+		<label class="first" for="street1">
+			Street
+			<input id="street1" name="street1" type="text" value="Street" />
+		</label>
+		<label for="city1">
+			City
+			<input id="city1" name="city1" type="text" value="City" />
+		</label>
+
+		<label for="state1">
+			State
+			<input id="state1" name="state1" type="text" value="State" />
+		</label>
+		<label for="postcode1">
+			Postcode
+			<input id="postcode1" name="postcode1" type="text" value="Postcode" />
+		</label>
+		<label for="country1">
+			Country
+			<input id="country1" name="country1" type="text" value="Country" />
+
+		</label>
+		<!-- why have a "1" in the names for these? -->
+		<!-- define a business rule to say only one address can exist -->
+	</fieldset>
+	<fieldset>
+		<legend>
+			Payment details
+		</legend>
+		<label class="first" for="amount1">
+			Last amount
+			<input id="amount1" name="amount1" type="text" value="Amount" />
+		</label>
+		<label for="date1">
+			Last date
+			<input id="date1" name="date1" type="text" value="Date" />
+		</label>
+		<label for="method1">
+			Method
+			<select id="method1" name="method1">
+				<option selected="selected">Credit Card</option>
+				<option>Cash</option>
+				<option>Check</option>
+			</select>
+		</label>
+	
+		<input class="submit" type="submit" value="Submit my details" />
+		<!-- seems inconsistent to put this within a fieldset -->
+	</fieldset>
+</form>
+</body>
+</html>

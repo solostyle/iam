@@ -1,0 +1,16 @@
+<?		session_start();
+	include '../../235/func.php';
+	include '../../235/storevars.php';
+	include '../../inc/header.php';?><? $_SESSION['entry_id'] = "tag:iam.solostyle.net,2007-11-18:/2007/11/"; ?>
+		<div class="publishedentry">
+			<h2></h2>
+			<h3>18 November 2007  @ 23:16</h3>
+			<p>November 15, I jogged .8 miles in 8 minutes. I did the same tonight. It feels fine, knee's getting better, blah blah blah.</p><p>I'm getting sick of relationships. I went to a wedding reception last night and talked to a lot of different people, some of whom I'd seen recently and some whom I hadn't seen in years. I asked people mostly about what to do in life, where to go, how to approach life pursuits. I have no idea, because I have so many interests, but no passions. I feel like everything I've learned so far is just traditions, or parts of traditions. Singing... I'm a good singer, but I sing only what I've learned of a particular tradition. I can throw myself completely into it, possibly forever, and find a lot of satisfaction in struggle and expression. The problem with art is.. there are so many different art traditions, they are as varied as everything in the world. Because I can see how anything in the world is art. I have been confused about art lately (for the past 4 years) because it covers such a vast field of stuff. The only thing that all that stuff has in common is thought. And how can I just say thinking is my passion? To be honest, not thinking at all is more appealing to me. I feel like I've gone beyond any definition of art, the same way I went beyond the idea of God. Neither concepts are useful to me anymore. But I'm still around people who call themselves artists or who think art is the highest pursuit. They can do what they want, and I leave them be, but I don't really feel part of that anymore. Carnatic music is great because I still feel like there's so much to play with and so much to explore. But I think that's because of the internal structure of the Carnatic system and the years of its tradition. There doesn't seem to be .. or I don't find myself among.. anything of the sort when it comes to art. To be part of an artistic tradition is to stifle yourself, and art itself. But somehow, music doesn't seem at all stifled by extending the Carnatic tradition. Carnatic music isn't infinite.. or is it?</p><p>Ah, here's something.. the only thing art ever did for me personally was express how I felt about my life or my situation. I can't force any other kind of art out of me.. like a political statement, or something that just looks cool, or something that's a tool that can be used.. None of that stuff inspires me. Suffering, for one, does inspire me.</p><p>Hm.. more to ponder...</p><p>I guess I'll go read with Nick and come back later.</p>
+			<div style="clear:both; padding-bottom: 0.25em;"></div>
+			<p>
+				<em><a name="bot" href="http://iam.solostyle.net/comment.php">comments</a></em>
+			</p>
+		</div>
+	<?	include '../../comment.html';
+	include '../../right.php';
+	include '../../inc/footer.php';	?>

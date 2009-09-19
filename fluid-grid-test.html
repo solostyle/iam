@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<title>Fluid Grids - archana's hack</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<style type="text/css" media="screen, projection">
+/*
+	Layout
+*/
+#page {
+	border:solid;
+	margin: 2.5em auto;             /* 40px / 16px = 2.5em */
+	padding: 0 1em;              /* 20px / 16px = 1.25em */
+	max-width: 61.75em;		/* 988px / 16px = 61.75em */
+}
+
+h1 {
+	border:solid red;
+	margin-left: 14.575%;	/* 144px / 988px = 0.14575 */
+	width: 70.85%;			/* 700px / 988px = 0.7085 */
+}
+
+.entry {
+	border:solid blue;
+	float: left;
+	width: 100%;
+}
+
+.entry h2 {
+	border:solid green;
+	float: right;
+	width: 85.425%;		/* 844px / 988px = 0.85425 */
+}
+
+.entry .info {
+	border:solid gray;
+	float: left;
+	margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
+	width: 12.551%;		/* 124px / 988px = .12551 */
+}
+
+.entry .content {
+	border:solid pink;
+	float: right;
+	width: 85.425%;		/* 844px / 988px = 0.85425 */
+}
+
+.entry .main {
+	border:solid orange;
+	float: left;
+	width: 65.876%;	/* 556px / 844px = 0.65876 */
+}
+
+.entry .right {
+	border:solid purple;
+	float: right;
+	width: 31.753%;	/* 268px / 844px = 0.31753 */
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="page">
+	<h1>Title of the whole site</h1>
+	<div style="border:solid">navigation links can go here</div>
+
+	<div class="entry">
+		<h2>the entry title</h2>
+
+		<h3 class="info">A <a href="#">Blog</a> Entry:</h3>
+
+		<div class="content">
+			<div class="main">
+				<p>I mean it: I&#8217;ve got your <i xml:lang="de">Neue Haas Grotesk</i> right here, buddy. Along with some lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+
+				<p>Yeah, you heard me.</p>
+
+				<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+				<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div><!-- /end .main -->
+
+			<div class="right">
+				<p>Posted on 15 February 2009. <a href="#">15 comments</a> so far.</p>
+
+				<p>Tagged with <a href="#">rants</a>, <a href="#">typography</a>, <a href="#">filler copy</a>, <a href="#">sunshine</a> and <a href="#">puppies</a>.</p>
+			</div><!-- /end .right -->
+		</div><!-- /end .content -->
+	</div><!-- /end .entry -->
+</div><!-- /end #page -->
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<? select_db($s, $u, $p, $db); ?>
+<div id="leftbar">
+	<div>
+	<h3>Subscribe</h3>
+		<table>
+			<tr><td><a href="http://iam.solostyle.net/atom.xml">Atom</a></td><td><a href="http://feedvalidator.org/check.cgi?url=http%3A//iam.solostyle.net/atom.xml"><img src="http://iam.solostyle.net/img/valid-atom.png" alt="[Valid Atom 1.0]" title="Validate my Atom 1.0 feed" /></a></td></tr>
+			<tr><td><a href="http://iam.solostyle.net/rss.xml">RSS</a></td><td><a href="http://feedvalidator.org/check.cgi?url=http%3A//iam.solostyle.net/rss.xml"><img src="http://iam.solostyle.net/img/valid-rss.png" alt="[Valid RSS]" title="Validate my RSS feed" /></a></td></tr>
+		</table>
+	</div>
+
+	<div style="clear:both">
+	<h3>Weekly Archive</h3>
+		<?
+			select_db($s, $u, $p, $db);
+			print '<div style="margin:5px 5px 0 5px;padding-bottom:5px">
+				<form method="post" action="http://' . $_SERVER['HTTP_HOST'] . '/archive.php">
+				<p>Select weeks to view</p>';
+			print list_weeks();
+			print '<input type="submit" name="submit" value="Show weeks" />
+					</form></div>';
+			mysql_close();
+		?>
+	</div>
+
+</div>
+
+<div id="center">

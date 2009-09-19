@@ -1,0 +1,16 @@
+<?		session_start();
+	include '../../235/func.php';
+	include '../../235/storevars.php';
+	include '../../inc/header.php';?><? $_SESSION['entry_id'] = "tag:iam.solostyle.net,2006-07-31:/2006/07/ensorcellia-my-queen"; ?>
+		<div class="publishedentry">
+			<h2>Ensorcellia, my Queen</h2>
+			<h3>31 July 2006  @ 18:31</h3>
+			<p><p>Whoooo.... I just spent many many hours working on a paper and studying Japanese. Two days ago I spent the entire day on the paper. Yesterday I spent the entire day studying Japanese. Today... it was a bit of both plus a whole bunch of "business." This business includes things like setting up doctor appointments, transfering information between different doctors, getting a hold of people who have been to Japan to ask them for advice, looking up Fulbright scholarships and gauging the possibility of my being granted a scholarship, looking up the metro bus and rail system of Buffalo to figure out where and how I am to get from the station to and from the airport at 2 am (which incidentally, won't be happening because the metro doesnt run at those times), and calling various people to get all this crap figured out.</p><br /><p>Yay. I'm breathing now. The air is warm and humid. Everyone is melting, and I love it. I see their pools under them, wat'ry silhouettes that they drag from place to air-conditioned place. Meanwhile, I saunter in the warm, enveloping, comforting air. To my Houston skin it feels like Arizona, or now maybe I can even say California (they had that heatwave). If the sun smiles at me, I have no complaints. And it smiled. It even laughed at me through the leaves as I winced in pain from the pinched kisses the tree gave me as I climbed it. My sense of balance was challenged today as it had been years since my last time in a tree. How magical. How wonderfully magical. Nothing is the same. Everything is golden. Even the dirt under my fingernails that collects every time I scratch my sweaty skin. The world envelops me in more than one way: it also coaxes out of me the sweat and sprinkles its dust all over me until I'm wrapped in a film made of inside and outside. This semi-permeable layer that I remove every time I step into the shower, every time I cast off this divine robe sent to me from the unknown.</p><br /><p>The cafe plays a tune by some unknown people, but they use a banjo and other instruments that sound so much like the spanish tune in Fando y Lis. Oh Fando! Don't leave your poor Lis. Look how she needs you, look how she loves you. Ah, but we are all dependent, even upon those who are dependent upon us. There is nothing inherently wrong with anything. It's all beautiful and sad. Or sad and beautiful, depending on what band you listen to. And in the end we're all complicit, we're all killing our lovely Lises, it's our minds, not us. But that's okay.. If we are going to blame people like Hitler and Stalin, we might as well blame ourselves, too. Yadda, yadda, yadda.</p></p>
+			<div style="clear:both; padding-bottom: 0.25em;"></div>
+			<p>
+				<em><a name="bot" href="http://iam.solostyle.net/comment.php">comments</a></em>
+			</p>
+		</div>
+	<?	include '../../comment.html';
+	include '../../right.php';
+	include '../../inc/footer.php';	?>

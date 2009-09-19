@@ -1,0 +1,7 @@
+<?
+	session_start();
+	include '567/_leftdiv.php';
+	include '567/_rightdiv.php';
+	include '567/_footerdiv.php';
+	include '567/footer.php';
+?>

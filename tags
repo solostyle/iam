@@ -1,0 +1,841 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.6	//
+ARCHIVE_YEARMONTH	235/storevars.php	/^$ARCHIVE_YEARMONTH = date('Ym');$/;"	v
+ARCHIVE_YEARMONTH	567/storevars.php	/^$ARCHIVE_YEARMONTH = date('Ym');$/;"	v
+Default_Table	567/mmbr.php	/^class Default_Table {$/;"	c
+ISOdate_to_date	235/dbfunctions.php	/^function ISOdate_to_date($isoformat) {$/;"	f
+MMember	567/mmbr.php	/^class MMember {$/;"	c
+Member	567/objs.php	/^class Member {$/;"	c
+Member_Login	567/mmbr.php	/^	function Member_Login() {$/;"	f
+Member_Login	567/mmbr.php	/^class Member_Login extends Default_Table {$/;"	c
+Name	567/objs.php	/^class Name {$/;"	c
+Payment	567/objs.php	/^class Payment {$/;"	c
+Redirect	zigzag.php	/^class Redirect {$/;"	c
+_SESSION	signout.php	/^$_SESSION = array();$/;"	v
+__construct	567/mmbr.php	/^	function __construct() {$/;"	f
+__construct	567/mmbr.php	/^	function __construct(Member $mbrObj) {$/;"	f
+__construct	zigzag.php	/^	function __construct() {$/;"	f
+acf	235/storevars.php	/^$acf = array('comment_id','blog_id','name','website','email','comment','time');$/;"	v
+acf	567/storevars.php	/^$acf = array('tag','post_tag','name','website','email','comment','time');$/;"	v
+acv	comment.php	/^		  $acv = array($comment_id, $blog_id, $n_comm, $website, $email, $c_comm, $_POST['time']);$/;"	v
+advanced_redirect_page	zigzag.php	/^	$advanced_redirect_page = $rdr->advanced_redirect();$/;"	v
+af	235/dbfunc.php	/^	$af = array('blog_id','category_nm');$/;"	v
+af	235/dbfunc.php	/^	$af = array('blog_id','tag_nm');$/;"	v
+af	235/storevars.php	/^$af = array('id','time','title','entry');$/;"	v
+af	567/dbfunc.php	/^	$af = array('blog_id','category_nm');$/;"	v
+af	567/dbfunc.php	/^	$af = array('blog_id','tag_nm');$/;"	v
+af	567/storevars.php	/^$af = array('id','username','time','title','entry');  								\/\/ all fields$/;"	v
+assign_category	235/dbfunc.php	/^function assign_category($blog_id, $category_nm) {$/;"	f
+assign_category	567/dbfunc.php	/^function assign_category($blog_id, $category_nm) {$/;"	f
+assign_tag	235/dbfunc.php	/^function assign_tag($blog_id, $tag_nm) {$/;"	f
+assign_tag	567/dbfunc.php	/^function assign_tag($blog_id, $tag_nm) {$/;"	f
+av	235/dbfunc.php	/^	$av = array($blog_id,$category_nm);$/;"	v
+av	235/dbfunc.php	/^	$av = array($blog_id,$tag_nm);$/;"	v
+av	567/dbfunc.php	/^	$av = array($blog_id,$category_nm);$/;"	v
+av	567/dbfunc.php	/^	$av = array($blog_id,$tag_nm);$/;"	v
+av	add-confirm.php	/^	$av = array_merge($blog_id_array, $v);$/;"	v
+b	235/dbfunctions.php	/^		   $b = rand(0, strlen($template) - 1);$/;"	v
+b	235/xfunc.php	/^		   $b = rand(0, strlen($template) - 1);$/;"	v
+b	567/xfunc.php	/^		   $b = rand(0, strlen($template) - 1);$/;"	v
+basic_redirect_page	zigzag.php	/^$basic_redirect_page = $rdr->basic_redirect();$/;"	v
+bg_color	add.php	/^			$bg_color = ImageColorAllocate($image, 049, 030, 094);$/;"	v
+bg_color	commentform.php	/^			$bg_color = ImageColorAllocate($image, 049, 030, 094);$/;"	v
+blah	commentform.php	/^	$blah = make_url($blog_id);$/;"	v
+blog_first_date	235/dbfunc.php	/^function blog_first_date() {$/;"	f
+blog_first_date	567/dbfunc.php	/^function blog_first_date() {$/;"	f
+blog_id	235/presentfunc.php	/^	$blog_id = $year . "-" . $month . "-" . $date . ":" . $blogidtitle;$/;"	v
+blog_id	567/presentfunc.php	/^	$blog_id = $year . "-" . $month . "-" . $date . ":" . $blogidtitle;$/;"	v
+blog_id	add-confirm.php	/^	$blog_id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);$/;"	v
+blog_id	categorize-confirm.php	/^	$blog_id = $_POST['blog_id'];$/;"	v
+blog_id	comment.php	/^$blog_id = $_SESSION['entry_id'];$/;"	v
+blog_id	tag-confirm.php	/^	$blog_id = $_POST['blog_id'];$/;"	v
+blog_id_array	add-confirm.php	/^	$blog_id_array = array($blog_id);$/;"	v
+blog_id_array	delete-confirm.php	/^		$blog_id_array = $_POST["republish"];$/;"	v
+blog_id_array	edit.php	/^	$blog_id_array = $_POST["republish"];$/;"	v
+blog_id_array	republish-confirm.php	/^	$blog_id_array = $_POST["republish"];$/;"	v
+blog_last_date	235/dbfunc.php	/^function blog_last_date() {$/;"	f
+blog_last_date	567/dbfunc.php	/^function blog_last_date() {$/;"	f
+blogidtitle	235/presentfunc.php	/^	$blogidtitle = parse_title($title);$/;"	v
+blogidtitle	567/presentfunc.php	/^	$blogidtitle = parse_title($title);$/;"	v
+bool	235/presentfunc.php	/^		$bool = mysql_query($query);$/;"	v
+bool	567/presentfunc.php	/^		$bool = mysql_query($query);$/;"	v
+cat_nm	categorize-confirm.php	/^	$cat_nm = $_POST['cat_nm'];$/;"	v
+catarray	235/dbfunctions.php	/^			$catarray = explode(",", $entryarray[5]);$/;"	v
+categories_form	235/presentfunc.php	/^function categories_form() {$/;"	f
+categories_form	567/presentfunc.php	/^function categories_form() {$/;"	f
+cf	235/storevars.php	/^$cf = array('name','website','email','comment','time');$/;"	v
+cf	567/storevars.php	/^$cf = array('name','website','email','comment','time');$/;"	v
+chars	add.php	/^			$chars = 5;$/;"	v
+chars	commentform.php	/^			$chars = 5;$/;"	v
+check_db	index.new.php	/^function check_db($array) {$/;"	f
+check_db_members	index.new.php	/^function check_db_members($array) {$/;"	f
+cntr	forms.php	/^		$cntr = 0;$/;"	v
+comment	235/dbfunctions.php	/^	$comment = nl2p_or_br($comment);$/;"	v
+comment	235/dbfunctions.php	/^	$comment = strip_tags($row[5]);$/;"	v
+comment	235/dbfunctions.php	/^	$comment = stripslashes(strip_tags($row[5]));$/;"	v
+comment	235/presentfunc.php	/^	$comment = nl2p_or_br($comment);$/;"	v
+comment	235/presentfunc.php	/^	$comment = strip_tags($row[5]);$/;"	v
+comment	235/presentfunc.php	/^	$comment = stripslashes(strip_tags($row[5]));$/;"	v
+comment	567/presentfunc.php	/^	$comment = nl2p_or_br($comment);$/;"	v
+comment	567/presentfunc.php	/^	$comment = strip_tags($row[5]);$/;"	v
+comment	567/presentfunc.php	/^	$comment = stripslashes(strip_tags($row[5]));$/;"	v
+comment_id	comment.php	/^		  $comment_id = create_id($_POST['name'], $_POST['year'], $_POST['month'], $_POST['date']);$/;"	v
+comments	235/dbfunctions.php	/^	$comments = mysql_query($get_comments);$/;"	v
+content	235/dbfunc.php	/^	$content = "";	\/\/ content accumulator$/;"	v
+content	235/dbfunc.php	/^	$content = ""; \/\/content accumulator$/;"	v
+content	235/dbfunc.php	/^	$content = "";$/;"	v
+content	235/dbfunctions.php	/^	$content = "";	\/\/ content accumulator$/;"	v
+content	235/dbfunctions.php	/^	$content = "";$/;"	v
+content	235/dbfunctions.php	/^	$content = "$/;"	v
+content	235/dbfunctions.php	/^	$content = $head . "<? \\$_SESSION['entry_id'] = \\"$entryarray[0]\\"; ?>" . make_entry($entryarray) . $foot;$/;"	v
+content	235/dbfunctions.php	/^	$content = $head . make_comment($entryarray, 0 , 0) . $foot;$/;"	v
+content	235/dbfunctions.php	/^	$content = '<p><select name="week[]" multiple="multiple" size="10">';$/;"	v
+content	235/dbfunctions.php	/^	$content = make_feed($rss_or_atom, $num_of_entries);$/;"	v
+content	235/presentfunc.php	/^	$content = "$/;"	v
+content	235/presentfunc.php	/^	$content = '$/;"	v
+content	235/presentfunc.php	/^	$content = '<p>';$/;"	v
+content	235/presentfunc.php	/^	$content = '<select name="' . $name_of_menu . '" size="1">';$/;"	v
+content	235/presentfunc.php	/^	$content = '<ul>';$/;"	v
+content	235/pubfunc.php	/^	$content = make_feed($rss_or_atom, $num_of_entries);$/;"	v
+content	235/pubfunc.php	/^    $content = "";$/;"	v
+content	567/dbfunc.php	/^	$content = "";	\/\/ content accumulator$/;"	v
+content	567/dbfunc.php	/^	$content = ""; \/\/content accumulator$/;"	v
+content	567/dbfunc.php	/^	$content = "";$/;"	v
+content	567/presentfunc.php	/^	$content = "$/;"	v
+content	567/presentfunc.php	/^	$content = '$/;"	v
+content	567/presentfunc.php	/^	$content = '<p>';$/;"	v
+content	567/presentfunc.php	/^	$content = '<select name="' . $name_of_menu . '" size="1">';$/;"	v
+content	567/presentfunc.php	/^	$content = '<ul>';$/;"	v
+content	567/pubfunc.php	/^	$content = make_feed($rss_or_atom, $num_of_entries);$/;"	v
+content	567/pubfunc.php	/^    $content = "";$/;"	v
+content	forms.php	/^		$content = '$/;"	v
+content	index.new.php	/^	$content = format_member_view();$/;"	v
+content	zigzag.php	/^		$content = format_member_view();$/;"	v
+copy_tables	drop-confirm.php	/^function copy_tables($prefix) {$/;"	f
+copy_tables	dropcopy.php	/^function copy_tables($prefix) {$/;"	f
+copy_tables	dropcopyfunc.php	/^function copy_tables($prefix) {$/;"	f
+create_id	235/presentfunc.php	/^function create_id($title, $year, $month, $date) {$/;"	f
+create_id	567/presentfunc.php	/^function create_id($title, $year, $month, $date) {$/;"	f
+create_table_week	235/dbfunctions.php	/^function create_table_week($dateYmd) {$/;"	f
+create_tag	235/dbfunctions.php	/^function create_tag($title, $year, $month, $date) {$/;"	f
+css_file	xxx.php	/^	$css_file = "http:\/\/iam.solostyle.net\/fluid-3col-em.css";$/;"	v
+cssfile	567/header.php	/^$cssfile='http:\/\/iam.solostyle.net\/bkm.css';$/;"	v
+cssfile	inc/header.php	/^$cssfile='http:\/\/iam.solostyle.net\/iam.new.css';$/;"	v
+cv	235/storevars.php	/^$cv = array($_POST['name'],$_POST['website'],$_POST['email'],$_POST['comment'],$_POST['time']);$/;"	v
+cv	567/storevars.php	/^$cv = array($_POST['name'],$_POST['website'],$_POST['email'],$_POST['comment'],$_POST['time']);$/;"	v
+da	235/dbfunctions.php	/^   $da = substr($time, 8, 2);$/;"	v
+da	235/presentfunc.php	/^   $da = substr($time, 8, 2);$/;"	v
+da	567/presentfunc.php	/^   $da = substr($time, 8, 2);$/;"	v
+data	567/mmbr.php	/^$data = $dbo->getData($where);$/;"	v
+date	235/dbfunc.php	/^		$date = strrchr($row[0],",");$/;"	v
+date	235/dbfunc.php	/^		$date = substr($date,1,10);$/;"	v
+date	235/dbfunc.php	/^		$date = substr($row[0],$datepos+1,10);$/;"	v
+date	235/dbfunctions.php	/^	$date = parse_date($row[2]);$/;"	v
+date	235/dbfunctions.php	/^	$date = parse_date($row[6]);$/;"	v
+date	235/dbfunctions.php	/^	$date = str_replace(" ","T",$entrydate);$/;"	v
+date	235/dbfunctions.php	/^	$date = str_replace("-","",$date);	\/\/ 20060418$/;"	v
+date	235/dbfunctions.php	/^	$date = substr($substring, 1,10);	\/\/ 2006-04-18$/;"	v
+date	235/presentfunc.php	/^		$date = mktime(0, 0, 0, $k, 1, date("Y")); \/\/doesn't matter what the year is$/;"	v
+date	235/presentfunc.php	/^	$date = parse_date($row[2]);$/;"	v
+date	235/presentfunc.php	/^	$date = parse_date($row[6]);$/;"	v
+date	235/pubfunc.php	/^	$date = str_replace(" ","T",$entrydate);$/;"	v
+date	567/dbfunc.php	/^		$date = strrchr($row[0],",");$/;"	v
+date	567/dbfunc.php	/^		$date = substr($date,1,10);$/;"	v
+date	567/dbfunc.php	/^		$date = substr($row[0],$datepos+1,10);$/;"	v
+date	567/presentfunc.php	/^		$date = mktime(0, 0, 0, $k, 1, date("Y")); \/\/doesn't matter what the year is$/;"	v
+date	567/presentfunc.php	/^	$date = parse_date($row[2]);$/;"	v
+date	567/presentfunc.php	/^	$date = parse_date($row[6]);$/;"	v
+date	567/pubfunc.php	/^	$date = str_replace(" ","T",$entrydate);$/;"	v
+date_end	235/dbfunctions.php	/^	$date_end = mktime(0, 0, 0, 1, 1 + $isodays + 6, $isoyear);$/;"	v
+date_start	235/dbfunctions.php	/^	$date_start = mktime(0, 0, 0, 1, 1 + $isodays, $isoyear);$/;"	v
+datepos	235/dbfunc.php	/^		$datepos = strpos($row[0],",");$/;"	v
+datepos	567/dbfunc.php	/^		$datepos = strpos($row[0],",");$/;"	v
+dayofJan1	235/dbfunctions.php	/^	$dayofJan1 = strftime('%w', strtotime($thefirst)); \/\/ 1=monday; 4=thursday; 0=sunday$/;"	v
+days_in_month	archive.php	/^	$days_in_month = date("t", $end);$/;"	v
+days_in_month	categorize.php	/^		$days_in_month = date("t", $end);$/;"	v
+days_in_month	tag.php	/^		$days_in_month = date("t", $end);$/;"	v
+db	235/storevars.php	/^$db = "iam";$/;"	v
+db	567/storevars.php	/^$db = "bkm_website";$/;"	v
+db	drop-confirm.php	/^$db = "iam";$/;"	v
+db	dropcopy.php	/^	$db = "iam";$/;"	v
+db	update-id.php	/^$db = "iam";$/;"	v
+db	update-time-confirm.php	/^$db = "iam";$/;"	v
+db	update-time.php	/^$db = "iam";$/;"	v
+dbc	567/mmbr.php	/^		$dbc = db_connect($this->dbname) or trigger_error("SQL",E_USER_ERROR);$/;"	v
+dbconnect	567/mmbr.php	/^		$dbconnect = db_connect($this->dbname) or trigger_error("SQL", E_USER_ERROR);$/;"	v
+dbconnect	567/mmbr.php	/^		$dbconnect = db_connect($this->dbname) or trigger_error("SQL",E_USER_ERROR);$/;"	v
+dbo	567/mmbr.php	/^$dbo = new Member_Login;$/;"	v
+dcdateformat	235/dbfunctions.php	/^function dcdateformat($entrydate) {$/;"	f
+dcdateformat	235/pubfunc.php	/^function dcdateformat($entrydate) {$/;"	f
+dcdateformat	567/pubfunc.php	/^function dcdateformat($entrydate) {$/;"	f
+del_q	235/dbfunc.php	/^	$del_q = "DELETE FROM `blog_category` WHERE `blog_id` = '$blog_id'";$/;"	v
+del_q	567/dbfunc.php	/^	$del_q = "DELETE FROM `blog_category` WHERE `blog_id` = '$blog_id'";$/;"	v
+del_tables	dropcopyfunc.php	/^function del_tables($prefix) {$/;"	f
+deleteRecord	567/mmbr.php	/^	function deleteRecord ($fieldarray) {$/;"	f
+delete_record	235/dbfunc.php	/^function delete_record($blog_id) {$/;"	f
+delete_record	235/dbfunctions.php	/^function delete_record($tag) {$/;"	f
+delete_record	567/dbfunc.php	/^function delete_record($blog_id) {$/;"	f
+deletetitle	delete-confirm.php	/^			$deletetitle = $entryarray[3];$/;"	v
+desc	235/dbfunctions.php	/^function desc($a, $b) {$/;"	f
+disp_fieldset_names	forms.php	/^	function disp_fieldset_names($result) {$/;"	f
+disp_inp_sel	forms.php	/^	function disp_inp_sel($value,$desc) {$/;"	f
+disp_inp_txt	forms.php	/^	function disp_inp_txt($value,$desc) {$/;"	f
+disp_member_edit	index.new.php	/^function disp_member_edit() {$/;"	f
+disp_member_view	index.new.php	/^function disp_member_view() {$/;"	f
+displ_func	zigzag.php	/^			$displ_func = displ_member();$/;"	v
+displ_func	zigzag.php	/^			$displ_func = rtrv_mbr_displ_func($this->uri_array[0]);$/;"	v
+doc_root	235/storevars.php	/^$doc_root = $_SERVER['DOCUMENT_ROOT'];$/;"	v
+doc_root	567/storevars.php	/^$doc_root = $_SERVER['DOCUMENT_ROOT'];$/;"	v
+drop_tables	drop-confirm.php	/^function drop_tables($prefix) {$/;"	f
+drop_tables	dropcopy.php	/^function drop_tables($prefix) {$/;"	f
+e	entry.php	/^	$e = get_entry($id);$/;"	v
+e_change	change_pw.php	/^	  	$e_change = $row[3];$/;"	v
+e_forgot	login_woe.php	/^	  	$e_forgot = $row[3];$/;"	v
+edittext	edit.php	/^		$edittext = $entryarray[4];$/;"	v
+edittime	edit.php	/^		$edittime = $entryarray[2];$/;"	v
+edittitle	edit.php	/^		$edittitle = $entryarray[3];$/;"	v
+editusername	edit.php	/^		$editusername = $entryarray[1];$/;"	v
+email	comment.php	/^   $email = $alias . '@' . $domain . '.' . $ext;$/;"	v
+end	archive.php	/^	$end = mktime(0, 0, 0, $_POST['end_month'], $days_in_month, $_POST['end_year']);$/;"	v
+end	archive.php	/^	$end = mktime(0, 0, 0, $_POST['end_month'], 1, $_POST['end_year']);$/;"	v
+end	categorize.php	/^		$end = mktime(0, 0, 0, $_POST['end_month'], $days_in_month, $_POST['end_year']);$/;"	v
+end	categorize.php	/^		$end = mktime(0, 0, 0, $_POST['end_month'], 1, $_POST['end_year']);$/;"	v
+end	republish.php	/^		$end = mktime(0, 0, 0, $_POST['end_month'], 1, $_POST['end_year']);$/;"	v
+end	tag.php	/^		$end = mktime(0, 0, 0, $_POST['end_month'], $days_in_month, $_POST['end_year']);$/;"	v
+end	tag.php	/^		$end = mktime(0, 0, 0, $_POST['end_month'], 1, $_POST['end_year']);$/;"	v
+end_f	archive.php	/^	$end_f = strftime('%G-%m-%d %H:%M:%S',$end);$/;"	v
+end_f	categorize.php	/^		$end_f = strftime('%G-%m-%d %H:%M:%S',$end);$/;"	v
+end_f	republish.php	/^		$end_f = strftime('%G-%m-%d %H:%M:%S',$end);$/;"	v
+end_f	tag.php	/^		$end_f = strftime('%G-%m-%d %H:%M:%S',$end);$/;"	v
+end_of_path	error.php	/^$end_of_path = strrchr($redirect_url_array["path"], "\/");$/;"	v
+end_of_path	error404.php	/^$end_of_path = strrchr($redirect_url_array["path"], "\/");$/;"	v
+end_y	235/presentfunc.php	/^	$end_y = strftime("%Y", strtotime(blog_last_date()));$/;"	v
+end_y	567/presentfunc.php	/^	$end_y = strftime("%Y", strtotime(blog_last_date()));$/;"	v
+entrieslist	235/dbfunc.php	/^	$entrieslist = get_entries_by_time($start, $end);$/;"	v
+entrieslist	235/dbfunc.php	/^	$entrieslist = mysql_query($getentries);$/;"	v
+entrieslist	235/dbfunctions.php	/^		$entrieslist = mysql_query($getentries);$/;"	v
+entrieslist	235/dbfunctions.php	/^	$entrieslist = mysql_query($getentries);$/;"	v
+entrieslist	235/pubfunc.php	/^	$entrieslist = mysql_query($getentries);$/;"	v
+entrieslist	567/dbfunc.php	/^	$entrieslist = get_entries_by_time($start, $end);$/;"	v
+entrieslist	567/dbfunc.php	/^	$entrieslist = mysql_query($getentries);$/;"	v
+entrieslist	567/pubfunc.php	/^	$entrieslist = mysql_query($getentries);$/;"	v
+entry	235/dbfunc.php	/^	$entry = mysql_fetch_array($result, MYSQL_NUM);$/;"	v
+entry	235/dbfunctions.php	/^	$entry = mysql_fetch_array($result, MYSQL_NUM);$/;"	v
+entry	235/dbfunctions.php	/^	$entry = nl2p_or_br($entry);$/;"	v
+entry	235/dbfunctions.php	/^	$entry = stripslashes($row[4]);$/;"	v
+entry	235/dbfunctions.php	/^	$entry = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+entry	235/presentfunc.php	/^	$entry = nl2p_or_br($entry);$/;"	v
+entry	235/presentfunc.php	/^	$entry = stripslashes($row[4]);$/;"	v
+entry	235/presentfunc.php	/^	$entry = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+entry	235/presentfunc.php	/^	$entry = substr(strip_tags($row[4]), 0, 200) . '...<a href="' . $url . '">full<\/a>';$/;"	v
+entry	567/dbfunc.php	/^	$entry = mysql_fetch_array($result, MYSQL_NUM);$/;"	v
+entry	567/presentfunc.php	/^	$entry = nl2p_or_br($entry);$/;"	v
+entry	567/presentfunc.php	/^	$entry = stripslashes($row[4]);$/;"	v
+entry	567/presentfunc.php	/^	$entry = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+entry	567/presentfunc.php	/^	$entry = substr(strip_tags($row[4]), 0, 200) . '...<a href="' . $url . '">full<\/a>';$/;"	v
+entryarray	comment.php	/^		  $entryarray = get_entry($blog_id);$/;"	v
+entryarray	delete-confirm.php	/^			$entryarray = get_entry($blog_id_array[$i]);$/;"	v
+entryarray	edit.php	/^		$entryarray = get_entry($blog_id_array[$i]);$/;"	v
+entryarray	republish-confirm.php	/^		$entryarray = get_entry($blog_id_array[$i]);$/;"	v
+entrydate	235/dbfunctions.php	/^    $entrydate = dcdateformat($entryarray[2]);$/;"	v
+entrydate	235/pubfunc.php	/^    $entrydate = dcdateformat($entryarray[2]);$/;"	v
+entrydate	567/pubfunc.php	/^    $entrydate = dcdateformat($entryarray[2]);$/;"	v
+entrytext	235/dbfunctions.php	/^    $entrytext = substr(strip_tags($entryarray[4]),0,300);$/;"	v
+entrytext	235/pubfunc.php	/^    $entrytext = substr(strip_tags($entryarray[4]),0,300);$/;"	v
+entrytext	567/pubfunc.php	/^    $entrytext = substr(strip_tags($entryarray[4]),0,300);$/;"	v
+entryurl	235/dbfunctions.php	/^    $entryurl = tag_to_url($entryarray[0]);$/;"	v
+entryurl	235/pubfunc.php	/^    $entryurl = make_url($entryarray[0]);$/;"	v
+entryurl	567/pubfunc.php	/^    $entryurl = make_url($entryarray[0]);$/;"	v
+error_code	error.php	/^	$error_code = "400 - Bad Request";$/;"	v
+error_code	error.php	/^	$error_code = "401 - Unauthorized";$/;"	v
+error_code	error.php	/^	$error_code = "403 - Forbidden";$/;"	v
+error_code	error.php	/^	$error_code = "404 - Not Found";$/;"	v
+error_code	error.php	/^	$error_code = "500 - Internal Server Error";$/;"	v
+error_code	error.php	/^	$error_code = "503 - Service Unavailable";$/;"	v
+error_code	error404.php	/^$error_code = "404 - Not Found";$/;"	v
+errors	567/mmbr.php	/^$errors = $dbo->getErrors();$/;"	v
+exist	login_woe.php	/^		$exist = mysql_query($exist_query);$/;"	v
+exist	login_woe.php	/^	  $exist = mysql_query($exist_query);$/;"	v
+exist_query	login_woe.php	/^		$exist_query = "SELECT * FROM `users` WHERE `email`='$e_forgot'";$/;"	v
+exist_query	login_woe.php	/^   	  $exist_query = "SELECT * FROM `users` WHERE `username`='$u_forgot'";$/;"	v
+explanation	error.php	/^	$explanation = "Oops! The requested resource '" . $page_redirected_from . "' could not be found on this server.  Verify the address and try again.";$/;"	v
+explanation	error.php	/^	$explanation = "Oops! You may not be allowed to view this section. If you feel you have reached this page in error, return to the login page and try again, or contact the webmaster if you continue to have problems.";$/;"	v
+explanation	error.php	/^	$explanation = "The server experienced an unexpected error.  Verify the address and try again.";$/;"	v
+explanation	error.php	/^	$explanation = "The server is currently unable to handle the request due to a temporary overloading or maintenance of the server. This may be a temporary condition which will be alleviated after some delay.";$/;"	v
+explanation	error.php	/^	$explanation = "Yikes! The syntax of the URL submitted by your browser could not be understood.  Verify the address and try again.";$/;"	v
+explanation	error404.php	/^$explanation = "Oops! The requested resource could not be found on this server.  Verify the address and try again.";$/;"	v
+extra_header	567/header.php	/^$extra_header = '<link rel="alternate" type="application\/rss+xml" title="RSS" href="http:\/\/iam.solostyle.net\/rss.xml" \/>$/;"	v
+extra_header	inc/header.php	/^$extra_header = '<link rel="alternate" type="application\/rss+xml" title="RSS" href="http:\/\/iam.solostyle.net\/rss.xml" \/>$/;"	v
+f	235/storevars.php	/^$f = array('time','title','entry');$/;"	v
+f	567/storevars.php	/^$f = array('username','time','title','entry');        								\/\/ fields to insert$/;"	v
+f_date_end	235/dbfunctions.php	/^	$f_date_end = strftime('%d', $date_end);$/;"	v
+f_date_start	235/dbfunctions.php	/^	$f_date_start = strftime('%d', $date_start);$/;"	v
+f_month_end	235/dbfunctions.php	/^	$f_month_end = strftime('%b', $date_end);$/;"	v
+f_month_start	235/dbfunctions.php	/^	$f_month_start = strftime('%b', $date_start);$/;"	v
+f_table	235/dbfunctions.php	/^		$f_table = ISOdate_to_date($table . '0');$/;"	v
+f_year_end	235/dbfunctions.php	/^	$f_year_end = strftime('%Y', $date_end);$/;"	v
+f_year_start	235/dbfunctions.php	/^	$f_year_start = strftime('%Y', $date_start);$/;"	v
+fg_color	add.php	/^			$fg_color = ImageColorAllocate($image, 255, 255, 255);$/;"	v
+fg_color	commentform.php	/^			$fg_color = ImageColorAllocate($image, 255, 255, 255);$/;"	v
+fieldarray	567/mmbr.php	/^$fieldarray = $dbo->deleteRecord($fieldarray);$/;"	v
+fieldarray	567/mmbr.php	/^$fieldarray = $dbo->insertRecord($fieldarray);$/;"	v
+fieldarray	567/mmbr.php	/^$fieldarray = $dbo->updateRecord($fieldarray);$/;"	v
+fieldlist	567/mmbr.php	/^		$fieldlist = $this->fieldlist;$/;"	v
+first	index.new.php	/^	$first = $array[0];$/;"	v
+font	add.php	/^			$font = imageloadfont('anonymous.gdf');$/;"	v
+font	commentform.php	/^			$font = imageloadfont('anonymous.gdf');$/;"	v
+foot	235/dbfunctions.php	/^	$foot = "$/;"	v
+foot	235/dbfunctions.php	/^	$foot = foot();$/;"	v
+foot	235/dbfunctions.php	/^function foot() {$/;"	f
+gen_pw	235/dbfunctions.php	/^function gen_pw($length) {$/;"	f
+gen_pw	235/xfunc.php	/^function gen_pw($length) {$/;"	f
+gen_pw	567/xfunc.php	/^function gen_pw($length) {$/;"	f
+getData	567/mmbr.php	/^	function getData($select, $where) {$/;"	f
+get_comments	235/dbfunctions.php	/^	$get_comments = "SELECT * FROM `comments` WHERE `post_tag`='$row[0]' ORDER BY `time`";$/;"	v
+get_entries_by_time	235/dbfunc.php	/^function get_entries_by_time($start, $end) {$/;"	f
+get_entries_by_time	567/dbfunc.php	/^function get_entries_by_time($start, $end) {$/;"	f
+get_entry	235/dbfunc.php	/^function get_entry($blog_id) {$/;"	f
+get_entry	235/dbfunctions.php	/^function get_entry($tag) {$/;"	f
+get_entry	567/dbfunc.php	/^function get_entry($blog_id) {$/;"	f
+get_table_from_tag	235/dbfunctions.php	/^function get_table_from_tag($tag) {$/;"	f
+get_tables	235/dbfunctions.php	/^function get_tables($last_table) {$/;"	f
+get_tables	drop-confirm.php	/^function get_tables($prefix) {$/;"	f
+get_tables	dropcopy.php	/^function get_tables($prefix) {$/;"	f
+get_tables	dropcopyfunc.php	/^function get_tables($prefix) {$/;"	f
+get_tags	235/dbfunc.php	/^function get_tags($blog_id) {$/;"	f
+get_tags	567/dbfunc.php	/^function get_tags($blog_id) {$/;"	f
+getentries	235/dbfunc.php	/^	$getentries = "$/;"	v
+getentries	235/dbfunc.php	/^	$getentries = "SELECT * FROM `blog` $time_limit ORDER BY `time` DESC";$/;"	v
+getentries	235/dbfunc.php	/^	$getentries = "SELECT * FROM `blog` ORDER BY `time` DESC LIMIT $lim";$/;"	v
+getentries	235/dbfunctions.php	/^		$getentries = "SELECT * FROM `$table` $time_limit ORDER BY `time` DESC";$/;"	v
+getentries	235/dbfunctions.php	/^		$getentries = "SELECT * FROM `$table` ORDER BY `time` DESC LIMIT $limit";$/;"	v
+getentries	235/dbfunctions.php	/^		$getentries = "SELECT * FROM `$table` ORDER BY `time` DESC";$/;"	v
+getentries	235/dbfunctions.php	/^	$getentries = "SELECT * FROM `$week` ORDER BY `time` DESC";$/;"	v
+getentries	235/pubfunc.php	/^	$getentries = "SELECT * FROM `blog` ORDER BY `time` DESC LIMIT $lim";$/;"	v
+getentries	567/dbfunc.php	/^	$getentries = "$/;"	v
+getentries	567/dbfunc.php	/^	$getentries = "SELECT * FROM `blog` $time_limit ORDER BY `time` DESC";$/;"	v
+getentries	567/dbfunc.php	/^	$getentries = "SELECT * FROM `blog` ORDER BY `time` DESC LIMIT $lim";$/;"	v
+getentries	567/pubfunc.php	/^	$getentries = "SELECT * FROM `blog` ORDER BY `time` DESC LIMIT $lim";$/;"	v
+gettablename	235/dbfunctions.php	/^	$gettablename = "SELECT DATE_FORMAT($date, '%x%v')";$/;"	v
+gettablename	235/dbfunctions.php	/^   $gettablename = "SELECT DATE_FORMAT($dateYmd, '%x%v')"; \/\/date(Ymd);$/;"	v
+gettables	235/dbfunctions.php	/^	$gettables = "SHOW TABLES LIKE '200%'";$/;"	v
+gettables	drop-confirm.php	/^	$gettables = "SHOW TABLES LIKE '" . $prefix . "%'";$/;"	v
+gettables	dropcopy.php	/^	$gettables = "SHOW TABLES LIKE '" . $prefix . "%'";$/;"	v
+gettables	dropcopyfunc.php	/^	$gettables = "SHOW TABLES LIKE '" . $prefix . "%'";$/;"	v
+head	235/dbfunctions.php	/^	$head = "<?		session_start();$/;"	v
+head	235/dbfunctions.php	/^	$head = head();$/;"	v
+head	235/dbfunctions.php	/^function head() {$/;"	f
+headers	change_pw.php	/^			$headers  = 'MIME-Version: 1.0' . "\\r\\n";$/;"	v
+headers	comment.php	/^		$headers  = 'MIME-Version: 1.0' . "\\r\\n";$/;"	v
+headers	login_woe.php	/^			$headers  = 'MIME-Version: 1.0' . "\\r\\n";$/;"	v
+headers	login_woe.php	/^		$headers  = 'MIME-Version: 1.0' . "\\r\\n";$/;"	v
+height	add.php	/^			$height = imagefontheight($font);$/;"	v
+height	commentform.php	/^			$height = imagefontheight($font);$/;"	v
+hr	235/dbfunc.php	/^			$hr = "0" . $hr;$/;"	v
+hr	235/dbfunc.php	/^		$hr = rand(0,24);$/;"	v
+hr	235/dbfunctions.php	/^   $hr = substr($time, 11, 2);$/;"	v
+hr	235/presentfunc.php	/^   $hr = substr($time, 11, 2);$/;"	v
+hr	567/dbfunc.php	/^			$hr = "0" . $hr;$/;"	v
+hr	567/dbfunc.php	/^		$hr = rand(0,24);$/;"	v
+hr	567/presentfunc.php	/^   $hr = substr($time, 11, 2);$/;"	v
+id	235/dbfunc.php	/^		$id = $date . ":" . $loc;$/;"	v
+id	567/dbfunc.php	/^		$id = $date . ":" . $loc;$/;"	v
+id	entry.php	/^	$id = $_GET['id'];$/;"	v
+image	add.php	/^			$image = imagecreate($width, $height);$/;"	v
+image	commentform.php	/^			$image = imagecreate($width, $height);$/;"	v
+insertRecord	567/mmbr.php	/^	function insertRecord($fieldarray) {$/;"	f
+insert_record	235/dbfunc.php	/^function insert_record($tablename,$fields,$values) {$/;"	f
+insert_record	235/dbfunctions.php	/^function insert_record($tablename,$fields,$values) {$/;"	f
+insert_record	567/dbfunc.php	/^function insert_record($tablename,$fields,$values) {$/;"	f
+isodays	235/dbfunctions.php	/^		$isodays = substr($isoformat, 4, 2) * 7 - 7;$/;"	v
+isoyear	235/dbfunctions.php	/^	$isoyear = substr($isoformat, 0, 4);$/;"	v
+j	235/dbfunctions.php	/^	$j = 0;		\/\/ entry counter$/;"	v
+k	235/dbfunctions.php	/^	$k = 0;		\/\/ table counter$/;"	v
+k	235/dbfunctions.php	/^	$k = 0; \/\/table counter$/;"	v
+last_table	235/dbfunctions.php	/^	$last_table = strftime('%Y%W', strtotime($last_time));$/;"	v
+limit	235/dbfunctions.php	/^		$limit = $num_to_show - $j;$/;"	v
+limit	235/dbfunctions.php	/^		$limit = 5 - $j;$/;"	v
+list_categories	235/presentfunc.php	/^function list_categories() {$/;"	f
+list_categories	567/presentfunc.php	/^function list_categories() {$/;"	f
+list_entry_categorize	235/presentfunc.php	/^function list_entry_categorize($row) {$/;"	f
+list_entry_categorize	567/presentfunc.php	/^function list_entry_categorize($row) {$/;"	f
+list_entry_republish	235/dbfunctions.php	/^function list_entry_republish($row) {$/;"	f
+list_entry_republish	235/presentfunc.php	/^function list_entry_republish($row) {$/;"	f
+list_entry_republish	567/presentfunc.php	/^function list_entry_republish($row) {$/;"	f
+list_entry_tag	235/presentfunc.php	/^function list_entry_tag($row) {$/;"	f
+list_entry_tag	567/presentfunc.php	/^function list_entry_tag($row) {$/;"	f
+list_months	235/presentfunc.php	/^function list_months($name_of_menu, $index_to_select) {$/;"	f
+list_months	567/presentfunc.php	/^function list_months($name_of_menu, $index_to_select) {$/;"	f
+list_tags	235/presentfunc.php	/^function list_tags() {$/;"	f
+list_tags	567/presentfunc.php	/^function list_tags() {$/;"	f
+list_weeks	235/dbfunctions.php	/^function list_weeks() {$/;"	f
+list_years	235/presentfunc.php	/^function list_years($name_of_menu, $index_to_select) {$/;"	f
+list_years	567/presentfunc.php	/^function list_years($name_of_menu, $index_to_select) {$/;"	f
+loc	235/dbfunc.php	/^		$loc = strrchr($row[0],"\/");$/;"	v
+loc	235/dbfunc.php	/^		$loc = substr($loc,1);$/;"	v
+loc	567/dbfunc.php	/^		$loc = strrchr($row[0],"\/");$/;"	v
+loc	567/dbfunc.php	/^		$loc = substr($loc,1);$/;"	v
+location	235/dbfunctions.php	/^	$location = str_replace("\\\\","",$location); 	\/\/to get rid of escape characters!$/;"	v
+location	235/dbfunctions.php	/^	$location = strrchr($tag,":");			\/\/:\/location$/;"	v
+location	235/dbfunctions.php	/^	$location = substr($location,1);		\/\/\/location$/;"	v
+login_info	567/mmbr.php	/^$login_info = $mbrObj->getLogin();$/;"	v
+make_comment	235/dbfunctions.php	/^function make_comment($row) { \/\/tag, post_tag, name, website, email, comment, time$/;"	f
+make_comment	235/presentfunc.php	/^function make_comment($row) { \/\/???, blog_id, name, website, email, comment, time$/;"	f
+make_comment	567/presentfunc.php	/^function make_comment($row) { \/\/???, blog_id, name, website, email, comment, time$/;"	f
+make_entry	235/dbfunctions.php	/^function make_entry($row) {$/;"	f
+make_entry	235/presentfunc.php	/^function make_entry($row) {$/;"	f
+make_entry	567/presentfunc.php	/^function make_entry($row) {$/;"	f
+make_feed	235/dbfunctions.php	/^function make_feed($rss_or_atom, $num_to_show) {$/;"	f
+make_feed	235/pubfunc.php	/^function make_feed($rss_or_atom, $lim) {$/;"	f
+make_feed	567/pubfunc.php	/^function make_feed($rss_or_atom, $lim) {$/;"	f
+make_url	235/presentfunc.php	/^function make_url($blog_id) {$/;"	f
+make_url	567/presentfunc.php	/^function make_url($blog_id) {$/;"	f
+make_xml_entry	235/dbfunctions.php	/^function make_xml_entry($rss_or_atom, $entryarray) {$/;"	f
+make_xml_entry	235/pubfunc.php	/^function make_xml_entry($rss_or_atom, $entryarray) {$/;"	f
+make_xml_entry	567/pubfunc.php	/^function make_xml_entry($rss_or_atom, $entryarray) {$/;"	f
+match	change_pw.php	/^	  $match = mysql_query($match_query);$/;"	v
+match_query	change_pw.php	/^   	  $match_query = "SELECT * FROM `users` WHERE `username`='$u_change' AND `password`=MD5('$p_change')";$/;"	v
+mbr	567/objs.php	/^$mbr = new Member;$/;"	v
+mbrObj	567/mmbr.php	/^$mbrObj = new Member(;$/;"	v
+mbr_email	index.new.php	/^		$mbr_email = $_SESSION['mbr_email'];$/;"	v
+mbr_email	zigzag.php	/^			$mbr_email = $_SESSION['mbr_email'];$/;"	v
+mbr_nbr	forms.php	/^		$mbr_nbr = $row[0];$/;"	v
+message	change_pw.php	/^			$message = '$/;"	v
+message	comment.php	/^		$message = '$/;"	v
+message	login_woe.php	/^			$message = '$/;"	v
+message	login_woe.php	/^		$message = '$/;"	v
+mn	235/dbfunc.php	/^			$mn = "0" . $mn;$/;"	v
+mn	235/dbfunc.php	/^		$mn = rand(0,59);$/;"	v
+mn	235/dbfunctions.php	/^   $mn = substr($time, 14, 2);$/;"	v
+mn	235/presentfunc.php	/^   $mn = substr($time, 14, 2);$/;"	v
+mn	567/dbfunc.php	/^			$mn = "0" . $mn;$/;"	v
+mn	567/dbfunc.php	/^		$mn = rand(0,59);$/;"	v
+mn	567/presentfunc.php	/^   $mn = substr($time, 14, 2);$/;"	v
+mo	235/dbfunctions.php	/^   $mo = substr($time, 5, 2);$/;"	v
+mo	235/presentfunc.php	/^   $mo = substr($time, 5, 2);$/;"	v
+mo	567/presentfunc.php	/^   $mo = substr($time, 5, 2);$/;"	v
+mode	235/dbfunctions.php	/^	$mode = 'w';$/;"	v
+mode	235/pubfunc.php	/^	$mode = 'w';$/;"	v
+mode	567/pubfunc.php	/^	$mode = 'w';$/;"	v
+month	235/dbfunctions.php	/^	   $month = "April";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "August";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "December";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "February";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "January";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "July";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "June";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "March";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "May";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "November";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "October";$/;"	v
+month	235/dbfunctions.php	/^	   $month = "September";$/;"	v
+month	235/dbfunctions.php	/^   $month = monthname($mo);$/;"	v
+month	235/presentfunc.php	/^	   $month = "April";$/;"	v
+month	235/presentfunc.php	/^	   $month = "August";$/;"	v
+month	235/presentfunc.php	/^	   $month = "December";$/;"	v
+month	235/presentfunc.php	/^	   $month = "February";$/;"	v
+month	235/presentfunc.php	/^	   $month = "January";$/;"	v
+month	235/presentfunc.php	/^	   $month = "July";$/;"	v
+month	235/presentfunc.php	/^	   $month = "June";$/;"	v
+month	235/presentfunc.php	/^	   $month = "March";$/;"	v
+month	235/presentfunc.php	/^	   $month = "May";$/;"	v
+month	235/presentfunc.php	/^	   $month = "November";$/;"	v
+month	235/presentfunc.php	/^	   $month = "October";$/;"	v
+month	235/presentfunc.php	/^	   $month = "September";$/;"	v
+month	235/presentfunc.php	/^   $month = monthname($mo);$/;"	v
+month	567/presentfunc.php	/^	   $month = "April";$/;"	v
+month	567/presentfunc.php	/^	   $month = "August";$/;"	v
+month	567/presentfunc.php	/^	   $month = "December";$/;"	v
+month	567/presentfunc.php	/^	   $month = "February";$/;"	v
+month	567/presentfunc.php	/^	   $month = "January";$/;"	v
+month	567/presentfunc.php	/^	   $month = "July";$/;"	v
+month	567/presentfunc.php	/^	   $month = "June";$/;"	v
+month	567/presentfunc.php	/^	   $month = "March";$/;"	v
+month	567/presentfunc.php	/^	   $month = "May";$/;"	v
+month	567/presentfunc.php	/^	   $month = "November";$/;"	v
+month	567/presentfunc.php	/^	   $month = "October";$/;"	v
+month	567/presentfunc.php	/^	   $month = "September";$/;"	v
+month	567/presentfunc.php	/^   $month = monthname($mo);$/;"	v
+monthname	235/dbfunctions.php	/^function monthname($num) {$/;"	f
+monthname	235/presentfunc.php	/^function monthname($num) {$/;"	f
+monthname	567/presentfunc.php	/^function monthname($num) {$/;"	f
+my_mktime	235/pubfunc.php	/^function my_mktime() {$/;"	f
+my_mktime	567/pubfunc.php	/^function my_mktime() {$/;"	f
+name	235/dbfunctions.php	/^	$name = str_replace(" ", "-", $name);$/;"	v
+name	235/dbfunctions.php	/^	$name = str_replace($special, "", $name);$/;"	v
+name	235/dbfunctions.php	/^	$name = strtolower($title);$/;"	v
+name	235/presentfunc.php	/^	$name = str_replace(" ", "-", $name);$/;"	v
+name	235/presentfunc.php	/^	$name = str_replace($special, "", $name);$/;"	v
+name	235/presentfunc.php	/^	$name = strtolower($title);$/;"	v
+name	567/objs.php	/^$name = new Name;$/;"	v
+name	567/presentfunc.php	/^	$name = str_replace(" ", "-", $name);$/;"	v
+name	567/presentfunc.php	/^	$name = str_replace($special, "", $name);$/;"	v
+name	567/presentfunc.php	/^	$name = strtolower($title);$/;"	v
+name2	567/objs.php	/^$name2 = new Name;$/;"	v
+new_pw	login_woe.php	/^      	$new_pw = gen_pw(8);$/;"	v
+newdate	edit-confirm.php	/^	$newdate = substr($_POST['oldtime'], 8, 2);$/;"	v
+newentry	edit-confirm.php	/^	$newentry = addslashes ($_POST['newentry']);$/;"	v
+newid	edit-confirm.php	/^	$newid = create_id($_POST['newtitle'], $newyear, $newmonth, $newdate);$/;"	v
+newmonth	edit-confirm.php	/^	$newmonth = substr($_POST['oldtime'], 5, 2);$/;"	v
+newtitle	edit-confirm.php	/^	$newtitle = addslashes ($_POST['newtitle']);$/;"	v
+newyear	edit-confirm.php	/^	$newyear = substr($_POST['oldtime'], 0, 4);$/;"	v
+nl2p_or_br	235/dbfunctions.php	/^function nl2p_or_br($text) {$/;"	f
+nl2p_or_br	235/presentfunc.php	/^function nl2p_or_br($text) {$/;"	f
+nl2p_or_br	567/presentfunc.php	/^function nl2p_or_br($text) {$/;"	f
+now	235/dbfunctions.php	/^	$now  = mktime(date("H")-8, date("i"), date("s"), date("m"), date("d"), date("Y"));$/;"	v
+now	235/pubfunc.php	/^	$now  = my_mktime();$/;"	v
+now	567/_funcdiv.php	/^		 $now  = my_mktime();$/;"	v
+now	567/pubfunc.php	/^	$now  = my_mktime();$/;"	v
+now	add.php	/^     	$now  = my_mktime();$/;"	v
+now	delete.php	/^	$now = 'current_timestamp';$/;"	v
+now	inc/header.php	/^		 $now  = my_mktime();$/;"	v
+now	modify.php	/^	$now  = my_mktime();$/;"	v
+now_d	235/dbfunctions.php	/^	$now_d = dcdateformat($now_f);$/;"	v
+now_d	235/pubfunc.php	/^	$now_d = dcdateformat($now_f);$/;"	v
+now_d	567/pubfunc.php	/^	$now_d = dcdateformat($now_f);$/;"	v
+now_f	235/dbfunctions.php	/^	$now_f = strftime('%G-%m-%d %H:%M:%S',$now);$/;"	v
+now_f	235/pubfunc.php	/^	$now_f = strftime('%G-%m-%d %H:%M:%S',$now);$/;"	v
+now_f	567/_funcdiv.php	/^		 $now_f = strftime('%G.%m.%d %H:%M',$now);$/;"	v
+now_f	567/pubfunc.php	/^	$now_f = strftime('%G-%m-%d %H:%M:%S',$now);$/;"	v
+now_f	inc/header.php	/^		 $now_f = strftime('%G.%m.%d %H:%M',$now);$/;"	v
+now_f	modify.php	/^	$now_f = strftime('%G-%m-%d %H:%M:%S',$now);$/;"	v
+num_entries	235/dbfunctions.php	/^		$num_entries = mysql_num_rows($entrieslist);$/;"	v
+num_tables	235/dbfunctions.php	/^	$num_tables = mysql_num_rows($tableslist);$/;"	v
+num_tables	drop-confirm.php	/^	$num_tables = mysql_num_rows($tableslist);$/;"	v
+num_tables	dropcopy.php	/^	$num_tables = mysql_num_rows($tableslist);$/;"	v
+num_tables	dropcopyfunc.php	/^	$num_tables = mysql_num_rows($tableslist);$/;"	v
+opt	235/presentfunc.php	/^		$opt = strftime('%m',$date);$/;"	v
+opt	567/presentfunc.php	/^		$opt = strftime('%m',$date);$/;"	v
+option	235/presentfunc.php	/^		$option = strftime('%B',$date);$/;"	v
+option	567/presentfunc.php	/^		$option = strftime('%B',$date);$/;"	v
+p	235/storevars.php	/^$p = 'qas??wed';$/;"	v
+p	567/storevars.php	/^$p = 'qas??wed';$/;"	v
+p	drop-confirm.php	/^$p = 'qas??wed';$/;"	v
+p	dropcopy.php	/^	$p = 'qas??wed';$/;"	v
+p	update-id.php	/^$p = 'qas??wed';$/;"	v
+p	update-time-confirm.php	/^$p = 'qas??wed';$/;"	v
+p	update-time.php	/^$p = 'qas??wed';$/;"	v
+page_redirected_from	error.php	/^$page_redirected_from = $_SERVER['REQUEST_URI'];  \/\/ this is especially useful with error 404 to indicate the missing page.$/;"	v
+page_redirected_from	error404.php	/^$page_redirected_from = $_SERVER['REQUEST_URI'];  \/\/ this is especially useful with error 404 to indicate the missing page.$/;"	v
+page_title	xxx.php	/^	$page_title = "Template File: Fluid, 3-column, em-based layout";$/;"	v
+pagetitle	567/header.php	/^$pagetitle='bkm member login';$/;"	v
+pagetitle	inc/header.php	/^$pagetitle='solostyle.net :: iam';$/;"	v
+parse_date	235/dbfunctions.php	/^function parse_date($time) {$/;"	f
+parse_date	235/presentfunc.php	/^function parse_date($time) {$/;"	f
+parse_date	567/presentfunc.php	/^function parse_date($time) {$/;"	f
+parse_time	235/dbfunctions.php	/^function parse_time($time) {$/;"	f
+parse_time	235/presentfunc.php	/^function parse_time($time) {$/;"	f
+parse_time	567/presentfunc.php	/^function parse_time($time) {$/;"	f
+parse_title	235/dbfunctions.php	/^function parse_title($title) {$/;"	f
+parse_title	235/presentfunc.php	/^function parse_title($title) {$/;"	f
+parse_title	567/presentfunc.php	/^function parse_title($title) {$/;"	f
+parsedtime	edit.php	/^		$parsedtime = parse_date($entryarray[2]) . parse_time($entryarray[2]);$/;"	v
+pattern	235/dbfunctions.php	/^   $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";$/;"	v
+pattern	235/xfunc.php	/^   $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";$/;"	v
+pattern	567/xfunc.php	/^   $pattern = "1234567890abcdefghijklmnopqrstuvwxyz";$/;"	v
+payment1	567/objs.php	/^$payment1 = new Payment;$/;"	v
+pos	235/dbfunctions.php	/^	$pos = strpos($tag,",");			\/\/probably 24th$/;"	v
+postentry	235/storevars.php	/^	$postentry = addslashes ($_POST["entry"]);$/;"	v
+postentry	567/storevars.php	/^	$postentry = addslashes ($_POST["entry"]);$/;"	v
+posttime	add-confirm.php	/^	$posttime = $_POST["year"] . $_POST["month"] . $_POST["date"];$/;"	v
+posttitle	235/storevars.php	/^	$posttitle = addslashes ($_POST["title"]);$/;"	v
+posttitle	567/storevars.php	/^	$posttitle = addslashes ($_POST["title"]);$/;"	v
+preview_recent	235/dbfunc.php	/^function preview_recent($lim) {$/;"	f
+preview_recent	235/dbfunctions.php	/^function preview_recent() {$/;"	f
+preview_recent	567/dbfunc.php	/^function preview_recent($lim) {$/;"	f
+publish_comment	235/dbfunctions.php	/^function publish_comment($entryarray, $mode) {$/;"	f
+publish_entry	235/dbfunctions.php	/^function publish_entry($entryarray, $mode) {$/;"	f
+publish_feed	235/dbfunctions.php	/^function publish_feed($rss_or_atom, $num_of_entries) {$/;"	f
+publish_feed	235/pubfunc.php	/^function publish_feed($rss_or_atom, $num_of_entries) {$/;"	f
+publish_feed	567/pubfunc.php	/^function publish_feed($rss_or_atom, $num_of_entries) {$/;"	f
+q	567/_funcdiv.php	/^      $q = "SELECT `email`, `password`, `last_login` FROM `member_login` WHERE `mbr_nbr`='$u_login' AND `password`= MD5('$p_login')";$/;"	v
+q	567/mmbr.php	/^		$q = "INSERT INTO $this->tablename SET ";$/;"	v
+q	567/mmbr.php	/^		$q = "UPDATE $this->tablename SET $update WHERE $where";$/;"	v
+q	567/mmbr.php	/^		$q = rtrim($q, ', ');$/;"	v
+q	forms.php	/^		$q = "select `first_name`, `last_name`, `relation` from `member_names` where `mbr_nbr` = $mbr_nbr";$/;"	v
+q	forms.php	/^		$q = "select `mbr_nbr` from `member_login` where `email` = '" . $_SESSION['mbr_email'] . "'";$/;"	v
+q	inc/header.php	/^      $q = "SELECT `user_id`, `username`, `last` FROM `users` WHERE `username`='$u_login' AND `password`= MD5('$p_login')";$/;"	v
+query	235/dbfunc.php	/^		$query = "UPDATE `blog` SET `time` = '" . $date . "' WHERE `id` = '" . $row[0] . "'";$/;"	v
+query	235/dbfunc.php	/^		$query = "update `" . $table . "` set `blog_id` = '" . $id . "' where `blog_id` = '" . $row[0] . "'";$/;"	v
+query	235/dbfunc.php	/^	$query = "SELECT `blog_id` FROM `" . $table . "` WHERE `blog_id` not in ('2006-03-02:next-door')";$/;"	v
+query	235/dbfunc.php	/^	$query = "SELECT `id` FROM `blog` WHERE `time` = '0000-00-00 00:00:00'";$/;"	v
+query	235/dbfunc.php	/^	$query = "SELECT `time` FROM `blog` ORDER BY `time` ASC LIMIT 1";$/;"	v
+query	235/dbfunc.php	/^	$query = "SELECT `time` FROM `blog` ORDER BY `time` DESC LIMIT 1";$/;"	v
+query	235/dbfunctions.php	/^     $query = "CREATE TABLE `$tablename` (id varchar(255) not null primary key DEFAULT 'tag:iam.solostyle.net,', username varchar(50) not null, time timestamp(14) not null, title varchar(50) not null, entry text not null)";$/;"	v
+query	235/presentfunc.php	/^		$query = "SELECT 1 FROM `blog_tag` WHERE `blog_id` = '" . $blog_id . "'";$/;"	v
+query	235/presentfunc.php	/^	$query = "$/;"	v
+query	567/dbfunc.php	/^		$query = "UPDATE `blog` SET `time` = '" . $date . "' WHERE `id` = '" . $row[0] . "'";$/;"	v
+query	567/dbfunc.php	/^		$query = "update `" . $table . "` set `blog_id` = '" . $id . "' where `blog_id` = '" . $row[0] . "'";$/;"	v
+query	567/dbfunc.php	/^	$query = "SELECT `blog_id` FROM `" . $table . "` WHERE `blog_id` not in ('2006-03-02:next-door')";$/;"	v
+query	567/dbfunc.php	/^	$query = "SELECT `id` FROM `blog` WHERE `time` = '0000-00-00 00:00:00'";$/;"	v
+query	567/dbfunc.php	/^	$query = "SELECT `time` FROM `blog` ORDER BY `time` ASC LIMIT 1";$/;"	v
+query	567/dbfunc.php	/^	$query = "SELECT `time` FROM `blog` ORDER BY `time` DESC LIMIT 1";$/;"	v
+query	567/mmbr.php	/^			$query = "SELECT $select_str FROM $this->tablename $where_str";$/;"	v
+query	567/mmbr.php	/^		$query = "DELETE FROM $this->tablename WHERE $where";$/;"	v
+query	567/mmbr.php	/^		$query = "SELECT count(*) FROM $this->tablename $where_str";$/;"	v
+query	567/presentfunc.php	/^		$query = "SELECT 1 FROM `blog_tag` WHERE `blog_id` = '" . $blog_id . "'";$/;"	v
+query	567/presentfunc.php	/^	$query = "$/;"	v
+query	drop-confirm.php	/^	$query = 'drop table `' . $tables[0] . "`";$/;"	v
+query	dropcopy.php	/^	$query = 'drop table `' . $tables[0] . "`";$/;"	v
+query	dropcopyfunc.php	/^	$query = 'drop table ' . $tables[0];$/;"	v
+query_data	567/mmbr.php	/^		$query_data = mysql_fetch_row($result);$/;"	v
+randomkey	235/dbfunctions.php	/^function randomkey($length) {$/;"	f
+randomkey	235/xfunc.php	/^function randomkey($length) {$/;"	f
+randomkey	567/xfunc.php	/^function randomkey($length) {$/;"	f
+rdr	zigzag.php	/^$rdr = new Redirect;$/;"	v
+recent_posts	index.php	/^	$recent_posts = preview_recent(5);$/;"	v
+redirect_to	error.php	/^	$redirect_to = "";$/;"	v
+redirect_url	error.php	/^$redirect_url = $_SERVER["REDIRECT_URL"];$/;"	v
+redirect_url	error404.php	/^$redirect_url = $_SERVER["REDIRECT_URL"];$/;"	v
+redirect_url_array	error.php	/^$redirect_url_array = parse_url($redirect_url);$/;"	v
+redirect_url_array	error404.php	/^$redirect_url_array = parse_url($redirect_url);$/;"	v
+republish_values	republish-confirm.php	/^		$republish_values = array($entryarray[0], $entryarray[1], $entryarray[2], $entryarray[3], $entryarray[4]);$/;"	v
+republish_values	republish.php	/^				$republish_values = array($row[0], $row[1], $row[2], $row[3], $row[4]);$/;"	v
+request_uri	zigzag.php	/^		$request_uri = $_SERVER['REQUEST_URI'];$/;"	v
+result	235/dbfunc.php	/^	$result = mysql_query("SELECT * FROM `blog` WHERE `id` = '$blog_id'");$/;"	v
+result	235/dbfunc.php	/^	$result = mysql_query("SELECT `tag_nm` FROM `blog_tag` WHERE `blog_id` = '$blog_id'");$/;"	v
+result	235/dbfunc.php	/^	$result = mysql_query($query);$/;"	v
+result	235/dbfunctions.php	/^	$result = mysql_query("SELECT * FROM `$table` WHERE `id` = '$tag'");$/;"	v
+result	235/presentfunc.php	/^	$result = mysql_query($query);$/;"	v
+result	235/presentfunc.php	/^	$result = rtrv_categories();$/;"	v
+result	235/presentfunc.php	/^	$result = rtrv_tags();$/;"	v
+result	567/_funcdiv.php	/^      $result = mysql_query($q);$/;"	v
+result	567/dbfunc.php	/^	$result = mysql_query("SELECT * FROM `blog` WHERE `id` = '$blog_id'");$/;"	v
+result	567/dbfunc.php	/^	$result = mysql_query("SELECT `tag_nm` FROM `blog_tag` WHERE `blog_id` = '$blog_id'");$/;"	v
+result	567/dbfunc.php	/^	$result = mysql_query($query);$/;"	v
+result	567/mmbr.php	/^			$result = mysql_query($query, $dbconnect) or trigger_error("SQL",E_USER_ERROR);$/;"	v
+result	567/mmbr.php	/^		$result = @mysql_query($q, $dbc);$/;"	v
+result	567/mmbr.php	/^		$result = mysql_query($q, $dbc) or trigger_error("SQL",E_USER_ERROR);$/;"	v
+result	567/mmbr.php	/^		$result = mysql_query($query, $dbconnect) or trigger_error("SQL",E_USER_ERROR);$/;"	v
+result	567/presentfunc.php	/^	$result = mysql_query($query);$/;"	v
+result	567/presentfunc.php	/^	$result = rtrv_categories();$/;"	v
+result	567/presentfunc.php	/^	$result = rtrv_tags();$/;"	v
+result	forms.php	/^		$result = mysql_query($q);$/;"	v
+result	inc/header.php	/^      $result = mysql_query($q);$/;"	v
+result	republish.php	/^			$result = get_entries_by_time($start_f, $end_f);$/;"	v
+result	zigzag.php	/^			$result = $this->error_page;$/;"	v
+result	zigzag.php	/^			$result = $this->main_page;$/;"	v
+result	zigzag.php	/^			$result = $this->root.$this->uri;$/;"	v
+result	zigzag.php	/^		$result = 0;$/;"	v
+result	zigzag.php	/^		$result = Uri_Displ_Func::rtrv($select_str, $where_str);$/;"	v
+result	zigzag.php	/^		$result = rtrv_displ_func($this->uri_array[0]); $/;"	v
+row	235/dbfunc.php	/^	$row = mysql_fetch_array($result);$/;"	v
+row	235/dbfunctions.php	/^		$row = mysql_fetch_array($tableslist);$/;"	v
+row	567/dbfunc.php	/^	$row = mysql_fetch_array($result);$/;"	v
+row	drop-confirm.php	/^		$row = mysql_fetch_array($tableslist);$/;"	v
+row	dropcopy.php	/^		$row = mysql_fetch_array($tableslist);$/;"	v
+row	dropcopyfunc.php	/^		$row = mysql_fetch_array($tableslist);$/;"	v
+row	forms.php	/^		$row = mysql_fetch_array($result);$/;"	v
+rtrv_categories	235/presentfunc.php	/^function rtrv_categories() {$/;"	f
+rtrv_categories	567/presentfunc.php	/^function rtrv_categories() {$/;"	f
+rtrv_member_info	index.new.php	/^function rtrv_member_info() {$/;"	f
+rtrv_tags	235/presentfunc.php	/^function rtrv_tags() {$/;"	f
+rtrv_tags	567/presentfunc.php	/^function rtrv_tags() {$/;"	f
+s	235/storevars.php	/^$s = "mysql.solostyle.net";$/;"	v
+s	567/storevars.php	/^$s = "mysql.solostyle.net";$/;"	v
+s	drop-confirm.php	/^$s = "mysql.solostyle.net";$/;"	v
+s	dropcopy.php	/^	$s = "mysql.solostyle.net";$/;"	v
+s	update-id.php	/^$s = "mysql.solostyle.net";$/;"	v
+s	update-time-confirm.php	/^$s = "mysql.solostyle.net";$/;"	v
+s	update-time.php	/^$s = "mysql.solostyle.net";$/;"	v
+sc	235/dbfunc.php	/^			$sc = "0" . $sc;$/;"	v
+sc	235/dbfunc.php	/^		$sc = rand(0,59);$/;"	v
+sc	567/dbfunc.php	/^			$sc = "0" . $sc;$/;"	v
+sc	567/dbfunc.php	/^		$sc = rand(0,59);$/;"	v
+select_db	235/dbfunc.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_db	235/dbfunctions.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_db	567/dbfunc.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_db	drop-confirm.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_db	dropcopy.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_db	dropcopyfunc.php	/^function select_db($server, $usr, $pw, $dbname) {$/;"	f
+select_str	zigzag.php	/^		$select_str = "`displ_func`";$/;"	v
+server_url	error.php	/^$server_url = "http:\/\/" . $_SERVER["SERVER_NAME"];$/;"	v
+server_url	error404.php	/^$server_url = "http:\/\/" . $_SERVER["SERVER_NAME"];$/;"	v
+show_category_entries	235/dbfunctions.php	/^function show_category_entries($category) {$/;"	f
+show_comment	235/dbfunctions.php	/^function show_comment($row) {\/\/tag, post_tag, name, website, email, comment, time$/;"	f
+show_comment	235/presentfunc.php	/^function show_comment($row) {\/\/???, blog_id, name, website, email, comment, time$/;"	f
+show_comment	567/presentfunc.php	/^function show_comment($row) {\/\/???, blog_id, name, website, email, comment, time$/;"	f
+show_entries_by_time	235/dbfunc.php	/^function show_entries_by_time($start, $end, $content_to_show) {$/;"	f
+show_entries_by_time	567/dbfunc.php	/^function show_entries_by_time($start, $end, $content_to_show) {$/;"	f
+show_new	235/dbfunc.php	/^function show_new($last_time, $user_id) {$/;"	f
+show_new	235/dbfunctions.php	/^function show_new($last_time, $user_id) {$/;"	f
+show_new	567/dbfunc.php	/^function show_new($last_time, $user_id) {$/;"	f
+show_preview	235/dbfunctions.php	/^function show_preview($row) {$/;"	f
+show_preview	235/presentfunc.php	/^function show_preview($row) {$/;"	f
+show_preview	567/presentfunc.php	/^function show_preview($row) {$/;"	f
+show_tag_entries	235/dbfunc.php	/^function show_tag_entries($tag) {$/;"	f
+show_tag_entries	567/dbfunc.php	/^function show_tag_entries($tag) {$/;"	f
+show_tags	235/presentfunc.php	/^function show_tags($blog_id) {$/;"	f
+show_tags	567/presentfunc.php	/^function show_tags($blog_id) {$/;"	f
+show_week	235/dbfunctions.php	/^function show_week($week, $content_to_show) {$/;"	f
+special	235/dbfunctions.php	/^	$special = array("!", "@", "$", "%", "^", "&", "*", ":", "'", ";", "<", ">", ",", ".", "?", "\/", chr(34));$/;"	v
+special	235/presentfunc.php	/^	$special = array("!", "@", "$", "%", "^", "&", "*", ":", "'", ";", "<", ">", ",", ".", "?", "\/", chr(34));$/;"	v
+special	567/presentfunc.php	/^	$special = array("!", "@", "$", "%", "^", "&", "*", ":", "'", ";", "<", ">", ",", ".", "?", "\/", chr(34));$/;"	v
+sqlstatement	235/dbfunc.php	/^	$sqlstatement = "UPDATE `blog` SET `$fields[0]` = '$values[0]'";$/;"	v
+sqlstatement	235/dbfunc.php	/^      $sqlstatement = "INSERT INTO `$tablename` (`$fields[0]`";$/;"	v
+sqlstatement	235/dbfunctions.php	/^	$sqlstatement = "UPDATE `$table` SET `$fields[0]` = '$values[0]'";$/;"	v
+sqlstatement	235/dbfunctions.php	/^      $sqlstatement = "INSERT INTO `$tablename` (`$fields[0]`";$/;"	v
+sqlstatement	567/dbfunc.php	/^	$sqlstatement = "UPDATE `blog` SET `$fields[0]` = '$values[0]'";$/;"	v
+sqlstatement	567/dbfunc.php	/^      $sqlstatement = "INSERT INTO `$tablename` (`$fields[0]`";$/;"	v
+start	archive.php	/^	$start  = mktime(0, 0, 0, $_POST['start_month'], 1, $_POST['start_year']);$/;"	v
+start	categorize.php	/^		$start  = mktime(0, 0, 0, $_POST['start_month'], 1, $_POST['start_year']);$/;"	v
+start	republish.php	/^		$start  = mktime(0, 0, 0, $_POST['start_month'], 1, $_POST['start_year']);$/;"	v
+start	tag.php	/^		$start  = mktime(0, 0, 0, $_POST['start_month'], 1, $_POST['start_year']);$/;"	v
+start_f	archive.php	/^	$start_f = strftime('%G-%m-%d %H:%M:%S',$start);$/;"	v
+start_f	categorize.php	/^		$start_f = strftime('%G-%m-%d %H:%M:%S',$start);$/;"	v
+start_f	republish.php	/^		$start_f = strftime('%G-%m-%d %H:%M:%S',$start);$/;"	v
+start_f	tag.php	/^		$start_f = strftime('%G-%m-%d %H:%M:%S',$start);$/;"	v
+start_y	235/presentfunc.php	/^	$start_y = strftime("%Y", strtotime(blog_first_date()));$/;"	v
+start_y	567/presentfunc.php	/^	$start_y = strftime("%Y", strtotime(blog_first_date()));$/;"	v
+subject	change_pw.php	/^			$subject = 'iam.solostyle.net Password';$/;"	v
+subject	comment.php	/^		$subject = "A message from " . $n_comm . ": iam.solostyle.net";$/;"	v
+subject	login_woe.php	/^			$subject = 'iam.solostyle.net Password';$/;"	v
+subject	login_woe.php	/^		$subject = 'iam.solostyle.net Username';$/;"	v
+substring	235/dbfunctions.php	/^	$substring = strstr($tag, ","); 	\/\/ ,2006-04-18:\/2006\/04\/something$/;"	v
+t	comment.php	/^		  $t = 'comments';$/;"	v
+table	235/dbfunc.php	/^	$table = 'blog_tag';$/;"	v
+table	235/dbfunctions.php	/^		$table = $tables[$k]; \/\/name of the latest table$/;"	v
+table	235/dbfunctions.php	/^		$table = $tables[$k];$/;"	v
+table	235/dbfunctions.php	/^	$table = $tablenamerow[0];$/;"	v
+table	235/dbfunctions.php	/^	$table = get_table_from_tag($tag);$/;"	v
+table	567/dbfunc.php	/^	$table = 'blog_tag';$/;"	v
+tablename	235/dbfunctions.php	/^   $tablename = $tablenamerow[0];$/;"	v
+tablenameresult	235/dbfunctions.php	/^	$tablenameresult = mysql_query($gettablename);$/;"	v
+tablenameresult	235/dbfunctions.php	/^   $tablenameresult = mysql_query($gettablename);$/;"	v
+tablenamerow	235/dbfunctions.php	/^	$tablenamerow = mysql_fetch_row($tablenameresult);$/;"	v
+tablenamerow	235/dbfunctions.php	/^   $tablenamerow = mysql_fetch_row($tablenameresult);$/;"	v
+tables	235/dbfunctions.php	/^	$tables = get_tables($last_table);$/;"	v
+tables	235/dbfunctions.php	/^	$tables = get_tables();$/;"	v
+tables	235/dbfunctions.php	/^	$tables = get_tables(0);$/;"	v
+tables	drop-confirm.php	/^	$tables = get_tables($prefix);$/;"	v
+tables	dropcopy.php	/^	$tables = get_tables($prefix);$/;"	v
+tables	dropcopyfunc.php	/^	$tables = get_tables($prefix);$/;"	v
+tablesarray	235/dbfunctions.php	/^	$tablesarray = array();$/;"	v
+tablesarray	drop-confirm.php	/^	$tablesarray = array();$/;"	v
+tablesarray	dropcopy.php	/^	$tablesarray = array();$/;"	v
+tablesarray	dropcopyfunc.php	/^	$tablesarray = array();$/;"	v
+tableslist	235/dbfunctions.php	/^	$tableslist = mysql_query($gettables);$/;"	v
+tableslist	drop-confirm.php	/^	$tableslist = mysql_query($gettables);$/;"	v
+tableslist	dropcopy.php	/^	$tableslist = mysql_query($gettables);$/;"	v
+tableslist	dropcopyfunc.php	/^	$tableslist = mysql_query($gettables);$/;"	v
+tag	235/dbfunctions.php	/^	$tag = "tag:" . $_SERVER['HTTP_HOST'] . "," . $year . "-" . $month . "-" . $date . ":\/" . $year . "\/" . $month . "\/" . $tagtitle;$/;"	v
+tag_nms	235/presentfunc.php	/^	$tag_nms = array();$/;"	v
+tag_nms	567/presentfunc.php	/^	$tag_nms = array();$/;"	v
+tag_nms	tag-confirm.php	/^	$tag_nms = $_POST['tag_nms'];$/;"	v
+tag_to_url	235/dbfunctions.php	/^function tag_to_url($tag) {$/;"	f
+tag_wi_array	tag-confirm.php	/^		$tag_wi_array = explode(",",$_POST['tag_wi']);$/;"	v
+tags	235/presentfunc.php	/^	$tags = get_tags($blog_id);$/;"	v
+tags	567/presentfunc.php	/^	$tags = get_tags($blog_id);$/;"	v
+tags_form	235/presentfunc.php	/^function tags_form($blog_id) {$/;"	f
+tags_form	567/presentfunc.php	/^function tags_form($blog_id) {$/;"	f
+tagtitle	235/dbfunctions.php	/^	$tagtitle = parse_title($title);$/;"	v
+template	235/dbfunctions.php	/^	$template = "23456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ!@#$%^&*()[]{}|?~";$/;"	v
+template	235/xfunc.php	/^	$template = "23456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ!@#$%^&*()[]{}|?~";$/;"	v
+template	567/xfunc.php	/^	$template = "23456789abcdefghjkmnopqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ!@#$%^&*()[]{}|?~";$/;"	v
+text	235/dbfunctions.php	/^	$text = stripslashes($text);$/;"	v
+text	235/dbfunctions.php	/^	$text = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+text	235/presentfunc.php	/^	$text = stripslashes($text);$/;"	v
+text	235/presentfunc.php	/^	$text = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+text	567/presentfunc.php	/^	$text = stripslashes($text);$/;"	v
+text	567/presentfunc.php	/^	$text = substr(strip_tags($row[4]), 0, 200) . "...<a href=\\"$url\\">full<\/a>";$/;"	v
+text_with_p	235/dbfunctions.php	/^  $text_with_p = "<p>" . str_replace("\\r\\n\\r\\n", "<\/p><p>", $text) . "<\/p>";$/;"	v
+text_with_p	235/presentfunc.php	/^  $text_with_p = "<p>" . str_replace("\\r\\n\\r\\n", "<\/p><p>", $text) . "<\/p>";$/;"	v
+text_with_p	567/presentfunc.php	/^  $text_with_p = "<p>" . str_replace("\\r\\n\\r\\n", "<\/p><p>", $text) . "<\/p>";$/;"	v
+text_with_p_and_br	235/dbfunctions.php	/^  $text_with_p_and_br = str_replace("\\r\\n", "<br \/>", $text_with_p);$/;"	v
+text_with_p_and_br	235/presentfunc.php	/^  $text_with_p_and_br = str_replace("\\r\\n", "<br \/>", $text_with_p);$/;"	v
+text_with_p_and_br	567/presentfunc.php	/^  $text_with_p_and_br = str_replace("\\r\\n", "<br \/>", $text_with_p);$/;"	v
+thefirst	235/dbfunctions.php	/^	$thefirst = "01\/01\/" . $isoyear;$/;"	v
+time	235/dbfunctions.php	/^	$time = parse_time($row[2]);$/;"	v
+time	235/dbfunctions.php	/^	$time = parse_time($row[6]);$/;"	v
+time	235/presentfunc.php	/^	$time = parse_time($row[2]);$/;"	v
+time	235/presentfunc.php	/^	$time = parse_time($row[6]);$/;"	v
+time	235/pubfunc.php	/^	$time = mktime(date("H")+2);$/;"	v
+time	567/presentfunc.php	/^	$time = parse_time($row[2]);$/;"	v
+time	567/presentfunc.php	/^	$time = parse_time($row[6]);$/;"	v
+time	567/pubfunc.php	/^	$time = mktime(date("H")+2);$/;"	v
+time_limit	235/dbfunc.php	/^	$time_limit = "WHERE (`time` > '$last_time')";$/;"	v
+time_limit	235/dbfunctions.php	/^	$time_limit = "WHERE (`time` > '$last_time')";$/;"	v
+time_limit	567/dbfunc.php	/^	$time_limit = "WHERE (`time` > '$last_time')";$/;"	v
+title	235/dbfunctions.php	/^	$title = stripslashes($row[2]);$/;"	v
+title	235/dbfunctions.php	/^	$title = stripslashes($row[3]);$/;"	v
+title	235/presentfunc.php	/^	$title = stripslashes($row[2]);$/;"	v
+title	235/presentfunc.php	/^	$title = stripslashes($row[3]);$/;"	v
+title	567/presentfunc.php	/^	$title = stripslashes($row[2]);$/;"	v
+title	567/presentfunc.php	/^	$title = stripslashes($row[3]);$/;"	v
+to	change_pw.php	/^			$to = $e_change;$/;"	v
+to	comment.php	/^		$to = '1style@gmail.com';$/;"	v
+to	login_woe.php	/^			$to = $e_forgot;$/;"	v
+to	login_woe.php	/^		$to = $e_forgot;$/;"	v
+u	235/storevars.php	/^$u = "solostyle";$/;"	v
+u	567/storevars.php	/^$u = "solostyle";$/;"	v
+u	drop-confirm.php	/^$u = "solostyle";$/;"	v
+u	dropcopy.php	/^	$u = "solostyle";$/;"	v
+u	update-id.php	/^$u = "solostyle";$/;"	v
+u	update-time-confirm.php	/^$u = "solostyle";$/;"	v
+u	update-time.php	/^$u = "solostyle";$/;"	v
+u_multiple	login_woe.php	/^		$u_multiple = array();$/;"	v
+unassign_tags	235/dbfunc.php	/^function unassign_tags($blog_id) {$/;"	f
+unassign_tags	567/dbfunc.php	/^function unassign_tags($blog_id) {$/;"	f
+update	567/mmbr.php	/^		$update = NULL;$/;"	v
+update	567/mmbr.php	/^		$update = rtrim($update, ", ");$/;"	v
+updateRecord	567/mmbr.php	/^	function updateRecord($fieldarray) {$/;"	f
+update_blog_id	235/dbfunc.php	/^function update_blog_id() {$/;"	f
+update_blog_id	567/dbfunc.php	/^function update_blog_id() {$/;"	f
+update_entry_time	235/dbfunc.php	/^function update_entry_time() {$/;"	f
+update_entry_time	567/dbfunc.php	/^function update_entry_time() {$/;"	f
+update_lasts	inc/header.php	/^		 $update_lasts = "UPDATE `users` SET `last` = '$now_f', `last_last` = '$row[2]' WHERE `username` = '$u_login'";$/;"	v
+update_login_times	567/_funcdiv.php	/^		 $update_login_times = "UPDATE `member_login` SET `current_login` = '$now_f', `last_login` = '$row[2]' WHERE `email` = '$u_login'";$/;"	v
+update_pw_query	change_pw.php	/^	  	$update_pw_query = "UPDATE `users` SET `password`=MD5('$np_change') WHERE `username`='$u_change'";$/;"	v
+update_pw_query	login_woe.php	/^		$update_pw_query = "UPDATE `users` SET `password`=MD5('$new_pw') WHERE `username`='$u_forgot'";$/;"	v
+update_record	235/dbfunc.php	/^function update_record($fields,$values,$id) {$/;"	f
+update_record	235/dbfunctions.php	/^function update_record($table,$fields,$values,$id) {$/;"	f
+update_record	567/dbfunc.php	/^function update_record($fields,$values,$id) {$/;"	f
+url	235/dbfunctions.php	/^	$url = str_replace("tag:","http:\/\/",$url1);	\/\/http:\/\/iam.solostyle.net\/location.php$/;"	v
+url	235/dbfunctions.php	/^	$url = tag_to_url($row[0]);$/;"	v
+url	235/dbfunctions.php	/^	$url = tag_to_url($row[1]);$/;"	v
+url	235/presentfunc.php	/^	$url = make_url($row[0]);$/;"	v
+url	235/presentfunc.php	/^	$url = make_url($row[1]);$/;"	v
+url	567/presentfunc.php	/^	$url = make_url($row[0]);$/;"	v
+url	567/presentfunc.php	/^	$url = make_url($row[1]);$/;"	v
+url	add-confirm.php	/^	$url = make_url($blog_id);$/;"	v
+url	categorize-confirm.php	/^	$url = make_url($blog_id);$/;"	v
+url	index.new.php	/^		$url=$_SERVER['REQUEST_URI'];$/;"	v
+url	republish-confirm.php	/^		$url = make_url($entryarray[0]);$/;"	v
+url	republish.php	/^				$url = make_url($row[0]);$/;"	v
+url	tag-confirm.php	/^	$url = make_url($blog_id);$/;"	v
+url1	235/dbfunctions.php	/^	$url1 = substr($tag,0,$pos);			\/\/tag:iam.solostyle.net$/;"	v
+url_abs	235/dbfunctions.php	/^	$url_abs = 'http:\/\/' . $_SERVER['HTTP_HOST'] . '\/' . $url_rel;$/;"	v
+url_abs	235/dbfunctions.php	/^	$url_abs = tag_to_url($entryarray[0]);$/;"	v
+url_abs	235/pubfunc.php	/^	$url_abs = 'http:\/\/' . $_SERVER['HTTP_HOST'] . '\/' . $url_rel;$/;"	v
+url_abs	567/pubfunc.php	/^	$url_abs = 'http:\/\/' . $_SERVER['HTTP_HOST'] . '\/' . $url_rel;$/;"	v
+url_array	index.new.php	/^$url_array=explode("\/",$_SERVER['REQUEST_URI']);$/;"	v
+url_rel	235/dbfunctions.php	/^	$url_rel = $rss_or_atom . ".xml";$/;"	v
+url_rel	235/dbfunctions.php	/^	$url_rel = strstr($url_abs,".net\/");$/;"	v
+url_rel	235/dbfunctions.php	/^	$url_rel = substr($url_rel, 5);$/;"	v
+url_rel	235/pubfunc.php	/^	$url_rel = $rss_or_atom . ".xml";$/;"	v
+url_rel	567/pubfunc.php	/^	$url_rel = $rss_or_atom . ".xml";$/;"	v
+uv	edit-confirm.php	/^	$uv = array($newid, $_POST['oldtime'], $newtitle, $newentry);$/;"	v
+v	235/storevars.php	/^$v = array($_POST["time"],$posttitle,$postentry);$/;"	v
+v	567/storevars.php	/^$v = array($_POST["username"],$_POST["time"],$posttitle,$postentry);      \/\/ values to insert, but actually i add ID, created after submitting$/;"	v
+verify	add-confirm.php	/^    $verify = trim($_POST['verify']);$/;"	v
+verify	comment.php	/^    $verify = trim($verify);$/;"	v
+website	235/dbfunctions.php	/^	$website = $row[3];$/;"	v
+website	235/presentfunc.php	/^	$website = $row[3];$/;"	v
+website	567/presentfunc.php	/^	$website = $row[3];$/;"	v
+website	comment.php	/^   $website = 'http:\/\/' . $website;$/;"	v
+where	567/mmbr.php	/^		$where  = NULL;$/;"	v
+where	567/mmbr.php	/^		$where = NULL;$/;"	v
+where	567/mmbr.php	/^		$where = rtrim($where, " AND ");$/;"	v
+where	567/mmbr.php	/^$where = "`email` = '1style@gmail.com'";$/;"	v
+where_str	zigzag.php	/^		$where_str = "`uri_prefix` = $prefix";$/;"	v
+width	add.php	/^			$width = imagefontwidth($font) * $chars;$/;"	v
+width	commentform.php	/^			$width = imagefontwidth($font) * $chars;$/;"	v
+year	drop-confirm.php	/^$year = $_POST['year'];$/;"	v
+year	dropcopy.php	/^	$year = $_POST['year'];$/;"	v
+yr	235/dbfunctions.php	/^   $yr = substr($time, 0, 4);$/;"	v
+yr	235/presentfunc.php	/^   $yr = substr($time, 0, 4);$/;"	v
+yr	567/presentfunc.php	/^   $yr = substr($time, 0, 4);$/;"	v

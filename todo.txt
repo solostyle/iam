@@ -1,0 +1,11 @@
+To do for this website:
+
+1. 13/2/08: just added functionality to allow write-ins for categories. i just need to make sure it works.
+
+2. Currently dbfunc.show_entries_by_time() uses make_entry() for viewing full entries. I would like make entry to be made up of parts. One to create the actual post, one for the category information, and one for the comment section. When viewing full entries in succession, it should only call the first part, which shows the actual post. We don't want to see categories and comments here.
+
+3. Create nice views relating to categories. Also show related posts for the permalinks, which will depend on categories.
+
+4. Make it possible to see previous and next entries for any permalink.
+
+5. Add good content from old journals.
