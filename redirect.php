@@ -90,7 +90,43 @@ function advanced_redirect() {
 	}
 }
 
-function handle_url_tag() {
+
+// Handles the url if it requests entries by tag
+// the tags are separated by & or |
+// right now, it does not handle both
+// 20 sep 09: created
+function handle_url_tag($arr) {
+
+	 $tag_str = $arr[1];
+
+	 $tag_arr = array();
+
+	 // entries that have any of the tags
+	 switch (true) {
+	 	case (strpos($tag_str,"|")):
+		     $method = "or";
+		     $tag_arr = explode("|",$tag_str);
+		     break;
+	 // entries that have all the given tags
+	    	case (strpos($tag_str,"&")):
+		     $method = "and";
+		     $tag_arr = explode("&",$tag_str);
+		     break;
+		default:
+			$method = '';
+			$tag_arr[0] = $tag_str;
+	 }
+
+	 // get the array of entries
+	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
+	 $entries_arr = rtrv_entries_by_tag($tag_arr, $method);
+
+	 $entries_markup = show_entries($entries_arr);
+
+	 mysql_close();
+
+	 // display the page
+	 display_page($entries_markup);
 }
 
 function handle_url_date($arr) {
@@ -99,12 +135,7 @@ function handle_url_date($arr) {
 	 $id_str = implode("/", $arr);
 
 	 // get the array of entries
-	 $s = "mysql.solostyle.net";
-	 $u = "solostyle";
-	 $p = 'qas??wed';
-	 $db = "iam";
-	 
-	 select_db($s, $u, $p, $db);
+	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	 $entries_arr = rtrv_entries($id_str);
 
 	 // send it to the guy who can display them
@@ -116,26 +147,6 @@ function handle_url_date($arr) {
 
 	 // display the page
 	 display_page($entries_markup);
-
-	 //print 
-"<?
-	session_start();
-	include_once '235/func.php';
-	include_once '235/storevars.php';
-	include 'inc/header.php';
-
-	// load the left pane
-        include 'left.php';
-?>";
-
-	//print $entries_markup;
-
-	//print 
-"
-	include 'inc/footer.php';
-?>";
-
-
 }
 
 $result = basic_redirect();
@@ -164,7 +175,6 @@ else
 
 //http://iam.solostyle.net/contact
 
-//(num_entries_to_displ > x)?preview:full
 //http://iam.solostyle.net/2008/ (all entries for this year preview)
 //http://iam.solostyle.net/2008/09 (all entries in september 2008)
 //http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)

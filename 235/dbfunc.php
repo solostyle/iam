@@ -19,17 +19,54 @@ function select_db($server, $usr, $pw, $dbname) {
 // 19 sep 09: use regular expressions, bring back multiple rows up to $lim
 function rtrv_entries($blog_id, $lim=50) {
 
-	 $rtnArray = array();
+	 $rtn_arr = array();
 	 $regex = '^' . $blog_id;
 	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim";
 
 	 $result = mysql_query($query);
 	 while ($entry = mysql_fetch_array($result)) {
-	       array_push($rtnArray, $entry);
+	       array_push($rtn_arr, $entry);
 	 }
 	 mysql_free_result($result);
 
-	 return $rtnArray;
+	 return $rtn_arr;
+}
+
+
+// Retrieve an array of entries given an array of tags
+// returns an array of entry data rows using OR logic
+// results have any of the requested tags
+// 20 sep 09: created, right now does not handle $method
+function rtrv_entries_by_tag($tag_arr, $method, $lim=50) {
+
+	$rtn_arr = array();
+	$id_arr = array();
+
+
+	// retrieve entries, without duplicates
+	$tag_list = "'".implode("','",$tag_arr)."'";
+	$query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tag` b
+	       WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
+	$query .= " LIMIT $lim";
+	$result = mysql_query($query);
+	while ($id = mysql_fetch_array($result)) {
+	      array_push($id_arr, $id["blog_id"]);
+	}
+	mysql_free_result($result);
+	
+
+	// retrieve all the entries for these blog ids
+	$id_list = "'".implode("','",$id_arr)."'";
+//print "id array is " . var_dump($id_arr) . "<br /><br />";
+	$query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.")";
+//print "id list is " . $id_list;
+	$result = mysql_query($query);
+	while ($entry = mysql_fetch_array($result)) {
+	      array_push($rtn_arr, $entry);
+	}
+	mysql_free_result($result);
+
+	return $rtn_arr;
 }
 
 
@@ -97,26 +134,6 @@ function preview_recent($lim) {
 	while ($entryarray = mysql_fetch_array($entrieslist)) {
 		$content .= show_preview($entryarray);
 	}
-	mysql_free_result($entrieslist);
-	return $content;
-}
-
-
-// Show all entries that have a tag
-// 6 feb 09: need to join to blog_tag table
-// 7 feb 09: need to test query
-function show_tag_entries($tag) {
-	$getentries = "
-		SELECT b.*
-		FROM `blog_tag` a
-			, `blog` b
-		WHERE b.`id` = a.`blog_id`
-		AND a.`tag_nm` = '" . $tag . "'";
-	$entrieslist = mysql_query($getentries);
-	$content = "";
-	while ($entryarray = mysql_fetch_array($entrieslist)) 
-		$content .= show_preview($entryarray);
-
 	mysql_free_result($entrieslist);
 	return $content;
 }

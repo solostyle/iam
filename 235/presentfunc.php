@@ -1,5 +1,11 @@
 <?
 
+$GLOBALS["s"] = "mysql.solostyle.net";
+$GLOBALS["u"] = "solostyle";
+$GLOBALS["p"] = 'qas??wed';
+$GLOBALS["db"] = "iam";
+
+
 //----------------------------------------------------------------------------
 // Presentation Layer --------------------------------------------------------
 // ---------------------------------------------------------------------------
@@ -57,6 +63,7 @@ function display_page($inner_markup) {
 	 footer_markup();
 }
 
+
 // Write the header markup for a page
 // 19 sep 09: created. but has a bug: cannot determine if you're signed in
 // always shows the login/password form
@@ -68,11 +75,6 @@ function header_markup() {
 
 
 
-
-$s = "mysql.solostyle.net";
-$u = "solostyle";
-$p = 'qas??wed';
-$db = "iam";
 
 
 
@@ -121,7 +123,7 @@ $markup_nav =
 //the craziness begins!
 if(isset($_POST['signin'])) {
 
-	select_db($s, $u, $p, $db);
+	select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 
    // check to see if username and password have been entered
    if (!$_POST['username']) {
@@ -205,10 +207,7 @@ function left_markup() {
 
 
 
-$s = "mysql.solostyle.net";
-$u = "solostyle";
-$p = 'qas??wed';
-$db = "iam";
+
 
 
 
@@ -220,7 +219,7 @@ $markup_left =
 
 		<h3>archives</h3>';
 
-select_db($s, $u, $p, $db);
+select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	
 // display a form to allow the user to choose a range of entries
 $markup_left .= '<div>
@@ -311,7 +310,7 @@ function show_tags($blog_id) {
 	$tags = get_tags($blog_id);
 	$content = '<ul>';
 	while ($tag = mysql_fetch_array($tags))
-		$content .= '<li><a href="show_tag_entries($tag)">' . $tag[0] . '</a></li>';
+		$content .= '<li><a href="http://iam.solostyle.net/tag/'.$tag[0].'/">'.$tag[0].'</a></li>';
 	$content .= '</ul>';
 	return $content;
 }
@@ -604,7 +603,7 @@ function nl2p_or_br($text) {
 // Can be used for both blog entries and comments
 function create_id($title, $year, $month, $date) {
 	$blogidtitle = parse_title($title);
-	$blog_id = $year . "-" . $month . "-" . $date . ":" . $blogidtitle;
+	$blog_id = $year . "/" . $month . "/" . $date . "/" . $blogidtitle;
 	return $blog_id;
 }
 
