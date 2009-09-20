@@ -1,7 +1,8 @@
 #Options +FollowSymLinks
 RewriteEngine on
 RewriteRule   ^235/.*$      -                  [L]
-RewriteRule !\.(gif|jpg|png|css|php|xml|html)$ /index.new.php
+#RewriteRule !\.(gif|jpg|png|css|php|xml|html)$ /index.new.php
+RewriteRule !\.(gif|jpg|png|css|php|xml|html)$ /redirect.php
 
 ErrorDocument 400 /error.php
 ErrorDocument 401 /error.php

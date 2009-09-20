@@ -21,7 +21,9 @@ function rtrv_entries($blog_id, $lim=50) {
 
 	 $rtnArray = array();
 	 $regex = '^' . $blog_id;
-	 $result = mysql_query("SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim");
+	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim";
+
+	 $result = mysql_query($query);
 	 while ($entry = mysql_fetch_array($result)) {
 	       array_push($rtnArray, $entry);
 	 }
@@ -33,15 +35,28 @@ function rtrv_entries($blog_id, $lim=50) {
 
 // Display one or many entries
 // takes in an array of entry data rows
-// prints out the markup
+// returns the markup
 // 19 sep 09: created
 function show_entries($arr) {
-	 $rtnMarkup = '';
-	 // or i could return a json that consists of:
-	 // array of entries
-	 // php files to include
-	 // css files, js files to include (maybe)
-	 // other metadata
+	$rtnMarkup = '';
+	// or i could return a json that consists of:
+	// array of entries
+	// php files to include
+	// css files, js files to include (maybe)
+	// other metadata
+	// then I need javascript that can create the markup on the client
+	if (count($arr)>3) {
+	   for ($i=0;$i<count($arr);$i++) {
+	       $rtnMarkup .= show_preview($arr[$i]);
+	   }
+	}
+	else {
+	   for ($i=0;$i<count($arr);$i++) {
+	       $rtnMarkup .= make_entry($arr[$i]);
+	   }
+	}
+
+	return $rtnMarkup;
 }
 
 

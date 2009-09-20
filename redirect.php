@@ -1,7 +1,7 @@
 <?php
 
-include 'inc/dbclasses.inc';
-
+include '235/func.php';
+include '235/storevars.php';
 
 function basic_redirect() {
 
@@ -18,7 +18,7 @@ function basic_redirect() {
 	 $uri_array = explode("/",$uri);
 	 array_shift($uri_array);	// first one is empty anyway
 
-	//echo 'prefix: ' . $uri_array[0] . '<br />';
+	 //echo 'prefix: ' . $uri_array[0] . '<br />';
 
 	// security first
 	if(strlen($uri)>50)
@@ -44,15 +44,8 @@ function basic_redirect() {
 		return $root.$uri;
 
 	return 0;
+
 } // basic redirect
-
-$result = basic_redirect();
-//echo 'bas rdr: ' . $result . '<br />';
-
-if($result)
-	include($result);
-else
-     advanced_redirect($result);
 
 //if begins with admin or members, do those functions
 //check for info or profile or other static pages
@@ -106,40 +99,80 @@ function handle_url_date($arr) {
 	 $id_str = implode("/", $arr);
 
 	 // get the array of entries
+	 $s = "mysql.solostyle.net";
+	 $u = "solostyle";
+	 $p = 'qas??wed';
+	 $db = "iam";
+	 
+	 select_db($s, $u, $p, $db);
 	 $entries_arr = rtrv_entries($id_str);
 
 	 // send it to the guy who can display them
 	 // if (count($entries_arr) > 3) show preview, else full
 	 // this should construct the whole page and print it to the screen
-	 show_entries($entries_arr);
+	 $entries_markup = show_entries($entries_arr);
+
+	 mysql_close();
+
+	 // display the page
+	 display_page($entries_markup);
+
+	 //print 
+"<?
+	session_start();
+	include_once '235/func.php';
+	include_once '235/storevars.php';
+	include 'inc/header.php';
+
+	// load the left pane
+        include 'left.php';
+?>";
+
+	//print $entries_markup;
+
+	//print 
+"
+	include 'inc/footer.php';
+?>";
+
+
 }
 
+$result = basic_redirect();
+//echo 'bas rdr: ' . $result . '<br />';
+
+if($result)
+	include($result);
+else
+	advanced_redirect($result);
+
+
 // urls to support
-http://iam.solostyle.net/
+//http://iam.solostyle.net/
 
-http://iam.solostyle.net/admin/add_entry
-http://iam.solostyle.net/admin/modify_entry
-http://iam.solostyle.net/admin/delete_entry
-http://iam.solostyle.net/admin/publish_feeds
-http://iam.solostyle.net/admin/tag
-http://iam.solostyle.net/admin/categorize (maybe not needed)
+//http://iam.solostyle.net/admin/add_entry
+//http://iam.solostyle.net/admin/modify_entry
+//http://iam.solostyle.net/admin/delete_entry
+//http://iam.solostyle.net/admin/publish_feeds
+//http://iam.solostyle.net/admin/tag
+//http://iam.solostyle.net/admin/categorize (maybe not needed)
 
-http://iam.solostyle.net/members/news (new entries since last login)
-http://iam.solostyle.net/members/profile (maybe not needed)
+//http://iam.solostyle.net/members/news (new entries since last login)
+//http://iam.solostyle.net/members/profile (maybe not needed)
 
-http://iam.solostyle.net/news (maybe this is all that is needed)
+//http://iam.solostyle.net/news (maybe this is all that is needed)
 
-http://iam.solostyle.net/contact
+//http://iam.solostyle.net/contact
 
-(num_entries_to_displ > x)?preview:full
-http://iam.solostyle.net/2008/ (all entries for this year preview)
-http://iam.solostyle.net/2008/09 (all entries in september 2008)
-http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
-http://iam.solostyle.net/2008/09/16/blog-entry (this particular entry)
+//(num_entries_to_displ > x)?preview:full
+//http://iam.solostyle.net/2008/ (all entries for this year preview)
+//http://iam.solostyle.net/2008/09 (all entries in september 2008)
+//http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
+//http://iam.solostyle.net/2008/09/16/blog-entry (this particular entry)
 
-http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
-http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
-http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
-would it be difficult to offer such functionality to users?
+//http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
+//http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
+//http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
+//would it be difficult to offer such functionality to users?
 
 ?>
