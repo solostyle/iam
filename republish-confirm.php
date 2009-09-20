@@ -12,7 +12,7 @@ if ( (isset($_SESSION['user_id']) &&
 
 	$blog_id_array = $_POST["republish"];
 	for ($i = 0;$i<count($blog_id_array);$i++) {
-		$entryarray = get_entry($blog_id_array[$i]);
+		$entryarray = rtrv_entries($blog_id_array[$i]);
 		$republish_values = array($entryarray[0], $entryarray[1], $entryarray[2], $entryarray[3], $entryarray[4]);
 		publish_entry($republish_values, 'w+');
 		$url = make_url($entryarray[0]);

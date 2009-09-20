@@ -10,7 +10,7 @@
 	// show the entry requested in the URL
 	select_db($s, $u, $p, $db);
 	$id = $_GET['id'];
-	$e = get_entry($id);
+	$e = rtrv_entries($id);
 	print make_entry($e);
 	mysql_close();
 

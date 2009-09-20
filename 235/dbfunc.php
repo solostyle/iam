@@ -12,15 +12,36 @@ function select_db($server, $usr, $pw, $dbname) {
 }
 
 
-// Retrieve one entry
-// returns the data row
+// Retrieve an array of entries
+// returns an array of entry data rows
+// whose id's begin with $blog_id
 // 6 feb 09: changed the input parameters because we have one table now
-function get_entry($blog_id) {
-	$result = mysql_query("SELECT * FROM `blog` WHERE `id` = '$blog_id'");
-	$entry = mysql_fetch_array($result, MYSQL_NUM);
-	mysql_free_result($result);
-	if (!$entry) print("That entry doesn't exist anymore!");
-	return $entry;
+// 19 sep 09: use regular expressions, bring back multiple rows up to $lim
+function rtrv_entries($blog_id, $lim=50) {
+
+	 $rtnArray = array();
+	 $regex = '^' . $blog_id;
+	 $result = mysql_query("SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim");
+	 while ($entry = mysql_fetch_array($result)) {
+	       array_push($rtnArray, $entry);
+	 }
+	 mysql_free_result($result);
+
+	 return $rtnArray;
+}
+
+
+// Display one or many entries
+// takes in an array of entry data rows
+// prints out the markup
+// 19 sep 09: created
+function show_entries($arr) {
+	 $rtnMarkup = '';
+	 // or i could return a json that consists of:
+	 // array of entries
+	 // php files to include
+	 // css files, js files to include (maybe)
+	 // other metadata
 }
 
 
@@ -148,10 +169,30 @@ function blog_last_date() {
 	return $row[0];
 }
 
+//$h = haystack, $n = needle
+function strstrb($h,$n){
+    return array_shift(explode($n,$h,2));
+}
+
 
 //----------------------------------------------------------------------------
 // One-time Utilities --------------------------------------------------------
 // ---------------------------------------------------------------------------
+
+// Modify my blog_id again!
+// Old format: 2008-08-13:what-a-day
+// New format: 2008/08/13/what-a-day
+function update_blog_id_again() {
+	$table = 'blog_category'; // need to do all that start with "blog"
+	$query = "SELECT `blog_id` FROM `" . $table . "`";
+	$result = mysql_query($query);
+	while ($row = mysql_fetch_array($result)) {
+		$id = str_replace(':', '/', $row[0]);
+		$query = "update `" . $table . "` set `blog_id` = '" . $id . "' where `blog_id` = '" . $row[0] . "'";
+		print $query . '<br />';
+		mysql_query($query);
+	}
+}
 
 // Modify my blog_id
 // Old format: tag:iam.solostyle.net,2008-08-13:/2008/08/what-a-day

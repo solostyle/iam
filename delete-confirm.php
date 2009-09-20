@@ -16,7 +16,7 @@ if ( (isset($_SESSION['user_id']) &&
 		$blog_id_array = $_POST["republish"];
 
 		for ($i = 0;$i<count($blog_id_array);$i++) {
-			$entryarray = get_entry($blog_id_array[$i]);
+			$entryarray = rtrv_entries($blog_id_array[$i]);
 			$deletetitle = $entryarray[3];
 			delete_record($blog_id_array[$i]);
 			print "<p><em>$deletetitle</em> was deleted!</p>";

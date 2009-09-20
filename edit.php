@@ -12,7 +12,7 @@ if ( (isset($_SESSION['user_id']) &&
 
 	$blog_id_array = $_POST["republish"];
 	for ($i = 0;$i<count($blog_id_array);$i++) {
-		$entryarray = get_entry($blog_id_array[$i]);
+		$entryarray = rtrv_entries($blog_id_array[$i]);
 		$editusername = $entryarray[1];
 		$edittime = $entryarray[2];
 		$parsedtime = parse_date($entryarray[2]) . parse_time($entryarray[2]);

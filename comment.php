@@ -69,7 +69,7 @@ if(isset($_POST['submit_cnt'])) {
 		  $t = 'comments';
 		  insert_record($t, $acf, $acv);
 		  //publish_comment($acv, 'x');
-		  $entryarray = get_entry($blog_id);
+		  $entryarray = rtrv_entries($blog_id);
 		  publish_entry($entryarray, 'w+');
 		  mysql_close();
 		  print("<h1>Your words were heard!</h1>");

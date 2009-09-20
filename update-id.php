@@ -19,7 +19,7 @@ $db = "iam";
 
 select_db($s, $u, $p, $db);
 
-update_blog_id();
+update_blog_id_again();
 
 mysql_close();
 

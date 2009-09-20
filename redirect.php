@@ -2,20 +2,21 @@
 
 include 'inc/dbclasses.inc';
 
-// declare variables
-$root = $_SERVER['DOCUMENT_ROOT'];
-$redirect_page = 'redirect.php';
-$home_page = 'index.php';
-$login_page = 'signin.php';
-$error_page = 'error404.php';
-$exec_script = $_SERVER['SCRIPT_FILENAME'];
-$request_uri = $_SERVER['REQUEST_URI'];
-$uri = strip_tags($request_uri);
-$uri_array = explode("/",$uri);
-array_shift($uri_array);	// first one is empty anyway
-
 
 function basic_redirect() {
+
+
+	 // declare variables
+	 $root = $_SERVER['DOCUMENT_ROOT'];
+	 $redirect_page = 'redirect.php';
+	 $home_page = 'index.php';
+	 $login_page = 'signin.php';
+	 $error_page = 'error404.php';
+	 $exec_script = $_SERVER['SCRIPT_FILENAME'];
+	 $request_uri = $_SERVER['REQUEST_URI'];
+	 $uri = strip_tags($request_uri);
+	 $uri_array = explode("/",$uri);
+	 array_shift($uri_array);	// first one is empty anyway
 
 	//echo 'prefix: ' . $uri_array[0] . '<br />';
 
@@ -34,7 +35,7 @@ function basic_redirect() {
 				)
 			)
 		)
-		return $this->home_page;
+		return $home_page;
 
 	// 2. if it's a "real" file, go there
 	if(file_exists($root.$uri)				// if the file exists, and it is
@@ -45,19 +46,13 @@ function basic_redirect() {
 	return 0;
 } // basic redirect
 
-$basic_redirect_page = $basic_redirect();
-//echo 'bas rdr: ' . $basic_redirect_page . '<br />';
+$result = basic_redirect();
+//echo 'bas rdr: ' . $result . '<br />';
 
-if($basic_redirect_page)
-	include($basic_redirect_page);
-else {
-
-     //need separate modules for each type of url/action
-}
-
-?>
-
-<?php
+if($result)
+	include($result);
+else
+     advanced_redirect($result);
 
 //if begins with admin or members, do those functions
 //check for info or profile or other static pages
@@ -67,28 +62,57 @@ else {
 
 function advanced_redirect() {
 
-	 // maybe use regular expressions here instead for matching
+	 // declare variables
+	 $root = $_SERVER['DOCUMENT_ROOT'];
+	 $redirect_page = 'redirect.php';
+	 $home_page = 'index.php';
+	 $login_page = 'signin.php';
+	 $error_page = 'error404.php';
+	 $exec_script = $_SERVER['SCRIPT_FILENAME'];
+	 $request_uri = $_SERVER['REQUEST_URI'];
+	 $uri = strip_tags($request_uri);
+	 $uri_array = explode("/",$uri);
+	 array_shift($uri_array);	// first one is empty anyway
 
-	 select ($uri_array[0]) {
-	 	case 'admin':
+	 switch (true) {
+	 	case ($uri_array[0] == "admin"):
 		     //do something
 		     break;
-		case 'members':
+		case ($uri_array[0] == "members"):
 		     //do something
 		     break;
-		case 'news':
+		case ($uri_array[0] == "news"):
 		     //do something
 		     break;
-		case 'contact':
+		case ($uri_array[0] == "contact"):
 		     //do something
 		     break;
-		case 'tag':
-		     //do something
+		case ($uri_array[0] == "tag"):
+		     handle_url_tag($uri_array);
 		     break;
-		case //how to check for date? see, i need regexps
+		case (substr($uri_array[0], 0, 1) == "2"):
+		     handle_url_date($uri_array);
 		default:
 			return $error_page;
 	}
+}
+
+function handle_url_tag() {
+}
+
+function handle_url_date($arr) {
+
+	 // for each segment in the array, add it to the regular expression
+	 $id_str = implode("/", $arr);
+
+	 // get the array of entries
+	 $entries_arr = rtrv_entries($id_str);
+
+	 // send it to the guy who can display them
+	 // if (count($entries_arr) > 3) show preview, else full
+	 // this should construct the whole page and print it to the screen
+	 show_entries($entries_arr);
+}
 
 // urls to support
 http://iam.solostyle.net/
