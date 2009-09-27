@@ -10,7 +10,7 @@ $GLOBALS["db"] = "iam";
 // Presentation Layer --------------------------------------------------------
 // ---------------------------------------------------------------------------
 
-
+// deprecated
 // Make the entries
 // Show full entry
 function make_entry($row) {
@@ -53,7 +53,7 @@ function make_entry($row) {
 	return $content;
 }
 
-
+// deprecated
 // Display a page (temporary, need to have javascript take in a JSON and render markup
 // renders a page
 function display_page($inner_markup) {
@@ -63,7 +63,7 @@ function display_page($inner_markup) {
 	 footer_markup();
 }
 
-
+// deprecated
 // Write the header markup for a page
 // 19 sep 09: created. but has a bug: cannot determine if you're signed in
 // always shows the login/password form
@@ -196,7 +196,7 @@ print $markup_head . $markup_nav . $markup_content;
 
 }
 
-
+// deprecated
 // display left pane
 function left_markup() {
 
@@ -268,7 +268,7 @@ print $markup_left;
 
 }
 
-
+// deprecated
 // display footer
 function footer_markup() {
 
@@ -303,11 +303,11 @@ function make_url($blog_id) {
 	return "http://iam.solostyle.net/" . $blog_id;
 }
 
-
+// deprecated
 // Show the tags for a blog entry
 // 1 mar 09: created
 function show_tags($blog_id) {
-	$tags = get_tags($blog_id);
+	$tags = rtrv_tags($blog_id);
 	$content = '<ul>';
 	while ($tag = mysql_fetch_array($tags))
 		$content .= '<li><a href="http://iam.solostyle.net/tag/'.$tag[0].'/">'.$tag[0].'</a></li>';
@@ -315,7 +315,7 @@ function show_tags($blog_id) {
 	return $content;
 }
 
-
+// deprecated
 // Make the comment
 function make_comment($row) { //???, blog_id, name, website, email, comment, time
 	$date = parse_date($row[6]);
@@ -336,7 +336,46 @@ function make_comment($row) { //???, blog_id, name, website, email, comment, tim
 	return $content;
 }
 
+//json object representing writings
+//{writ:[{date: "",time: "",id: "",title: "",text: ""},{date: "",time: "",id: "",title: "",text: ""}]}
 
+// Create and return a JSON representation of an array of writings
+function json_writs($rows) {
+	 $json_arr = array();
+
+	 for ($i=0;$i<count($rows);$i++) {
+	     $json_arr[$i] = json_writ($rows[$i]);
+	 }
+
+	 $json = implode(',',$json_arr);
+
+	 $json = "{entries:[" . $json . "]}";
+
+	 return $json;
+}
+
+
+// Create and return a JSON representation of one writing
+function json_writ($row) {
+	 $json_arr = array();
+
+	 $json_arr[0] = 'id:"' . $row[0] . '"';
+	 $json_arr[1] = 'date:"' . parse_date($row[2]) . '"';
+	 $json_arr[2] = 'time:"' . parse_time($row[2]) . '"';
+	 $json_arr[3] = 'title:"' .$row[3] . '"'; // stripslashes when rendering
+	 $json_arr[4] = 'text:"' . $row[4] . '"'; // nl2p_or_br and stripslashes when rendering
+	 $tags = implode(',',rtrv_tags($row[0]));
+	 if ($tags) {
+	    $json_arr[5] = 'tags:[' . $tags . ']';
+	 }
+
+	 $json = implode(',',$json_arr);
+
+	 return $json;
+}
+
+// deprecated
+// The renderer should decide whether to make something abbreviated or full
 // Show entry preview
 function show_preview($row) {
 	$date = parse_date($row[2]);
@@ -357,6 +396,8 @@ function show_preview($row) {
 	return $content;
 }
 
+
+// deprecated
 // Show the comment
 function show_comment($row) {//???, blog_id, name, website, email, comment, time
 	$date = parse_date($row[6]);
@@ -516,7 +557,7 @@ function tags_form($blog_id) {
 // Display the tags in radio buttons to choose one 
 // 5 mar 09: created
 function list_tags() {
-	$result = rtrv_tags();
+	$result = rtrv_all_tags();
 	$content = '<p>';
 	while ($tag_nm = mysql_fetch_array($result)) {
 		$content .= '<input type="radio" name="tag" value="' . $tag_nm[0] . '">';
@@ -530,7 +571,8 @@ function list_tags() {
 
 // Retrieve all the tags for displaying and selecting
 // 11 feb 09: created
-function rtrv_tags() {
+// 27 sep 09: renamed. need to find the things that use this function because they need to be changed now too
+function rtrv_all_tags() {
 	$query = "
 		SELECT `tag_nm`
 		FROM `tag`";
@@ -577,20 +619,6 @@ function rtrv_categories() {
 	$result = mysql_query($query);
 	return $result;
 }
-
-//Convert blog_ids to urls for page links
-//function DONT USE() {
-//	//tag:iam.solostyle.net,2006-04-04:/location
-//	$location = strrchr($tag,":");			//:/location
-//	$location = substr($location,1);		///location
-//	$location = str_replace("\\","",$location); 	//to get rid of escape characters!
-//	$pos = strpos($tag,",");			//probably 24th
-//	$url1 = substr($tag,0,$pos);			//tag:iam.solostyle.net
-//	$url1 .= $location . ".php";						//tag:iam.solostyle.net/location.php
-//	$url = str_replace("tag:","http://",$url1);	//http://iam.solostyle.net/location.php
-//	return $url;
-//}
-
 
 function nl2p_or_br($text) {
   $text_with_p = "<p>" . str_replace("\r\n\r\n", "</p><p>", $text) . "</p>";

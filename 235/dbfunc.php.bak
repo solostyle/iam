@@ -12,126 +12,24 @@ function select_db($server, $usr, $pw, $dbname) {
 }
 
 
-// Retrieve an article
-// returns the first match of articles that start with $article_name
-// 27 sep 09: created
-function rtrv_article($article_name) {
-
-	 $rtn_arr = array();
-	 $regex = '^' . $article_name;
-	 $query = "SELECT * FROM `articles` WHERE `id` REGEXP '$regex' LIMIT $lim";
-
-	 $result = mysql_query($query);
-	 while ($entry = mysql_fetch_array($result)) {
-	       array_push($rtn_arr, $entry);
-	 }
-	 mysql_free_result($result);
-
-	 // there should only be one article, so return the first result
-	 return $rtn_arr[0];
-}
-
-
-// Retrieve an array of entries
-// returns an array of entry data rows
-// whose id's begin with $blog_id
+// Retrieve one entry
+// returns the data row
 // 6 feb 09: changed the input parameters because we have one table now
-// 19 sep 09: use regular expressions, bring back multiple rows up to $lim
-function rtrv_entries($blog_id, $lim=50) {
-
-	 $rtn_arr = array();
-	 $regex = '^' . $blog_id;
-	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim";
-
-	 $result = mysql_query($query);
-	 while ($entry = mysql_fetch_array($result)) {
-	       array_push($rtn_arr, $entry);
-	 }
-	 mysql_free_result($result);
-
-	 return $rtn_arr;
-}
-
-
-// Retrieve an array of entries given an array of tags
-// returns an array of entry data rows using OR logic
-// results have any of the requested tags
-// 20 sep 09: created, right now does not handle $method
-function rtrv_entries_by_tag($tag_arr, $method, $lim=50) {
-
-	$rtn_arr = array();
-	$id_arr = array();
-
-
-	// retrieve entries, without duplicates
-	$tag_list = "'".implode("','",$tag_arr)."'";
-	$query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tag` b
-	       WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
-	$query .= " LIMIT $lim";
-	$result = mysql_query($query);
-	while ($id = mysql_fetch_array($result)) {
-	      array_push($id_arr, $id["blog_id"]);
-	}
+function get_entry($blog_id) {
+	$result = mysql_query("SELECT * FROM `blog` WHERE `id` = '$blog_id'");
+	$entry = mysql_fetch_array($result, MYSQL_NUM);
 	mysql_free_result($result);
-	
-
-	// retrieve all the entries for these blog ids
-	$id_list = "'".implode("','",$id_arr)."'";
-//print "id array is " . var_dump($id_arr) . "<br /><br />";
-	$query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.")";
-//print "id list is " . $id_list;
-	$result = mysql_query($query);
-	while ($entry = mysql_fetch_array($result)) {
-	      array_push($rtn_arr, $entry);
-	}
-	mysql_free_result($result);
-
-	return $rtn_arr;
-}
-
-
-// Display one or many entries
-// takes in an array of entry data rows
-// returns the markup
-// 19 sep 09: created
-function show_entries($arr) {
-	$rtnMarkup = '';
-	// or i could return a json that consists of:
-	// array of entries
-	// php files to include
-	// css files, js files to include (maybe)
-	// other metadata
-	// then I need javascript that can create the markup on the client
-	if (count($arr)>3) {
-	   for ($i=0;$i<count($arr);$i++) {
-	       $rtnMarkup .= show_preview($arr[$i]);
-	   }
-	}
-	else {
-	   for ($i=0;$i<count($arr);$i++) {
-	       $rtnMarkup .= make_entry($arr[$i]);
-	   }
-	}
-
-	return $rtnMarkup;
+	if (!$entry) print("That entry doesn't exist anymore!");
+	return $entry;
 }
 
 
 // Retrieve all tags for an entry
 // returns array of tags
 // 1 mar 09;
-function rtrv_tags($blog_id) {
-
-	$tags_arr = array();
-
+function get_tags($blog_id) {
 	$result = mysql_query("SELECT `tag_nm` FROM `blog_tag` WHERE `blog_id` = '$blog_id'");
-
-	while ($tag = mysql_fetch_array($result))
-	      array_push($tags_arr, $tag[0]);
-
-	mysql_free_result($result);
-
-	return $tags_arr;
+	return $result;
 }
 
 
@@ -163,6 +61,26 @@ function preview_recent($lim) {
 	while ($entryarray = mysql_fetch_array($entrieslist)) {
 		$content .= show_preview($entryarray);
 	}
+	mysql_free_result($entrieslist);
+	return $content;
+}
+
+
+// Show all entries that have a tag
+// 6 feb 09: need to join to blog_tag table
+// 7 feb 09: need to test query
+function show_tag_entries($tag) {
+	$getentries = "
+		SELECT b.*
+		FROM `blog_tag` a
+			, `blog` b
+		WHERE b.`id` = a.`blog_id`
+		AND a.`tag_nm` = '" . $tag . "'";
+	$entrieslist = mysql_query($getentries);
+	$content = "";
+	while ($entryarray = mysql_fetch_array($entrieslist)) 
+		$content .= show_preview($entryarray);
+
 	mysql_free_result($entrieslist);
 	return $content;
 }

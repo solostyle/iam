@@ -83,7 +83,7 @@ function make_xml_entry($rss_or_atom, $entryarray) {
     case "rss":
 	    $content .= "<item>";
 	    $content .= "<title>$entryarray[3]</title>";
-	    $content .= "<link>http://iam.solostyle.net/</link>";
+	    $content .= "<link>\"$entryurl\"</link>";
     	    $content .= "<description>$entrytext</description>";
 	    $content .= "<dc:creator>$entryarray[1]</dc:creator>";
 	    $content .= "<dc:date>$entrydate</dc:date>";
