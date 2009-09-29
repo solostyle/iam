@@ -69,16 +69,23 @@ function advanced_redirect() {
 
 	 switch (true) {
 	 	case ($uri_array[0] == "admin"):
-		     //do something
+		     handle_admin($uri_array);
 		     break;
 		case ($uri_array[0] == "members"):
-		     //do something
+		     // menu
+		     // may not be necessary
 		     break;
 		case ($uri_array[0] == "news"):
-		     //do something
+		     // show updates since last login
+		     // if not logged in,
+		     // show the latest stuff
+		     // maybe news IS the home page
 		     break;
 		case ($uri_array[0] == "contact"):
-		     //do something
+		     handle_contact();
+		     break;
+		case ($uri_array[0] == "articles"):
+		     handle_article($uri_array);
 		     break;
 		case ($uri_array[0] == "tag"):
 		     handle_url_tag($uri_array);
@@ -88,6 +95,53 @@ function advanced_redirect() {
 		default:
 			return $error_page;
 	}
+}
+
+
+// Handle the request for admin functions
+// allow admin functions
+// 27 sep 09: created
+function handle_admin($arr) {
+
+	if (!logged_in()) {
+	   return $error_page;
+	} else {
+	   //handle each admin function differently
+	   $func = "admin_func_" . $arr[1];
+	   // first make sure it is a function
+	   $func();
+	}
+}
+
+
+// Handle the request for contact information
+// if there is anything after the /contact/ part of the url
+// show contact information and rewrite the url
+function handle_contact() {
+
+	 // don't need to connect to database,
+	 // just store the markup somewhere
+	 $contact_json = json_contact();
+
+	 //return json 
+	 return $contact_json;
+}
+
+
+// Handles the request for an article
+// right now these are links actually stored in the directory
+// 27 sep 09: created
+function handle_article($arr) {
+
+	 $article_name = $arr[1];
+
+	 // retrieve this article
+	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
+	 $article = rtrv_article($article_name);
+	 mysql_close();
+
+	 $article_json = json_writ($article);
+	 return $article_json;
 }
 
 
@@ -120,13 +174,11 @@ function handle_url_tag($arr) {
 	 // get the array of entries
 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	 $entries_arr = rtrv_entries_by_tag($tag_arr, $method);
-
-	 $entries_markup = show_entries($entries_arr);
-
 	 mysql_close();
 
-	 // display the page
-	 display_page($entries_markup);
+	 $entries_json = json_writ($entries_arr);
+
+	 return $entries_json;
 }
 
 function handle_url_date($arr) {
@@ -137,16 +189,11 @@ function handle_url_date($arr) {
 	 // get the array of entries
 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	 $entries_arr = rtrv_entries($id_str);
-
-	 // send it to the guy who can display them
-	 // if (count($entries_arr) > 3) show preview, else full
-	 // this should construct the whole page and print it to the screen
-	 $entries_markup = show_entries($entries_arr);
-
 	 mysql_close();
 
-	 // display the page
-	 display_page($entries_markup);
+	 $entries_json = json_writ($entries_arr);
+
+	 return $entries_json;
 }
 
 $result = basic_redirect();
@@ -155,11 +202,15 @@ $result = basic_redirect();
 if($result)
 	include($result);
 else
-	advanced_redirect($result);
+	advanced_redirect();
 
+
+// REMEMBER!!!
+// get rid of display_page(), instead return json
+// have a render.js that creates the markup
 
 // urls to support
-//http://iam.solostyle.net/
+//http://iam.solostyle.net/ =  /news?
 
 //http://iam.solostyle.net/admin/add_entry
 //http://iam.solostyle.net/admin/modify_entry
@@ -168,21 +219,34 @@ else
 //http://iam.solostyle.net/admin/tag
 //http://iam.solostyle.net/admin/categorize (maybe not needed)
 
-//http://iam.solostyle.net/members/news (new entries since last login)
+//http://iam.solostyle.net/members/news same as /news?
 //http://iam.solostyle.net/members/profile (maybe not needed)
-
-//http://iam.solostyle.net/news (maybe this is all that is needed)
 
 //http://iam.solostyle.net/contact
 
-//http://iam.solostyle.net/2008/ (all entries for this year preview)
-//http://iam.solostyle.net/2008/09 (all entries in september 2008)
-//http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
-//http://iam.solostyle.net/2008/09/16/blog-entry (this particular entry)
+//http://iam.solostyle.net/articles/Fastest-Way-to-Meditation-Success
+//http://iam.solostyle.net/articles/tag/meditation/
+// should articles have tags?
+// or should they have categories?
+// articles = professional writing
+// blog posts = personal writing (diary)
 
-//http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
-//http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
-//http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
-//would it be difficult to offer such functionality to users?
+// it would be sweet if after you logged in, all the functions would appear in the
+// web parts where they apply
+
+// main layout: space for static articles, other things
+// blog layout: just a left bar for navigation, main content, right pane for post metadata
+
+// where should articles go?
+// maybe their own table
+// what does the json content look like?
+// article = {
+// 	   markup : "text from the database",
+//	   container: "main",
+//	   date_written: "timestamp",
+//	   author: "solostyle",
+//	   related_articles: [],
+//	   category: ""
+//	 }
 
 ?>
