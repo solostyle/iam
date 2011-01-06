@@ -5,6 +5,7 @@ include '235/storevars.php';
 
 define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+define('HOST', $_SERVER['HTTP_HOST']);
 
 function basic_redirect() {
 

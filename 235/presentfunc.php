@@ -57,8 +57,10 @@ function make_entry($row) {
 // Display a page (temporary, need to have javascript take in a JSON and render markup
 // renders a page
 function display_page($inner_markup) {
-  header_markup();
-  //left_markup();
+  if (file_exists(ROOT . DS . 'inc' . DS . 'header.php')) {
+    include (ROOT . DS . 'inc' . DS . 'header.php');
+  }
+  //header_markup();
   if (file_exists(ROOT . DS . 'left.php')) {
     include (ROOT . DS . 'left.php');
   }
@@ -232,7 +234,7 @@ function footer_markup() {
 // Make a blog entry url for a page
 // 9 mar 09: created
 function make_url($blog_id) {
-	return ROOT . DS . $blog_id;
+	return 'http://' . HOST . DS . $blog_id;
 }
 
 // Make a link
