@@ -103,6 +103,33 @@ $tag . '</a></li>';
 	return $content;
 }
 
+
+// Creates the archive navigation menu
+// 6 jan 11: created
+function create_archive_nav_menu($arr) {
+  $content = '';
+  $years = array_keys($arr);
+  foreach($years as $y) {
+    $content .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y)) . '<br />';
+    unset($arr[$y][0]);
+    $months = array_keys($arr[$y]);
+    foreach($months as $m) {
+      $content .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m)) . '<br />';
+      unset($arr[$y][$m][0]);
+      $titles = $arr[$y][$m];
+      foreach($titles as $id => $title) {
+        $content .= make_link($title, make_url($id)) . '<br />';
+      }
+    }
+  }
+  //echo '<pre>';
+  //print_r($years);
+  //echo '</pre>';
+  return $content;
+}
+
+
+
 // deprecated
 // Make the comment
 function make_comment($row) { //???, blog_id, name, website, email, comment, time
@@ -273,38 +300,6 @@ function list_entry_categorize($row) {
 	$content .= '<p><input type="text" name="cat_wi" value="" /></p>';
 	
 	return $content;
-}
-
-// List months in a drop down menu
-// 6 feb 09: created
-function list_months($name_of_menu, $index_to_select) {
-	$content = '<select name="' . $name_of_menu . '" size="1">';
-	for($k=1;$k<=12;$k++) {
-		$date = mktime(0, 0, 0, $k, 1, date("Y")); //doesn't matter what the year is
-		$option = strftime('%B',$date);
-		$opt = strftime('%m',$date);
-		$content .= '<option value="' . $opt . '"';
-		if ($k == $index_to_select) 
-			$content .= ' selected="selected"';
-		$content .= '>' . $option . '</option>';
-	}
-	$content .= '</select>';
-	return $content;
-}
-
-
-// Return array of years for which there are blog entries
-// 7 feb 09: created
-// 5 jan 11: modified to return array of years instead of drop down
-function list_years() {
-	$years = array();
-	$dates = blog_first_and_last_dates();
-	$start_y = strftime("%Y", strtotime($dates[0]));
-	$end_y = strftime("%Y", strtotime($dates[1]));
-	for($k=$start_y;$k<=$end_y;$k++) { 
-		array_push($years, $k);
-	}
-	return $years;
 }
 
 

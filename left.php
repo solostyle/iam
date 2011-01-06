@@ -13,15 +13,10 @@ $markup_left =
 
 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 
-$years = list_years();
-$years_links = '';
+$archive_nav_array = create_archive_nav_array();
+$archive_nav_menu = create_archive_nav_menu($archive_nav_array);
 
-foreach($years as $year) {
-  $years_links .= make_link($year, make_url($year));
-  $years_links .= '<br />';
-}
-
-$markup_left .= '<div>' . $years_links . '</div>';
+$markup_left .= '<div>' . $archive_nav_menu . '</div>';
 
 
 mysql_close();
