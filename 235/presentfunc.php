@@ -75,8 +75,12 @@ function display_page($inner_markup) {
 // Make a blog entry url for a page
 // 9 mar 09: created
 // 5 jan 11: modified to use HOST and DS
-function make_url($blog_id) {
-	return 'http://' . HOST . DS . $blog_id;
+function make_url($first, $rest=array()) {
+  $url = 'http://' . HOST . DS . $first;
+  foreach ($rest as $item) {
+    $url .= DS . $item;
+  }
+  return $url;
 }
 
 // Make a link
