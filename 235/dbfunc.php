@@ -41,7 +41,7 @@ function rtrv_entries($blog_id, $lim=50) {
 
 	 $rtn_arr = array();
 	 $regex = '^' . $blog_id;
-	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' LIMIT $lim";
+	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` DESC LIMIT $lim";
 
 	 $result = mysql_query($query);
 	 while ($entry = mysql_fetch_array($result)) {
@@ -78,7 +78,7 @@ function rtrv_entries_by_tag($tag_arr, $method, $lim=50) {
 	// retrieve all the entries for these blog ids
 	$id_list = "'".implode("','",$id_arr)."'";
 //print "id array is " . var_dump($id_arr) . "<br /><br />";
-	$query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.")";
+	$query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.") ORDER BY `time` DESC";
 //print "id list is " . $id_list;
 	$result = mysql_query($query);
 	while ($entry = mysql_fetch_array($result)) {
