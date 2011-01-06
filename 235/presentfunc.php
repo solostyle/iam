@@ -89,6 +89,24 @@ function make_link($text, $url) {
 	return '<a href="' . $url . '">' . $text . '</a>';
 }
 
+// Make an HTML list of items in an array
+// 6 jan 11: created
+function make_list($arr, $list_class='', $ordered=false) {
+  $content = ($ordered)? '<ol':'<ul';
+  $content = ($list_class)? ' class="' . $list_class . '">' : '>';
+  foreach($arr as $item) {
+    $content .= make_list_item($item);
+  }
+  $content = ($ordered)? '</ol>':'</ul>';
+  return $content;
+}
+
+// Make an HTML list item
+// 6 jan 11: created
+function make_list_item($item) {
+  return '<li>' . $item . '</li>';
+}
+
 // deprecated
 // Show the tags for a blog entry
 // 1 mar 09: created
@@ -107,24 +125,26 @@ $tag . '</a></li>';
 // Creates the archive navigation menu
 // 6 jan 11: created
 function create_archive_nav_menu($arr) {
-  $content = '';
+  $content = '<ul class="archlev1">';
   $years = array_keys($arr);
   foreach($years as $y) {
-    $content .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y)) . '<br />';
+    $content .= make_list_item(make_link($y . ' (' . $arr[$y][0] . ')', make_url($y)));
     unset($arr[$y][0]);
     $months = array_keys($arr[$y]);
+    $content .= '<ul class="archlev2">';
     foreach($months as $m) {
-      $content .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m)) . '<br />';
+      $content .= make_list_item(make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m)));
       unset($arr[$y][$m][0]);
       $titles = $arr[$y][$m];
+      $content .= '<ul class="archlev3">';
       foreach($titles as $id => $title) {
-        $content .= make_link($title, make_url($id)) . '<br />';
+        $content .= make_list_item(make_link($title, make_url($id)));
       }
+      $content .= '</ul>';
     }
+    $content .= '</ul>';
   }
-  //echo '<pre>';
-  //print_r($years);
-  //echo '</pre>';
+  $content .= '</ul>';
   return $content;
 }
 

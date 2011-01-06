@@ -16,6 +16,12 @@ a:hover, a:active {color:#fc0;}
 
 .preview {}
 
+/* unordered list classes for archive navigation menu */
+ul.archlev1 {font-size:.8em}
+ul.archlev1 li {padding:0;display:block}
+ul.archlev2 li {padding:0 0 0 10px;display:block}
+ul.archlev3 li {padding:0 0 0 20px;display:block}
+
 /* form classes */
 #left p {font-size:11px;}
 input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:11px}
