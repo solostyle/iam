@@ -3,6 +3,9 @@
 include '235/func.php';
 include '235/storevars.php';
 
+define('DS', DIRECTORY_SEPARATOR);
+define('ROOT', $_SERVER['DOCUMENT_ROOT']);
+
 function basic_redirect() {
 
 
@@ -69,23 +72,19 @@ function advanced_redirect() {
 
 	 switch (true) {
 	 	case ($uri_array[0] == "admin"):
-		     handle_admin($uri_array);
+		     //do something
 		     break;
 		case ($uri_array[0] == "members"):
-		     // menu
-		     // may not be necessary
+		     //do something
 		     break;
 		case ($uri_array[0] == "news"):
-		     // show updates since last login
-		     // if not logged in,
-		     // show the latest stuff
-		     // maybe news IS the home page
+		     //do something
 		     break;
 		case ($uri_array[0] == "contact"):
-		     handle_contact();
+		     //do something
 		     break;
 		case ($uri_array[0] == "articles"):
-		     handle_article($uri_array);
+		     handle_articles($uri_array);
 		     break;
 		case ($uri_array[0] == "tag"):
 		     handle_url_tag($uri_array);
@@ -97,51 +96,28 @@ function advanced_redirect() {
 	}
 }
 
-
-// Handle the request for admin functions
-// allow admin functions
-// 27 sep 09: created
-function handle_admin($arr) {
-
-	if (!logged_in()) {
-	   return $error_page;
-	} else {
-	   //handle each admin function differently
-	   $func = "admin_func_" . $arr[1];
-	   // first make sure it is a function
-	   $func();
-	}
-}
-
-
-// Handle the request for contact information
-// if there is anything after the /contact/ part of the url
-// show contact information and rewrite the url
-function handle_contact() {
-
-	 // don't need to connect to database,
-	 // just store the markup somewhere
-	 $contact_json = json_contact();
-
-	 //return json 
-	 return $contact_json;
-}
-
-
 // Handles the request for an article
 // right now these are links actually stored in the directory
-// 27 sep 09: created
-function handle_article($arr) {
+// may want to integrate them with blog?
+// 24 sep 09: created
+function handle_articles($arr) {
 
-	 $article_name = $arr[1];
+	 // for each segment in the array, add it to the regular expression
+	 $id_str = implode("/", $arr);
 
-	 // retrieve this article
+	 // get the array of entries
 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
-	 $article = rtrv_article($article_name);
+	 $entries_arr = rtrv_entries($id_str);
+
+	 // send it to the guy who can display them
+	 // if (count($entries_arr) > 3) show preview, else full
+	 // this should construct the whole page and print it to the screen
+	 $entries_markup = show_entries($entries_arr);
+
 	 mysql_close();
 
-	 $article_json = json_writ($article);
-	 return $article_json;
+	 // display the page
+	 display_page($article_markup);
 }
 
 
@@ -174,11 +150,13 @@ function handle_url_tag($arr) {
 	 // get the array of entries
 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	 $entries_arr = rtrv_entries_by_tag($tag_arr, $method);
+
+	 $entries_markup = show_entries($entries_arr);
+
 	 mysql_close();
 
-	 $entries_json = json_writ($entries_arr);
-
-	 return $entries_json;
+	 // display the page
+	 display_page($entries_markup);
 }
 
 function handle_url_date($arr) {
@@ -189,11 +167,16 @@ function handle_url_date($arr) {
 	 // get the array of entries
 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 	 $entries_arr = rtrv_entries($id_str);
+
+	 // send it to the guy who can display them
+	 // if (count($entries_arr) > 3) show preview, else full
+	 // this should construct the whole page and print it to the screen
+	 $entries_markup = show_entries($entries_arr);
+
 	 mysql_close();
 
-	 $entries_json = json_writ($entries_arr);
-
-	 return $entries_json;
+	 // display the page
+	 display_page($entries_markup);
 }
 
 $result = basic_redirect();
@@ -202,7 +185,7 @@ $result = basic_redirect();
 if($result)
 	include($result);
 else
-	advanced_redirect();
+	advanced_redirect($result);
 
 
 // REMEMBER!!!
@@ -210,7 +193,7 @@ else
 // have a render.js that creates the markup
 
 // urls to support
-//http://iam.solostyle.net/ =  /news?
+//http://iam.solostyle.net/
 
 //http://iam.solostyle.net/admin/add_entry
 //http://iam.solostyle.net/admin/modify_entry
@@ -219,8 +202,10 @@ else
 //http://iam.solostyle.net/admin/tag
 //http://iam.solostyle.net/admin/categorize (maybe not needed)
 
-//http://iam.solostyle.net/members/news same as /news?
+//http://iam.solostyle.net/members/news (new entries since last login)
 //http://iam.solostyle.net/members/profile (maybe not needed)
+
+//http://iam.solostyle.net/news (maybe this is all that is needed)
 
 //http://iam.solostyle.net/contact
 
@@ -228,25 +213,20 @@ else
 //http://iam.solostyle.net/articles/tag/meditation/
 // should articles have tags?
 // or should they have categories?
+// or should they exist as blog posts?
+// it seems like they are a separate section
+// right now i want them to remain separate.
 // articles = professional writing
 // blog posts = personal writing (diary)
 
-// it would be sweet if after you logged in, all the functions would appear in the
-// web parts where they apply
+//http://iam.solostyle.net/2008/ (all entries for this year preview)
+//http://iam.solostyle.net/2008/09 (all entries in september 2008)
+//http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
+//http://iam.solostyle.net/2008/09/16/blog-entry (this particular entry)
 
-// main layout: space for static articles, other things
-// blog layout: just a left bar for navigation, main content, right pane for post metadata
-
-// where should articles go?
-// maybe their own table
-// what does the json content look like?
-// article = {
-// 	   markup : "text from the database",
-//	   container: "main",
-//	   date_written: "timestamp",
-//	   author: "solostyle",
-//	   related_articles: [],
-//	   category: ""
-//	 }
+//http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
+//http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
+//http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
+//would it be difficult to offer such functionality to users?
 
 ?>

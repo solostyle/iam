@@ -3,8 +3,6 @@
 	session_start();
 	include_once '235/func.php';
 	include_once '235/storevars.php';
-include_once 'inc/header.php'; // why is this here?
-
 
 
 $markup_left = 
@@ -13,7 +11,7 @@ $markup_left =
 
 		<h3>archives</h3>';
 
-select_db($s, $u, $p, $db);
+select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
 
 $years = list_years();
 $years_links = '';

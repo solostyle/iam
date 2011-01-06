@@ -10,6 +10,7 @@ body {background:#333;color:#ccc;font-family:sans-serif}
 acronym:hover {cursor:help;}
 ul {padding:0;}
 ul li {display:inline;padding:0 5px;}
+ul.tags li {display:block}
 a:link, a:visited {color:#970;text-decoration:none;}
 a:hover, a:active {color:#fc0;}
 

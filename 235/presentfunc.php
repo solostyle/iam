@@ -57,10 +57,14 @@ function make_entry($row) {
 // Display a page (temporary, need to have javascript take in a JSON and render markup
 // renders a page
 function display_page($inner_markup) {
-	 header_markup();
-	 left_markup();
-	 print $inner_markup;
-	 footer_markup();
+  header_markup();
+  //left_markup();
+  if (file_exists(ROOT . DS . 'left.php')) {
+    include (ROOT . DS . 'left.php');
+  }
+  //echo ROOT.DS.'left.php';
+  print $inner_markup;
+  footer_markup();
 }
 
 // deprecated
@@ -197,78 +201,6 @@ print $markup_head . $markup_nav . $markup_content;
 }
 
 // deprecated
-// display left pane
-function left_markup() {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-$markup_left = 
-
-'<div id="left">
-
-		<h3>archives</h3>';
-
-select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
-	
-// display a form to allow the user to choose a range of entries
-$markup_left .= '<div>
-	<form method="post" action="http://' . $_SERVER['HTTP_HOST'] . '/archive.php">';
-$markup_left .= '<p>From ';
-$markup_left .= list_months("start_month",$_SESSION['arch_start_month']);
-$markup_left .= '&nbsp;';
-$markup_left .= list_years("start_year",$_SESSION['arch_start_year']);
-$markup_left .= '</p>';
-$markup_left .= '<p>until ';
-$markup_left .= list_months("end_month",$_SESSION['arch_end_month']);
-$markup_left .= '&nbsp;';
-$markup_left .= list_years("end_year",$_SESSION['arch_end_year']);
-$markup_left .= '</p>';
-
-// allow user to preview or view full
-				
-$markup_left .= '<p><input type="radio" name="view_typ" value="preview"';
-		if ( ($_SESSION['arch_view_typ']=='preview') | (!isset($_SESSION['arch_view_typ'])) )
-			$markup_left .= ' checked="checked"';
-$markup_left .= ' />Preview &nbsp;
-<input type="radio" name="view_typ" value="full"';
-		if ($_SESSION['arch_view_typ']=='full')
-			$markup_left .= ' checked="checked"';
-$markup_left .= ' />Full &nbsp; 
-	<input type="submit" name="submit" value="Go" /></p>
-	</form></div>';
-
-
-mysql_close();
-	
-$markup_left .= '
-</div><!-- /end #left -->';
-
-print $markup_left;
-
-
-
-
-
-
-
-
-
-
-
-}
-
-// deprecated
 // display footer
 function footer_markup() {
 
@@ -300,7 +232,7 @@ function footer_markup() {
 // Make a blog entry url for a page
 // 9 mar 09: created
 function make_url($blog_id) {
-	return "http://iam.solostyle.net/" . $blog_id;
+	return ROOT . DS . $blog_id;
 }
 
 // Make a link
@@ -314,9 +246,11 @@ function make_link($text, $url) {
 // 1 mar 09: created
 function show_tags($blog_id) {
 	$tags = rtrv_tags($blog_id);
-	$content = '<ul>';
-	while ($tag = mysql_fetch_array($tags))
-		$content .= '<li><a href="http://iam.solostyle.net/tag/'.$tag[0].'/">'.$tag[0].'</a></li>';
+	$content = '<ul class="tags">';
+	foreach ($tags as $tag) {
+    $content .= '<li><a href="'. ROOT . DS .'tag'. DS . $tag . DS . '">' .
+$tag . '</a></li>';
+  }
 	$content .= '</ul>';
 	return $content;
 }
