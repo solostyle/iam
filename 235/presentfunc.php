@@ -303,6 +303,12 @@ function make_url($blog_id) {
 	return "http://iam.solostyle.net/" . $blog_id;
 }
 
+// Make a link
+// 5 jan 11: created
+function make_link($text, $url) {
+	return '<a href="' . $url . '">' . $text . '</a>';
+}
+
 // deprecated
 // Show the tags for a blog entry
 // 1 mar 09: created
@@ -505,20 +511,18 @@ function list_months($name_of_menu, $index_to_select) {
 }
 
 
-// List the years in a drop down menu
+// Return array of years for which there are blog entries
 // 7 feb 09: created
-function list_years($name_of_menu, $index_to_select) {
-	$content = '<select name="' . $name_of_menu . '" size="1">';
-	$start_y = strftime("%Y", strtotime(blog_first_date()));
-	$end_y = strftime("%Y", strtotime(blog_last_date()));
+// 5 jan 11: modified to return array of years instead of drop down
+function list_years() {
+	$years = array();
+	$dates = blog_first_and_last_dates();
+	$start_y = strftime("%Y", strtotime($dates[0]));
+	$end_y = strftime("%Y", strtotime($dates[1]));
 	for($k=$start_y;$k<=$end_y;$k++) { 
-		$content .= '<option value="' . $k . '"';
-		if ($k == $index_to_select) 
-			$content .= ' selected="selected"';
-		$content .= '>' . $k . '</option>';
+		array_push($years, $k);
 	}
-	$content .= '</select>';
-	return $content;
+	return $years;
 }
 
 

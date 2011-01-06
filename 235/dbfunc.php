@@ -211,23 +211,23 @@ function get_entries_by_time($start, $end) {
 }
 
 
-// Return the date of the first blog entry
+// Return the dates of the first and last blog entries
 // 7 feb 09: created
-function blog_first_date() {
+// 5 jan 11: combined two functions into one
+function blog_first_and_last_dates() {
+	$dates = array();
+
 	$query = "SELECT `time` FROM `blog` ORDER BY `time` ASC LIMIT 1";
 	$result = mysql_query($query);
 	$row = mysql_fetch_array($result);
-	return $row[0];
-}
+	array_push($dates, $row[0]);
 
-
-// Return the date of the last blog entry
-// 7 feb 09: created
-function blog_last_date() {
 	$query = "SELECT `time` FROM `blog` ORDER BY `time` DESC LIMIT 1";
 	$result = mysql_query($query);
 	$row = mysql_fetch_array($result);
-	return $row[0];
+	array_push($dates, $row[0]);
+
+	return $dates;
 }
 
 //$h = haystack, $n = needle
