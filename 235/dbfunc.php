@@ -41,7 +41,6 @@ function rtrv_entries($blog_id, $lim=0) {
 
 	 $rtn_arr = array();
 	 $regex = '^' . $blog_id;
-echo $regex;
 	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` DESC";
   if ($lim) $query .= " LIMIT $lim";
 
