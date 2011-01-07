@@ -4,8 +4,8 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('HOST', $_SERVER['HTTP_HOST']);
 
-include '235/func.php';
-include '235/storevars.php';
+include (ROOT . DS . '235' . DS . 'func.php');
+include (ROOT . DS . '235' . DS . 'storevars.php');
 
 function basic_redirect() {
 
@@ -13,9 +13,9 @@ function basic_redirect() {
 	 // declare variables
 	 $root = $_SERVER['DOCUMENT_ROOT'];
 	 $redirect_page = 'redirect.php';
-	 $home_page = 'index.php';
-	 $login_page = 'signin.php';
-	 $error_page = 'error404.php';
+	 $home_page = '../index.php';
+	 $login_page = '../signin.php';
+	 $error_page = '../error404.php';
 	 $exec_script = $_SERVER['SCRIPT_FILENAME'];
 	 $request_uri = $_SERVER['REQUEST_URI'];
 	 $uri = strip_tags($request_uri);
@@ -62,9 +62,9 @@ function advanced_redirect() {
 	 // declare variables
 	 $root = $_SERVER['DOCUMENT_ROOT'];
 	 $redirect_page = 'redirect.php';
-	 $home_page = 'index.php';
-	 $login_page = 'signin.php';
-	 $error_page = 'error404.php';
+	 $home_page = '../index.php';
+	 $login_page = '../signin.php';
+	 $error_page = '../error404.php';
 	 $exec_script = $_SERVER['SCRIPT_FILENAME'];
 	 $request_uri = $_SERVER['REQUEST_URI'];
 	 $uri = strip_tags($request_uri);
