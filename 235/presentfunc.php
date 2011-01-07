@@ -340,7 +340,7 @@ function tags_form($blog_id) {
 	// create the checkboxes	
 	for ($i=0; $i<=count($tag_nms); $i++) {
 		$content .= '<input type="checkbox" name="tag_nms[]" value="' . $tag_nms[$i] . '"';
-		$query = "SELECT 1 FROM `blog_tag` WHERE `blog_id` = '" . $blog_id . "'";
+		$query = "SELECT 1 FROM `blog_tags` WHERE `blog_id` = '" . $blog_id . "'";
 		$query .= " AND `tag_nm` = '" . $tag_nms[$i] . "'";
 		$bool = mysql_query($query);
 		while ($row = mysql_fetch_array($bool))

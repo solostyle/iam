@@ -66,7 +66,7 @@ function rtrv_entries_by_tag($tag_arr, $method, $lim=50) {
 
 	// retrieve entries, without duplicates
 	$tag_list = "'".implode("','",$tag_arr)."'";
-	$query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tag` b
+	$query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tags` b
 	       WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
 	$query .= " LIMIT $lim";
 	$result = mysql_query($query);
@@ -145,7 +145,7 @@ function rtrv_tags($blog_id) {
 
 	$tags_arr = array();
 
-	$result = mysql_query("SELECT `tag_nm` FROM `blog_tag` WHERE `blog_id` = '$blog_id'");
+	$result = mysql_query("SELECT `tag_nm` FROM `blog_tags` WHERE `blog_id` = '$blog_id'");
 
 	while ($tag = mysql_fetch_array($result))
 	      array_push($tags_arr, $tag[0]);
@@ -328,7 +328,7 @@ function update_blog_id_again() {
 // New format: 2008-08-13:what-a-day
 // This is the natural key
 function update_blog_id() {
-	$table = 'blog_tag';
+	$table = 'blog_tags';
 	$query = "SELECT `blog_id` FROM `" . $table . "` WHERE `blog_id` not in ('2006-03-02:next-door')";
 	$result = mysql_query($query);
 	while ($row = mysql_fetch_array($result)) {
@@ -423,14 +423,14 @@ print $sqlstatement;
 function assign_tag($blog_id, $tag_nm) {
 	$af = array('blog_id','tag_nm');
 	$av = array($blog_id,$tag_nm);
-	insert_record('blog_tag',$af,$av);
+	insert_record('blog_tags',$af,$av);
 }
 
 
 // Remove association of entry to tag
 // 15 mar 09: created
 function unassign_tags($blog_id) {
-	mysql_query("DELETE FROM `blog_tag` WHERE `blog_id` = '$blog_id'");
+	mysql_query("DELETE FROM `blog_tags` WHERE `blog_id` = '$blog_id'");
 }
 
 // Associate an entry to a category
