@@ -11,6 +11,6 @@ define('DB_HOST', 'mysql.solostyle.net');
 
 define('BASE_PATH', 'http://iam.solostyle.net');
 
-//define('PAGINATE_LIMIT', '5'); //unused for now
+define('PAGINATE_LIMIT', '5'); // used in sqlquery.class
 
 ?>

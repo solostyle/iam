@@ -109,19 +109,19 @@ function DetermineRequest() {
 
     array_shift($urlArray);
     if (isset($urlArray[0])) {
-            if (is_numeric($urlArray[0])) {
-                $action = 'view';
-            } else {
-                $action = $urlArray[0];
-                array_shift($urlArray);
-            }
-            $queryString = $urlArray;
+        if (is_numeric($urlArray[0])) {
+            $action = 'view';
+        } else {
+            $action = $urlArray[0];
+            array_shift($urlArray);
+        }
+        $queryString = $urlArray;
     } else {
-      $action = 'index'; // Default Action
+        $action = 'index'; // Default Action
     }
   }
   
-  $controllerName = ucfirst($controller).'Controller';
+  $controllerName = ucfirst($controller) . 'Controller';
 
     /* __autoload() checks that $controllerName exists
      * If it doesn't exist, echoes error */
@@ -154,7 +154,7 @@ function __autoload($className) {
     require_once(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
   } else {
     /* Error Generation Code Here */
-        echo 'error: class $className not found';
+        echo 'error: class ' . $className . ' not found';
   }
 }
 
