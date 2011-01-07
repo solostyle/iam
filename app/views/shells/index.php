@@ -1,4 +1,3 @@
-<div></div>
 <div id="content"> 
     <div id="leftWP"></div>
     <div id="blogWP"></div>

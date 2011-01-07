@@ -10,6 +10,7 @@ class BlogController extends Controller {
 
   function index($isAjaxR=true) {
     if ($isAjaxR) $this->doNotRenderHeader = true;
+    $this->Entry->regexp('id','^2010');
     $this->Entry->orderBy('time','DESC');
     $this->set('blog',$this->Entry->search());
   }

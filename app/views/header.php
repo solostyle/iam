@@ -14,3 +14,6 @@
 <?php echo $html->includeCss('format');?>
 </head>
 <body>
+<div id="page">
+  <h1 id="title"><a href="/">meditations</a></h1>
+  <div id="login"></div>

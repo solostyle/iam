@@ -7,13 +7,24 @@
 
 <?php foreach ($blog as $entry):?>
 
-    <div class="entry" id="entry<?php echo $entry['Entry']['id']?>">
+<?php 
+    require_once (ROOT . DS . '235' . DS . 'presentfunc.php');
+    $e = stripslashes($entry['Entry']['entry']);
+    $e = nl2p_or_br($e);
+    $ttl = stripslashes($entry['Entry']['title']);
+    $l = make_url($entry['Entry']['id']);
+    $date = parse_date($entry['Entry']['time']);
+    $time = parse_time($entry['Entry']['time']);
+?>
+    <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
-            <div class="title"><?php echo $entry['Entry']['title']?></div>
-            <div class="text"><?php echo $entry['Entry']['entry']?></div>
+            <h2><?php echo $ttl?></h2>
+            <?php echo $e?>
         </div>
         <div class="info">
-            <div class="time"><?php echo $entry['Entry']['time']?></div>
+            <p>Posted on <?php echo $date . ' at ' . $time?></p>
+            <p>Tagged with </p>
+            <p><a href="<?php echo $l?>">Permalink</a></p>
         </div>
         <a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a>
     </div>

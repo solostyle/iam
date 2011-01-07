@@ -37,6 +37,10 @@ class SQLQuery {
         $this->_extraConditions .= '`'.$this->_model.'`.`'.$field.'` LIKE \'%'.mysql_real_escape_string($value).'%\' AND ';
     }
 
+    function regexp($field, $value) {
+        $this->_extraConditions .= '`'.$this->_model.'`.`'.$field.'` REGEXP \''.mysql_real_escape_string($value).'\' AND ';
+    }
+
     function showHasOne() {
         $this->_hO = 1;
     }
