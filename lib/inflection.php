@@ -9,6 +9,7 @@ $irregularWords = array(
 **/
 
 $irregularWords = array(
-  'entry' => 'blog'
+    'entry' => 'blog',
+    'archlink' => 'archmenu'
 
 );

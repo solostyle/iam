@@ -1,7 +1,7 @@
 this.Iam.Blog = this.Iam.Blog || function() {
 
 	// Elements
-	var blogWPElem = function() {return Ydom.get('blogWP');};
+	var blogWPElem = function() {return Ydom.get('blog');};
 	//blogElem = function() {return Ydom.get('blog');},
 	//formTitleElem = function() {return Ydom.get('blogWPTitle');},
 	//formEntryElem = function() {return Ydom.get('blogWPEntry');},

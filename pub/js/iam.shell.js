@@ -10,7 +10,7 @@ this.Iam.Shell = this.Iam.Shell || function() {
         Iam.Blog.Load();
 
         // load archive navigation web part
-        //Iam.ArchNav.Load();
+        Iam.Archmenu.Load();
     };
 
     return {

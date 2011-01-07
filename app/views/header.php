@@ -10,6 +10,7 @@
      <?php echo $html->includeJs('iam');?>
      <?php echo $html->includeJs('iam.shell');?>
      <?php echo $html->includeJs('iam.blog');?>
+     <?php echo $html->includeJs('iam.archmenu');?>
 <?php echo $html->includeCss('layout');?>
 <?php echo $html->includeCss('format');?>
 </head>

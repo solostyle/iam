@@ -1,6 +1,6 @@
 <div id="content"> 
-    <div id="leftWP"></div>
-    <div id="blogWP"></div>
+    <div id="left"></div>
+    <div id="blog"></div>
 </div>
 
 <script type="text/javascript">
