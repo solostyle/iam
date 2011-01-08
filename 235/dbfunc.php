@@ -39,18 +39,19 @@ function rtrv_article($article_name) {
 // 19 sep 09: use regular expressions, bring back multiple rows up to $lim
 function rtrv_entries($blog_id, $lim=0) {
 
-	 $rtn_arr = array();
-	 $regex = '^' . $blog_id;
-	 $query = "SELECT * FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` DESC";
-  if ($lim) $query .= " LIMIT $lim";
+    $rtn_arr = array();
+    $where = ($blog_id)? " WHERE `id` REGEXP '^$blog_id'" : '';    
+    $query = "SELECT * FROM `blog`" . $where . " ORDER BY `time` DESC";
 
-	 $result = mysql_query($query);
-	 while ($entry = mysql_fetch_array($result)) {
-	       array_push($rtn_arr, $entry);
-	 }
-	 mysql_free_result($result);
+    if ($lim) $query .= " LIMIT $lim";
 
-	 return $rtn_arr;
+    $result = mysql_query($query);
+    while ($entry = mysql_fetch_array($result)) {
+        array_push($rtn_arr, $entry);
+    }
+    mysql_free_result($result);
+
+    return $rtn_arr;
 }
 
 
