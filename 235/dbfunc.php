@@ -61,34 +61,32 @@ function rtrv_entries($blog_id, $lim=0) {
 // 20 sep 09: created, right now does not handle $method
 function rtrv_entries_by_tag($tag_arr, $method, $lim=50) {
 
-	$rtn_arr = array();
-	$id_arr = array();
+    $rtn_arr = array();
+    $id_arr = array();
 
+    // retrieve entries, without duplicates
+    $tag_list = "'".implode("','",$tag_arr)."'";
+    $query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tags` b
+            WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
+    $query .= " LIMIT $lim";
+    $result = mysql_query($query);
+    while ($id = mysql_fetch_array($result)) {
+        array_push($id_arr, $id["blog_id"]);
+    }
+    mysql_free_result($result);
 
-	// retrieve entries, without duplicates
-	$tag_list = "'".implode("','",$tag_arr)."'";
-	$query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tags` b
-	       WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
-	$query .= " LIMIT $lim";
-	$result = mysql_query($query);
-	while ($id = mysql_fetch_array($result)) {
-	      array_push($id_arr, $id["blog_id"]);
-	}
-	mysql_free_result($result);
-	
+    // retrieve all the entries for these blog ids
+    $id_list = "'".implode("','",$id_arr)."'";
+    //print "id array is " . var_dump($id_arr) . "<br /><br />";
+    $query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.") ORDER BY `time` DESC";
+    //print "id list is " . $id_list;
+    $result = mysql_query($query);
+    while ($entry = mysql_fetch_array($result)) {
+        array_push($rtn_arr, $entry);
+    }
+    mysql_free_result($result);
 
-	// retrieve all the entries for these blog ids
-	$id_list = "'".implode("','",$id_arr)."'";
-//print "id array is " . var_dump($id_arr) . "<br /><br />";
-	$query = "SELECT * FROM `blog` WHERE `id` in (".$id_list.") ORDER BY `time` DESC";
-//print "id list is " . $id_list;
-	$result = mysql_query($query);
-	while ($entry = mysql_fetch_array($result)) {
-	      array_push($rtn_arr, $entry);
-	}
-	mysql_free_result($result);
-
-	return $rtn_arr;
+    return $rtn_arr;
 }
 
 
