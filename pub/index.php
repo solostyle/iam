@@ -98,15 +98,23 @@ function DetermineRequest() {
         $url = routeURL($url);
         $urlArray = array();
         $urlArray = explode("/",$url);
-        $controller = $urlArray[0];
 
-        array_shift($urlArray);
-        if (isset($urlArray[0])) {
-            $action = $urlArray[0];
-            array_shift($urlArray);
-            $queryString = $urlArray;
+        // If the url is a blog_id, handle specially
+        if (is_numeric($urlArray[0])) {
+            $controller = 'ids';
+            $action = 'index';
+            $queryString = $url;
         } else {
-            $action = 'index'; // Default Action
+            $controller = $urlArray[0];
+            array_shift($urlArray);
+
+            if (isset($urlArray[0])) {
+                $action = $urlArray[0];
+                array_shift($urlArray);
+                $queryString = $urlArray;
+            } else {
+                $action = 'index'; // Default Action
+            }
         }
 //         switch (true) {
 //             case ($controller == "admin"):
