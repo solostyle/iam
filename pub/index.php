@@ -146,7 +146,6 @@ function DetermineRequest() {
         /* look up the url in the routing table */
         /* if it exists, use the controller and action specified */
     }
-    /* if there's no controller/action or a routing table match, use default, or throw 404 error */
 }
 
 
