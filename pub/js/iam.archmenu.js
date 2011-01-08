@@ -24,6 +24,11 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 
 	//Handler to make XHR request for just showing all entries
   var indexRequest = function(isAjaxR){
+      // seems like only works if cache-control is given alone
+      // then both cache-control and if-modified-since have to be given together
+      // then the browser takes from cache, but it still has long "wait" time
+      Ycnxn.initHeader('Cache-Control','max-age=259200',true);
+      Ycnxn.initHeader('If-Modified-Since','Sat, 08 Jan 2011 01:01:38 GMT', false);
       if (isAjaxR) AjaxR('../archmenu/index/1', allCallback);
       else AjaxR('../archmenu/index/0', allCallback);
   };
