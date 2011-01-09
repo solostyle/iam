@@ -12,7 +12,7 @@
     <div id="blog">
         <?php 
             select_db(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-            print implode('', array_map("make_entry", rtrv_entries_by_tag($tags, $method)));
+            print implode('', array_map("make_entry", rtrv_entries_by_tag($tags_arr, $method)));
             mysql_close();
         ?>
     </div>

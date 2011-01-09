@@ -112,9 +112,7 @@ function DetermineRequest() {
             if ($controller == 'tags') {
                 $action = 'index';
                 $queryString = $urlArray;
-            }
-
-            if (isset($urlArray[0])) {
+            } elseif (isset($urlArray[0])) {
                 $action = $urlArray[0];
                 array_shift($urlArray);
                 $queryString = $urlArray;
@@ -151,7 +149,7 @@ function DetermineRequest() {
     $controllerName = ucfirst($controller) . 'Controller';
 
     $dispatch = new $controllerName($controller,$action);
-  
+  //echo $controller . ' is the controller, ' . $action . ' is the action, ' . $queryString . ' is the query string';
     if ((int)method_exists($controllerName, $action)) {
         call_user_func_array(array($dispatch,$action),$queryString);
     } else {
