@@ -114,12 +114,12 @@ function show_tags($blog_id) {
 	$tags = rtrv_tags($blog_id);
 	$content = '<ul class="tags">';
 	foreach ($tags as $tag) {
-    $content .= '<li><a href="'. ROOT . DS .'tag'. DS . $tag . DS . '">' .
-$tag . '</a></li>';
+    $content .= make_list_item(make_link($tag, make_url('tags', array($tag))));
   }
 	$content .= '</ul>';
 	return $content;
 }
+
 
 
 // Creates the archive navigation menu

@@ -108,6 +108,12 @@ function DetermineRequest() {
             $controller = $urlArray[0];
             array_shift($urlArray);
 
+            // tags action is always index
+            if ($controller == 'tags') {
+                $action = 'index';
+                $queryString = $urlArray;
+            }
+
             if (isset($urlArray[0])) {
                 $action = $urlArray[0];
                 array_shift($urlArray);
@@ -272,6 +278,7 @@ DetermineRequest();
 // articles = professional writing
 // blog posts = personal writing (diary)
 
+// done implementing:
 //http://iam.solostyle.net/2008/ (all entries for this year preview)
 //http://iam.solostyle.net/2008/09 (all entries in september 2008)
 //http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
@@ -280,6 +287,6 @@ DetermineRequest();
 //http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
 //http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
 //http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
-//would it be difficult to offer such functionality to users?
+//give users an easy way of selecting these tags
 
 ?>
