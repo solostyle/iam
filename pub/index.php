@@ -99,27 +99,18 @@ function DetermineRequest() {
         $urlArray = array();
         $urlArray = explode("/",$url);
 
-        // If the url is a blog_id, handle specially
-        if (is_numeric($urlArray[0])) {
-            $controller = 'ids';
-            $action = 'index';
-            $queryString = $url;
-        } else {
-            $controller = $urlArray[0];
-            array_shift($urlArray);
+        
+        $controller = $urlArray[0];
+        array_shift($urlArray);
 
-            // tags action is always index
-            if ($controller == 'tags') {
-                $action = 'index';
-                $queryString = $urlArray;
-            } elseif (isset($urlArray[0])) {
-                $action = $urlArray[0];
-                array_shift($urlArray);
-                $queryString = $urlArray;
-            } else {
-                $action = 'index'; // Default Action
-            }
+        if (isset($urlArray[0])) {
+            $action = $urlArray[0];
+            array_shift($urlArray);
+            $queryString = $urlArray;
+        } else {
+            $action = 'index'; // Default Action
         }
+        
 //         switch (true) {
 //             case ($controller == "admin"):
 //                 //do something
@@ -136,20 +127,15 @@ function DetermineRequest() {
 //             case ($controller == "articles"):
 //                 //handle_articles($urlArray);
 //                 break;
-//             case ($controller == "tag"):
-//                 //handle_url_tag($urlArray);
-//                 break;
-//             case (is_numeric($controller)): // such as the year
-//                 //handle_articles($urlArray);
-//             default:
-//                 return $error_page;
 //         }
     }
 
     $controllerName = ucfirst($controller) . 'Controller';
 
     $dispatch = new $controllerName($controller,$action);
-  //echo $controller . ' is the controller, ' . $action . ' is the action, ' . $queryString . ' is the query string';
+    //echo $controller . ' is the controller, ' . $action . ' is the action, ';
+    //print_r($queryString);
+    //echo ' is the query string';
     if ((int)method_exists($controllerName, $action)) {
         call_user_func_array(array($dispatch,$action),$queryString);
     } else {

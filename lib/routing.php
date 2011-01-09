@@ -1,9 +1,12 @@
 <?php
 
 $routing = array(
-                 '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3'
-                 /* keep these separated by slashes */
-                 /* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3' */
+                '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1_\2/\3',
+                /* keep these separated by slashes */
+                /* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3'
+                */
+                '/^([0-9]{4}\/.*)/' => 'ids/index/\1',
+                '/^tags\/(.*?)/' => 'tags/index/\1'
                  );
 
 /* If the root domain name is requested
