@@ -128,12 +128,12 @@ function create_archive_nav_menu($arr) {
   $content = '<ul class="archlev1">';
   $years = array_keys($arr);
   foreach($years as $y) {
-    $content .= make_list_item(make_link($y . ' (' . $arr[$y][0] . ')', make_url($y)));
+    $content .= make_list_item(make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/')));
     unset($arr[$y][0]);
     $months = array_keys($arr[$y]);
     $content .= '<ul class="archlev2">';
     foreach($months as $m) {
-      $content .= make_list_item(make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m)));
+      $content .= make_list_item(make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/')));
       unset($arr[$y][$m][0]);
       $titles = $arr[$y][$m];
       $content .= '<ul class="archlev3">';
