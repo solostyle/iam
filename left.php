@@ -11,7 +11,7 @@ $markup_left =
 
 		<h3>archives</h3>';
 
-select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
+select_db();
 
 $archive_nav_array = create_archive_nav_array();
 $archive_nav_menu = create_archive_nav_menu($archive_nav_array);

@@ -6,9 +6,9 @@
 
 
 // Connect to the database 
-function select_db($server, $usr, $pw, $dbname) {
-   mysql_connect($server,$usr,$pw) or die("Couldn't connect!<br />");
-   mysql_select_db($dbname);
+function select_db() {
+    mysql_connect(DB_HOST, DB_USER, DB_PASSWORD) or die("Couldn't connect!<br />");
+    mysql_select_db(DB_NAME);
 }
 
 

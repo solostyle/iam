@@ -11,7 +11,7 @@ require_once (ROOT . DS . 'lib' . DS . 'config.php');
 require_once (ROOT . DS . 'lib' . DS . 'routing.php');
 require_once (ROOT . DS . 'lib' . DS . 'inflection.php');
 //require_once (ROOT . DS . 'lib' . DS . 'shared.php');
-// end of file here
+// end of file could be here
 
 include (ROOT . DS . '235' . DS . 'func.php');
 
@@ -89,12 +89,6 @@ function DetermineRequest() {
     }
     else {
 
-        //if begins with admin or members, do those functions
-        //check for info or profile or other static pages
-        //check for tag
-        //check for date
-        //else, show error page
-
         $url = routeURL($url);
         $urlArray = array();
         $urlArray = explode("/",$url);
@@ -110,24 +104,12 @@ function DetermineRequest() {
         } else {
             $action = 'index'; // Default Action
         }
-        
-//         switch (true) {
 //             case ($controller == "admin"):
-//                 //do something
-//                 break;
 //             case ($controller == "members"):
-//                 //do something
-//                 break;
 //             case ($controller == "news"):
-//                 //do something
-//                 break;
 //             case ($controller == "contact"):
-//                 //do something
-//                 break;
 //             case ($controller == "articles"):
 //                 //handle_articles($urlArray);
-//                 break;
-//         }
     }
 
     $controllerName = ucfirst($controller) . 'Controller';
@@ -161,7 +143,6 @@ function __autoload($className) {
     }
 }
 
-// 
 // // Handles the request for an article
 // // right now these are links actually stored in the directory
 // // may want to integrate them with blog?
@@ -172,7 +153,7 @@ function __autoload($className) {
 // 	 $id_str = implode("/", $arr);
 // 
 // 	 // get the array of entries
-// 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
+// 	 select_db();
 // 	 $entries_arr = rtrv_entries($id_str);
 // 
 // 	 // send it to the guy who can display them
@@ -185,45 +166,6 @@ function __autoload($className) {
 // 	 // display the page
 // 	 display_page($article_markup);
 // }
-// 
-// // Handles the url if it requests entries by tag
-// // the tags are separated by & or |
-// // right now, it does not handle both
-// // 20 sep 09: created
-// function handle_url_tag($arr) {
-// 
-// 	 $tag_str = $arr[1];
-// 
-// 	 $tag_arr = array();
-// 
-// 	 // entries that have any of the tags
-// 	 switch (true) {
-// 	 	case (strpos($tag_str,"|")):
-// 		     $method = "or";
-// 		     $tag_arr = explode("|",$tag_str);
-// 		     break;
-// 	 // entries that have all the given tags
-// 	    	case (strpos($tag_str,"&")):
-// 		     $method = "and";
-// 		     $tag_arr = explode("&",$tag_str);
-// 		     break;
-// 		default:
-// 			$method = '';
-// 			$tag_arr[0] = $tag_str;
-// 	 }
-// 
-// 	 // get the array of entries
-// 	 select_db($GLOBALS["s"], $GLOBALS["u"], $GLOBALS["p"], $GLOBALS["db"]);
-// 	 $entries_arr = rtrv_entries_by_tag($tag_arr, $method);
-// 
-// 	 $entries_markup = show_entries($entries_arr);
-// 
-// 	 mysql_close();
-// 
-// 	 // display the page
-// 	 display_page($entries_markup);
-// }
-// 
 
 $inflect =& new Inflection();
 SetReporting();
@@ -233,7 +175,7 @@ DetermineRequest();
 
 // REMEMBER!!!
 // get rid of display_page(), instead return json
-// have a render.js that creates the markup
+// have a render.js that creates the markup from json
 
 // urls to support
 //http://iam.solostyle.net/
