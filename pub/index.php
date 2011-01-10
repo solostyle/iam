@@ -119,7 +119,7 @@ function DetermineRequest() {
     //print_r($queryString);
     //echo ' is the query string';
     if ((int)method_exists($controllerName, $action)) {
-        call_user_func_array(array($dispatch,$action),$queryString);
+        call_user_func(array($dispatch,$action),$queryString);
     } else {
         /* The controller does not have the action specified */
         /* Here we decouple controller and action and look up the URL in the routing table */
