@@ -2,7 +2,8 @@
 
 class TagsController extends Controller {
 
-    function index($queryString) {
+    function index($queryArray) {
+        $queryString = $queryArray[0]; // assuming only one item in array
         if (strpos($queryString, '|')) {
             $this->set('method', 'or');
             $this->set('tags_arr', explode('|', $queryString));
