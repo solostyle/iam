@@ -1,5 +1,24 @@
 <?php
+ob_start(); // keeping in case something is outputted before header() is called
 session_start();
+
+
+if (($_SERVER['REQUEST_URI']) == '/members/log_out') {
+
+    session_unset();
+    session_destroy();
+    $_SESSION = array();
+
+
+    // If its desired to kill the session, also delete the session cookie.
+    // Note: This will destroy the session, and not just the session data!
+    if (isset($_COOKIE[session_name()])) {
+    setcookie(session_name(), '', time()-42000, '/');
+    }
+
+    $back = (isset($_SERVER['HTTP_REFERER']))? htmlspecialchars($_SERVER['HTTP_REFERER']) : make_url('');
+    header("Location: ".$back);  // won't work after <html>
+}
 
 if(isset($_POST['login_submit'])) {
 
@@ -90,17 +109,13 @@ if(isset($_POST['login_submit'])) {
 
         <?php else: ?>
 
-            <form action="<?php echo make_url(substr($_SERVER['REQUEST_URI'], 1))?>" method="post">
             <ul>
+                <form action="<?php echo make_url(substr($_SERVER['REQUEST_URI'], 1))?>" method="post">
                 <li>Name: <input type="text" size="8" name="username" tabindex="1" /> </li>
                 <li>Pass: <input type="password" size="7" name="password" tabindex="2" /> </li>
                 <li><input type="submit" name="login_submit" value="Log in" tabindex="3" /> </li>
-            </ul>
-            </form>
-            <!-- end craziness! -->
-
-            <ul>
-                <li><a href="http://iam.solostyle.net/login_woe.php" tabindex="9">Login woe?</a></li>
+                <li><a href="http://iam.solostyle.net/members/login_woe" tabindex="9">login woe?</a></li>
+                </form>
             </ul>
 
         <?php endif; ?>
