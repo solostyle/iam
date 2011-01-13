@@ -21,6 +21,7 @@ gvim controllers/"$CONTROLLER"controller.php
 cp models/shell.php models/"$MODEL".php
 gvim models/"$MODEL".php
 
+mkdir views/"$CONTROLLER"
 cp views/shells/* views/"$CONTROLLER"/ -r
 gvim views/"$CONTROLLER"/index.php
 

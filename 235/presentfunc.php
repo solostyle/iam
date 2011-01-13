@@ -410,15 +410,18 @@ function list_categories() {
 }
 
 
-
 // Retrieve all the tags for displaying and selecting
 // 9 mar 09: created
 function rtrv_categories() {
-	$query = "
-		SELECT `category_nm`
-		FROM `category`";
-	$result = mysql_query($query);
-	return $result;
+    $categories = array();
+    $query = "
+        SELECT `category_nm`
+        FROM `category`";
+    $result = mysql_query($query);
+    while($c = mysql_fetch_array($result)) {
+        $categories[] = $c[0];
+    }
+    return $categories;
 }
 
 function nl2p_or_br($text) {
