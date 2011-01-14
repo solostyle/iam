@@ -4,39 +4,58 @@ unstoppablerobotninja's article on ALA taught me how to do this
 be careful when changing or recalculating these
 */
 #page {
-	margin: 2.5em auto;             /* 40px / 16px = 2.5em */
-	padding: 0 1em;              /* 20px / 16px = 1.25em */
-	max-width: 61.75em;		/* 988px / 16px = 61.75em */
+    margin: 2.5em auto;             /* 40px / 16px = 2.5em */
+    padding: 0 1em;              /* 20px / 16px = 1.25em */
+    max-width: 61.75em;		/* 988px / 16px = 61.75em */
 }
 
-#title {
-	margin-left: 20.243%;	/* 200px / 988px = 0.20243 */
-	width: 70.85%;			/* 700px / 988px = 0.7085 */
+#pagetitle {
+    margin-left: 20.243%;	/* 200px / 988px = 0.20243 */
+    width: 70.85%;			/* 700px / 988px = 0.7085 */
 }
 
 #content {
-	float: left;
-	width: 100%;
+    float: left;
+    width: 100%;
 }
 
 #content #left {
-	float: left;
-	margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
-	width: 18.219%;		/* 180px / 988px = .18219em */
+    float: left;
+    margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
+    width: 18.219%;		/* 180px / 988px = 0.18219 */
+}
+#left p {font-size:11px;}
+/* #left {font-size:11px;} */
+
+/* On the right, have a #blogEntries div that contains
+ * .entry divs. But also have a #blogAddForm div that
+ * contains the addForm, which appears only to me when
+ * logged in. This div should be expand/collapsable
+ * and just above #blogEntries
+ */
+
+#content #right {
+    float: right;
+    margin-top: 0.72727em;  /* 8px / 11px = 0.72727em */
+    width: 79.757%;   /* 788px / 988px = 0.79757 */
 }
 
-#content .entry {
-	float: right;
-	margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
-	width: 79.757%;		/* 788px / 988px = .79757em */
+/*#content #right #blogAddForm, #content #right #blogEntries {
+    float: right;
+    width: 100%;
+}*/
+
+/*#content #right #blogEntries .entry {
+    float: right;
+    width: 100%;
+}*/
+
+#content #right #blogEntries .entry .main {
+    float: left;
+    width: 65.876%;	/* 556px / 844px = 0.65876 */
 }
 
-#content .main {
-	float: left;
-	width: 65.876%;	/* 556px / 844px = 0.65876 */
-}
-
-#content .info {
-	float: right;
-	width: 31.753%;	/* 268px / 844px = 0.31753 */
+#content #right #blogEntries .entry .info {
+    float: right;
+    width: 31.753%;	/* 268px / 844px = 0.31753 */
 }

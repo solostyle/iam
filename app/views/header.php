@@ -74,12 +74,13 @@ if(isset($_POST['login_submit'])) {
 <?php echo $html->includeJs('iam.shell');?>
 <?php echo $html->includeJs('iam.blog');?>
 <?php echo $html->includeJs('iam.archmenu');?>
+<?php echo $html->includeJs('iam.admin');?>
 <?php echo $html->includeCss('layout');?>
 <?php echo $html->includeCss('format');?>
 </head>
 <body>
 <div id="page">
-    <h1 id="title"><a href="/">meditations</a></h1>
+    <h1 id="pagetitle"><a href="/">meditations</a></h1>
     <div id="login">
 
         <?php if (isset($_SESSION['logged_in']) AND substr($_SERVER['REQUEST_URI'],-8) != 'log_out'): ?>
@@ -121,3 +122,11 @@ if(isset($_POST['login_submit'])) {
         <?php endif; ?>
 
     </div><!-- end div#login -->
+
+    <div id="content"> 
+        <div id="left">
+            <?php
+               include (ROOT.DS. 'app' .DS. 'views' .DS. 'archmenu' .DS. 'index.php');
+            ?>
+
+        </div><!-- end #left -->
