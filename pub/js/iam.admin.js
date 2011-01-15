@@ -1,11 +1,14 @@
 this.Iam.Admin = this.Iam.Admin || function() {
 
     // Elements
-    var adminEntryWPElem = function() {return Ydom.get('adminEntry');},
+    var addEntryWPElem = function() {return Ydom.get('blogAddForm');},
     //blogElem = function() {return Ydom.get('blog');},
-    formTitleElem = function() {return Ydom.get('title');},
-    formEntryElem = function() {return Ydom.get('entry');},
-    formTimeElem = function() {return Ydom.get('time');},
+    formDivElem = function() {return Ydom.get('addForm');},
+    formToggleDivElem = function() {return Ydom.get('addAnEntry');},
+    formTitleElem = function() {return Ydom.get('addFormTitle');},
+    formEntryElem = function() {return Ydom.get('addFormEntry');},
+    formTimeElem = function() {return Ydom.get('addFormTime');},
+
     formYearElem = function() {return Ydom.get('year');},
     formMonthElem = function() {return Ydom.get('month');},
     formDateElem = function() {return Ydom.get('date');},
@@ -19,18 +22,17 @@ this.Iam.Admin = this.Iam.Admin || function() {
     inpDate = function() {return formDateElem().value;};
     
     // Success and failure functions for different requests
-	var handleAddSuccess = function(o){
-		homeRequest(false);
-	};
-
-	var handleFailure = function(o){
-		if(o.responseText !== undefined){
-			adminEntryWPElem().innerHTML = "request failure: " + o.responseText + adminEntryWPElem().innerHTML;
-		}
-	};
+    var handleFailure = function(o){
+        if(o.responseText !== undefined){
+            addEntryWPElem().innerHTML = "request failure: " + o.responseText + addEntryWPElem().innerHTML;
+        }
+    };
 
     var handleSuccess = function(o) {
-        // do nothing
+        // load the entries again into #blogEntries
+        if(o.responseText !== undefined){
+            addEntryWPElem().innerHTML = "request success: " + o.responseText + addEntryWPElem().innerHTML;
+        }
     };
 
     /* Callback/Config objects for transactions */
@@ -42,7 +44,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
 
     var addCallback = {
         method:"POST",
-        success: handleAddSuccess,
+        success: handleSuccess,
         failure: handleFailure
     };
 
@@ -52,22 +54,34 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
     
     //Handler to make XHR request for adding an entry
-    var addEntryRequest = function(isAjaxR){
+    var addEntryRequest = function(){
         addCallback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+inpEntry()+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
-        if (isAjaxR) AjaxR('../admin/add_entry/1', addCallback);
-        else AjaxR('../admin/add_entry/0', addCallback);
+        var addRequest = AjaxR('../blog/add', addCallback);
     };
   
     var chooseCategory = function(cat_id) {
-        var el = Ydom.getElementBy(findCatName, 'input', adminEntryWPElem());
+        var el = Ydom.getElementBy(findCatName, 'input', addEntryWPElem());
         return el.getAttribute('id').split('_', 2)[1];
     };
     
     var findCatName = function(el) {
-        if (el.getAttribute('id') && el.getAttribute('id').split('_', 2)[0] == 'category') {
+        if (el.getAttribute('id') && el.getAttribute('id').split('_', 2)[0] == 'addFormCategory') {
             if (el.checked) return true;
             else return false;
         } else return false;
+    };
+    
+    var toggleForm = function() {
+        // save off the current values of the input boxes
+        var currTitleVal = formTitleElem().value || 'title';
+        var currEntryVal = formEntryElem().value || 'entry';
+        formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
+        formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Entry';
+        
+        if (formDivElem().style.display=='') {
+            formTitleElem().value = currTitleVal;
+            formEntryElem().value = currEntryVal;
+        }
     };
     
     var handleClick = function(e) {
@@ -76,26 +90,29 @@ this.Iam.Admin = this.Iam.Admin || function() {
         command = (targetId)?targetId.split('_', 2)[0]:null;
         id = (targetId)?targetId.split('_', 2)[1]:null;
         switch (command) {
-        case "addEntry": 
+        case "addFormSubmit": 
             addEntryRequest(1);
             break;
         case "deleteEntry":
             deleteEntryRequest(id);
+            break;
+        case "addAnEntry":
+            toggleForm();
             break;
         default:
             break;
         }
     };
 
-	return {
-		
-		Load: function(){
-			// initial load
-			//indexRequest(true);
+    return {
 
-			// set event handle for clicks in the web part
-			Listen("click", handleClick, 'adminEntry');
-		}
-	};
+        Load: function(){
+            // initial load
+            //indexRequest(true);
+
+            // set event handle for clicks in the web part
+            Listen("click", handleClick, 'right');
+        }
+    };
 
 }();

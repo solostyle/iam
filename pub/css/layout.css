@@ -57,5 +57,18 @@ be careful when changing or recalculating these
 
 #content #right #blogEntries .entry .info {
     float: right;
-    width: 31.753%;	/* 268px / 844px = 0.31753 */
+    width: 31.753%; /* 268px / 844px = 0.31753 */
+}
+
+#content #right #blogAddForm .main {
+    float: left;
+    width: 65.876%; /* 556px / 844px = 0.65876 */
+}
+
+#content #right #blogAddForm .info {
+    float: right;
+    width: 31.753%; /* 268px / 844px = 0.31753 */
+}
+.entry {
+    clear: both;
 }

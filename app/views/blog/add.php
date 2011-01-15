@@ -1,1 +1,1 @@
-Comment successfully added.
+Blog entry successfully added.

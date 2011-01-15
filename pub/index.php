@@ -168,6 +168,7 @@ function __autoload($className) {
 // }
 
 $inflect =& new Inflection();
+$cache =& new Cache();
 SetReporting();
 RemoveMagicQuotes();
 UnregisterGlobals();

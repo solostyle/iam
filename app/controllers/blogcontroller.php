@@ -23,12 +23,20 @@ class BlogController extends Controller {
   }
 
 /* make sure ID is big enough */
-  function add() {
+function add() {
     $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
-    $this->Entry->entry = $_POST['entry'];
-    $this->Entry->title = $_POST['title'];
-    $this->Entry->save();
-  }
+
+    $blog_id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
+    
+    $addEntry_values = array($blog_id, $_POST['time'], mysql_real_escape_string($_POST['title']), mysql_real_escape_string($_POST['entry']));
+
+    $addEntry_fields = array('id','time','title','entry');
+
+    select_db();
+    insert_record('blog', $addEntry_fields, $addEntry_values);
+    assign_category($blog_id, $_POST['category']);
+    mysql_close();
+}
 
   function delete() {
     $this->doNotRenderHeader = true;
