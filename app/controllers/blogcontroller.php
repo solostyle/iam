@@ -8,11 +8,12 @@ class BlogController extends Controller {
     $this->set('entry',$entry);
   }
 
-  function index($isAjaxR=true) {
-    if ($isAjaxR) $this->doNotRenderHeader = true;
-    $this->Entry->regexp('id','^2010');
-    $this->Entry->orderBy('time','DESC');
-    $this->set('blog',$this->Entry->search());
+  function index() {
+    $this->doNotRenderHeader = true;
+    //$this->Entry->regexp('id','^2010');
+    //$this->Entry->orderBy('time','DESC');
+    //$this->set('blog', $this->Entry->search());
+    $this->set('blog', $this->Entry->custom("SELECT * FROM `blog` ORDER BY `time` DESC LIMIT 3"));
   }
 
   function all($includeForm) {

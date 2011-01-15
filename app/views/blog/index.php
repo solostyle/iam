@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <?php foreach ($blog as $entry):?>
 
 <?php 
@@ -23,6 +24,7 @@
             <p><a href="#">0 comments</a> so far</p>
             <p>Tagged with <?php echo $tags?></p>
             <p><a href="<?php echo $l?>">Permalink</a></p>
+
             <?php if (isset($_SESSION['logged_in'])):?>
                 <a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a>
             <?php endif; ?>

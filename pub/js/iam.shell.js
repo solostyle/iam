@@ -7,7 +7,7 @@ this.Iam.Shell = this.Iam.Shell || function() {
         //"DOMReady", [], obj
 
         // load blog entries web part
-        //Iam.Blog.Load();
+        Iam.Blog.Load();
 
         // load archive navigation web part
         //Iam.Archmenu.Load();
