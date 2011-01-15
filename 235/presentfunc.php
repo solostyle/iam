@@ -425,9 +425,13 @@ function rtrv_categories() {
 }
 
 function nl2p_or_br($text) {
-  $text_with_p = "<p>" . str_replace("\r\n\r\n", "</p><p>", $text) . "</p>";
-  $text_with_p_and_br = str_replace("\r\n", "<br />", $text_with_p);
-  return $text_with_p_and_br;
+    $text_with_p = "<p>" . str_replace("\r\n\r\n", "</p><p>", $text) . "</p>";
+    $text_with_p_and_br = str_replace("\r\n", "<br />", $text_with_p);
+    // had to add the following two lines after i started using mysql_real_escape_string() on all inserts
+    $text_with_p_and_br = str_replace("\n\n", "</p><p>", $text_with_p_and_br);
+
+    $final_text = str_replace("\n", "<br />", $text_with_p_and_br);
+    return $final_text;
 }
 
 

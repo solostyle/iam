@@ -28,13 +28,13 @@ function add() {
 
     $blog_id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
     
-    $addEntry_values = array($blog_id, $_POST['time'], mysql_real_escape_string($_POST['title']), mysql_real_escape_string($_POST['entry']));
+    $addEntry_values = array($blog_id, mysql_real_escape_string($_POST['time']), mysql_real_escape_string($_POST['title']), mysql_real_escape_string($_POST['entry']));
 
     $addEntry_fields = array('id','time','title','entry');
 
     select_db();
     insert_record('blog', $addEntry_fields, $addEntry_values);
-    assign_category($blog_id, $_POST['category']);
+    assign_category($blog_id, mysql_real_escape_string($_POST['category']));
     mysql_close();
 }
 

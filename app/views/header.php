@@ -24,9 +24,9 @@ if(isset($_POST['login_submit'])) {
 
     // check to see if username and password have been entered
     if (!$_POST['username']) echo "enter a username. \n";
-    else $u_login = $_POST['username'];
+    else $u_login = mysql_real_escape_string($_POST['username']);
     if (!$_POST['password']) echo "enter a password. \n";
-    else $p_login = $_POST['password'];
+    else $p_login = mysql_real_escape_string($_POST['password']);
     
     if ($u_login && $p_login) {
         select_db();
