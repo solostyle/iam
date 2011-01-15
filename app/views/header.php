@@ -86,10 +86,7 @@ if(isset($_POST['login_submit'])) {
         <?php if (isset($_SESSION['logged_in']) AND substr($_SERVER['REQUEST_URI'],-8) != 'log_out'): ?>
             <ul>
             <?php 
-                $adminFuncs = array('add_entry' => 'add entry',
-                                'modify_entry' => 'modify entry',
-                                'delete_entry' => 'delete entry',
-                                'publish_feeds' => 'publish feeds',
+                $adminFuncs = array('publish_feeds' => 'publish feeds',
                                 'tag_entries' => 'tag entries',
                                 'categorize_entries' => 'categorize entries');
                 foreach ($adminFuncs as $link => $name) {
