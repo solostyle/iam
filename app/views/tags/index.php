@@ -1,4 +1,3 @@
-<div id="right"> 
     <div id="blogEntries">
         <?php 
             select_db();
