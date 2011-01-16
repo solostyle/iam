@@ -1,1 +1,1 @@
-Comment successfully deleted.
+Blog entry successfully deleted.

@@ -29,17 +29,29 @@ function add() {
 
     $blog_id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
     
-    $addEntry_values = array($blog_id, mysql_real_escape_string($_POST['time']), mysql_real_escape_string($_POST['title']), mysql_real_escape_string($_POST['entry']));
+    $values = array($blog_id, mysql_real_escape_string($_POST['time']), mysql_real_escape_string($_POST['title']), mysql_real_escape_string($_POST['entry']));
 
-    $addEntry_fields = array('id','time','title','entry');
+    $fields = array('id','time','title','entry');
 
     select_db();
-    insert_record('blog', $addEntry_fields, $addEntry_values);
+    insert_record('blog', $fields, $values);
     assign_category($blog_id, mysql_real_escape_string($_POST['category']));
     mysql_close();
 }
 
   function delete() {
+    // first copy the row to the deleted_blog table!
+    $this->Entry->id = $_POST['id'];
+    $entry = $this->Entry->search();
+
+    $values = array($entry['Entry']['id'], $entry['Entry']['time'], $entry['Entry']['title'], $entry['Entry']['entry']);
+    $fields = array('id','time','title','entry');
+
+    select_db();
+    insert_record('deleted_blog', $fields, $values);
+//    mysql_close(); // the next lines to delete() will fail if mysql_close() runs
+    
+    // now delete from main blog table
     $this->doNotRenderHeader = true;
     $this->Entry->id = $_POST['id'];
     $this->Entry->delete();

@@ -36,13 +36,13 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
 
     /* Callback/Config objects for transactions */
-    var callback = {
+    var allCallback = {
         method: "GET",
         success: handleSuccess,
         failure: handleFailure
     };
 
-    var addCallback = {
+    var callback = {
         method:"POST",
         success: handleSuccess,
         failure: handleFailure
@@ -55,8 +55,13 @@ this.Iam.Admin = this.Iam.Admin || function() {
     
     //Handler to make XHR request for adding an entry
     var addEntryRequest = function(){
-        addCallback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+inpEntry()+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
-        var addRequest = AjaxR('../blog/add', addCallback);
+        callback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+inpEntry()+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
+        var addRequest = AjaxR('../blog/add', callback);
+    };
+
+    var deleteEntryRequest = function(id) {
+        callback.data = 'id='+id;
+        var deleteRequest = AjaxR('../blog/delete', callback);
     };
   
     var chooseCategory = function(cat_id) {
