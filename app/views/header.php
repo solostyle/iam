@@ -155,20 +155,19 @@ if(isset($_POST['login_submit'])) {
                     </ul>
 
 
-                    <!-- the date and time, modifiable -->
-                    <?php $now  = my_mktime();?>
+                    <!-- the date and time, empty, filled in with javascript -->
                     <p>
-                        <input type="text" id="year" name="year" size="3" maxlength="4" value="<? echo strftime('%G',$now); ?>" />
-                        <input type="text" id="month" name="month" size="1" maxlength="2" value="<? echo strftime('%m',$now); ?>" />
-                        <input type="text" id="date" name="date" size="1" maxlength="2" value="<? echo strftime('%d',$now); ?>" />
-                        <input type="text" id="hour" name="hour" size="1" maxlength="2" value="<? echo strftime('%H',$now); ?>" />
-                        <input type="text" id="minute" name="minute" size="1" maxlength="2" value="<? echo strftime('%M',$now); ?>" />
+                        <input type="text" id="year" name="year" size="3" maxlength="4" value="" />
+                        <input type="text" id="month" name="month" size="1" maxlength="2" value="" />
+                        <input type="text" id="date" name="date" size="1" maxlength="2" value="" />
+                        <input type="text" id="hour" name="hour" size="1" maxlength="2" value="" />
+                        <input type="text" id="minute" name="minute" size="1" maxlength="2" value="" />
                     </p>
                     <p>
                         <input type="button" id="addFormChangeTime" value="Change" />
                     </p>
                     <p>
-                        <input type="text" readonly="readonly" id="addFormTime" size="20" value="<? echo strftime('%G.%m.%d %H:%M',$now); ?>" />
+                        <input type="text" readonly="readonly" id="addFormTime" size="20" value="" />
                     </p>
 
                     <p><input type="button" id="addFormSubmit" value="add"/></p>
