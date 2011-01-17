@@ -12,6 +12,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
     formYearElem = function() {return Ydom.get('year');},
     formMonthElem = function() {return Ydom.get('month');},
     formDateElem = function() {return Ydom.get('date');},
+    formHourElem = function() {return Ydom.get('hour');},
+    formMinuteElem = function() {return Ydom.get('minute');},
         
     inpEntry = function() {return formEntryElem().value;}, // TODO: escape quotes!
     inpTitle = function() {return formTitleElem().value;}, // TODO: escape quotes!
@@ -19,7 +21,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
     inpTime = function() {return formTimeElem().value;},
     inpYear = function() {return formYearElem().value;},
     inpMonth = function() {return formMonthElem().value;},
-    inpDate = function() {return formDateElem().value;};
+    inpDate = function() {return formDateElem().value;},
+    inpHour = function() {return formHourElem().value;},
+    inpMinute = function() {return formMinuteElem().value;};
     
     // Success and failure functions for different requests
     var handleFailure = function(o){
@@ -100,13 +104,34 @@ this.Iam.Admin = this.Iam.Admin || function() {
             formTitleElem().value = currTitleVal;
             formEntryElem().value = currEntryVal;
         }
+        updateTimeToNow(); //update the time to now anytime the form is toggled
     };
     
     var clearForm = function() {
-        if (formDivElem().style.display=='') {
-            formTitleElem().value = 'title';
-            formEntryElem().value = 'entry';
-        }
+        formTitleElem().value = 'title';
+        formEntryElem().value = 'entry';
+        updateTimeToNow();
+        changeTime();
+    };
+    
+    var doubleDigitString = function(digitString) {
+        if (digitString.length == 1) {
+            return "0" + digitString;
+        } else return digitString;
+    };
+    
+    var updateTimeToNow = function() {
+        var now = new Date();
+        var month = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
+        formYearElem().value = now.getFullYear();
+        formMonthElem().value = month[now.getMonth()];
+        formDateElem().value = doubleDigitString(now.getDate());
+        formHourElem().value = doubleDigitString(now.getHours());
+        formMinuteElem().value = doubleDigitString(now.getMinutes());
+    };
+    
+    var changeTime = function() {
+        formTimeElem().value = inpYear() + '.' + inpMonth() + '.' + inpDate() + ' ' + inpHour() + ':' + inpMinute();
     };
     
     var handleClick = function(e) {
@@ -123,6 +148,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
             break;
         case "addAnEntry":
             toggleForm();
+            break;
+        case "addFormChangeTime":
+            changeTime();
             break;
         default:
             break;

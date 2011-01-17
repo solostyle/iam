@@ -138,7 +138,7 @@ if(isset($_POST['login_submit'])) {
             <div id="addForm">
                 <div class="main">
                     <p><input type="text" value="title" id="addFormTitle"/></p>
-                    <p><textarea id="addFormEntry"></textarea></p>
+                    <p><textarea id="addFormEntry">entry</textarea></p>
                 </div><!-- end .main -->
 
                 <div class="info">
@@ -165,7 +165,7 @@ if(isset($_POST['login_submit'])) {
                         <input type="text" id="minute" name="minute" size="1" maxlength="2" value="<? echo strftime('%M',$now); ?>" />
                     </p>
                     <p>
-                        <input type="button" name="Change" value="Change" onmouseup="document.getElementById('addFormTime').value=document.getElementById('year').value + '.' + document.getElementById('month').value + '.' + document.getElementById('date').value + ' ' + document.getElementById('hour').value + ':' + document.getElementById('minute').value;" />
+                        <input type="button" id="addFormChangeTime" value="Change" />
                     </p>
                     <p>
                         <input type="text" readonly="readonly" id="addFormTime" size="20" value="<? echo strftime('%G.%m.%d %H:%M',$now); ?>" />
