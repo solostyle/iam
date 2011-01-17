@@ -158,8 +158,27 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.innerHTML = "Edit";
     };
     
-    var makeEditableEntry = function(el, id) {
-    };    
+    var makeEditableEntry = function(editButton, id) {
+        // change behavior of the entryEditButton for title
+        editButton.setAttribute('id', "saveEntry_" + id);
+        editButton.innerHTML = "Save";
+        
+        // change behavior of the entryEntry div element
+        var entryEl = formEditElem("entryEntry", id);
+        entryEl.innerHTML = '<textarea>'+entryEl.innerHTML+'</textarea>';
+        //el.onclick = null; //not needed b/c it didn't have an event
+    };
+    
+    var makeUneditableEntry = function(saveButton, id) {
+        // change behavior of the entryEntry div element
+        var entryEl = formEditElem("entryEntry", id);
+        var childEl = entryEl.childNodes[0];
+        entryEl.innerHTML = childEl.value;
+        
+        // change behavior of the entryEditButton for title
+        saveButton.setAttribute('id', "editEntry_" + id);
+        saveButton.innerHTML = "Edit";
+    };
     
     var handleClick = function(e) {
         var targetId= e.target.getAttribute('id'),
@@ -187,6 +206,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
             break;
         case "editEntry":
             makeEditableEntry(e.target, id);
+            break;
+        case "saveEntry":
+            makeUneditableEntry(e.target, id);
             break;
         default:
             break;
