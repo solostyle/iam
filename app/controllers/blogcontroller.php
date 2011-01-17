@@ -11,10 +11,10 @@ class BlogController extends Controller {
 
   function index() {
     $this->doNotRenderHeader = true;
-    //$this->Entry->regexp('id','^2010'); // need a better way to enter a limit
-    //$this->Entry->orderBy('time','DESC');
-    //$this->set('blog', $this->Entry->search());
-    $this->set('blog', $this->Entry->custom("SELECT * FROM `blog` ORDER BY `time` DESC LIMIT 3"));
+    $this->Entry->setLimit(3);
+    $this->Entry->orderBy('time','DESC');
+    $this->set('blog', $this->Entry->search());
+    //$this->set('blog', $this->Entry->custom("SELECT * FROM `blog` ORDER BY `time` DESC LIMIT 3"));
   }
 
     // not using yet
