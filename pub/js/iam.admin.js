@@ -14,7 +14,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
     formDateElem = function() {return Ydom.get('date');},
     formHourElem = function() {return Ydom.get('hour');},
     formMinuteElem = function() {return Ydom.get('minute');},
-        
+    
+    formEditElem = function(pre, id) {return Ydom.get(pre+'_'+id);},
+    
     inpEntry = function() {return formEntryElem().value;}, // TODO: escape quotes!
     inpTitle = function() {return formTitleElem().value;}, // TODO: escape quotes!
     inpCategory = function() {return chooseCategory();},
@@ -134,6 +136,31 @@ this.Iam.Admin = this.Iam.Admin || function() {
         formTimeElem().value = inpYear() + '.' + inpMonth() + '.' + inpDate() + ' ' + inpHour() + ':' + inpMinute();
     };
     
+    var makeEditableTitle = function(editButton, id) {
+        // change behavior of the entryEditButton for title
+        editButton.setAttribute('id', "saveTitle_" + id);
+        editButton.innerHTML = "Save";
+        
+        // change behavior of the entryTitle h2 element
+        var titleEl = formEditElem("entryTitle", id);
+        titleEl.innerHTML = '<input type="text" value="'+titleEl.innerHTML+'" />';
+        //el.onclick = null; //not needed b/c it didn't have an event
+    };
+    
+    var makeUneditableTitle = function(saveButton, id) {
+        // change behavior of the entryTitle h2 element
+        var titleEl = formEditElem("entryTitle", id);
+        var childEl = titleEl.childNodes[0];
+        titleEl.innerHTML = childEl.value;
+        
+        // change behavior of the entryEditButton for title
+        saveButton.setAttribute('id', "editTitle_" + id);
+        saveButton.innerHTML = "Edit";
+    };
+    
+    var makeEditableEntry = function(el, id) {
+    };    
+    
     var handleClick = function(e) {
         var targetId= e.target.getAttribute('id'),
         // clean the id string, everything before a number
@@ -152,6 +179,15 @@ this.Iam.Admin = this.Iam.Admin || function() {
         case "addFormChangeTime":
             changeTime();
             break;
+        case "editTitle":
+            makeEditableTitle(e.target, id);
+            break;
+        case "saveTitle":
+            makeUneditableTitle(e.target, id);
+            break;
+        case "editEntry":
+            makeEditableEntry(e.target, id);
+            break;
         default:
             break;
         }
@@ -165,7 +201,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
 
             // set event handle for clicks in the web part
             Listen("click", handleClick, 'right');
-        }
+        },
+        makeUneditableTitle: makeUneditableTitle
     };
 
 }();

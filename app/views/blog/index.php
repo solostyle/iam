@@ -13,8 +13,21 @@
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
-            <h2><?php echo $ttl?></h2>
-            <?php echo $e?>
+        
+            <!--allow editing of title only if logged in-->
+            <?php if (isset($_SESSION['logged_in'])):?>
+                <div class="entryEditButton" id="editTitle_<?php echo $entry['Entry']['id']?>">Edit</div>
+            <?php endif; ?>
+            
+            <h2 id="entryTitle_<?php echo $entry['Entry']['id']?>"><?php echo $ttl?></h2>
+
+            <!--allow editing of entry only if logged in-->
+            <?php if (isset($_SESSION['logged_in'])):?>
+                <div class="entryEditButton" id="editEntry_<?php echo $entry['Entry']['id']?>">Edit</div>
+            <?php endif; ?>
+
+            <div id="entryEntry_<?php echo $entry['Entry']['id']?>"><?php echo $e?></div>
+            
             <!-- <p>
              <em><a name="bot" href="http://iam.solostyle.net/comment.php">comment</a></em>
             </p> -->
