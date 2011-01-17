@@ -4,9 +4,15 @@ modify at will
 */
 
 body {background:#333;color:#ccc;font-family:sans-serif}
-#content .entry h2 {float:none;margin:0;text-align:left;}
+#content .entry h2 {
+    float:none;
+    margin:0;
+    text-align:left;
+}
 #content .entry h3 {text-align:left;}
 #left h3 {margin:0;}
+#blogAddForm h2 {font-size:.8em; color:#970}
+#blogAddForm h2:hover {color:#fc0}
 acronym:hover {cursor:help;}
 ul {padding:0;}
 ul li {display:inline;padding:0 5px;}
@@ -23,13 +29,13 @@ ul.archlev2 li {padding:0 0 0 10px;display:block}
 ul.archlev3 li {padding:0 0 0 20px;display:block}
 
 /* form classes */
-input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:11px}
+input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:16px}
 input:focus, textarea:focus, select:focus {border-color:#999}
 option {border:0;padding:0 3px;}
 
 #addForm {
     display:none;
 }
-#addForm textarea {width:100%; height:30em; font-size:12px; line-height:1.5em}
+#addForm textarea {width:100%; height:25em; line-height:1.5em}
 #addForm ul li {display:block;}
 #addForm ul {list-style-type: none;}
