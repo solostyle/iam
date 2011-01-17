@@ -2,10 +2,11 @@
 
 class BlogController extends Controller {
 
-  function view($id = null,$name = null) {
-    $this->Entry->id = $id;
-    $entry = $this->Entry->search();
-    $this->set('entry',$entry);
+  function id($queryArray) {
+    $this->doNotRenderHeader = true;
+    $this->Entry->regexp('id',implode("/", $queryArray));
+    $this->Entry->orderBy('time','DESC');
+    $this->set('blog', $this->Entry->search());
   }
 
   function index() {
@@ -16,6 +17,7 @@ class BlogController extends Controller {
     $this->set('blog', $this->Entry->custom("SELECT * FROM `blog` ORDER BY `time` DESC LIMIT 3"));
   }
 
+    // not using yet
   function all($includeForm) {
     $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
     $this->Entry->orderBy('time','DESC');
