@@ -111,13 +111,18 @@ function make_list_item($item) {
 // Show the tags for a blog entry
 // 1 mar 09: created
 function show_tags($blog_id) {
-	$tags = rtrv_tags($blog_id);
-	$content = '<ul class="tags">';
-	foreach ($tags as $tag) {
-    $content .= make_list_item(make_link($tag, make_url('tags', array($tag))));
-  }
-	$content .= '</ul>';
-	return $content;
+    $tags = rtrv_tags($blog_id);
+    
+    if (count($tags)==0) {
+        return '';
+    } else {
+        $content = '<ul class="tags">';
+        foreach ($tags as $tag) {
+            $content .= make_list_item(make_link($tag, make_url('tags', array($tag))));
+        }
+        $content .= '</ul>';
+        return $content;
+    }
 }
 
 

@@ -22,7 +22,9 @@
         <div class="info">
             <p>Posted on <?php echo $date . ' at ' . $time?></p>
             <p><a href="#">0 comments</a> so far</p>
-            <p>Tagged with <?php echo $tags?></p>
+            <?php if ($tags!=''):?>
+                <p>Tagged with <?php echo $tags?></p>
+            <?php endif; ?>
             <p><a href="<?php echo $l?>">Permalink</a></p>
 
             <?php if (isset($_SESSION['logged_in'])):?>
