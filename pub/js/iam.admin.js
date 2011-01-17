@@ -2,7 +2,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
 
     // Elements
     var addEntryWPElem = function() {return Ydom.get('blogAddForm');},
-    //blogElem = function() {return Ydom.get('blog');},
+    blogEntriesElem = function() {return Ydom.get('blogEntries');},
     formDivElem = function() {return Ydom.get('addForm');},
     formToggleDivElem = function() {return Ydom.get('addAnEntry');},
     formTitleElem = function() {return Ydom.get('addFormTitle');},
@@ -29,16 +29,23 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
 
     var handleSuccess = function(o) {
+        // b/c successful, clear the form
+        clearForm();
         // load the entries again into #blogEntries
-        if(o.responseText !== undefined){
-            addEntryWPElem().innerHTML = "request success: " + o.responseText + addEntryWPElem().innerHTML;
-        }
+        indexRequest();
     };
 
+    var loadIndex = function(o){
+        toggleForm("close");
+        if(o.responseText !== undefined){
+            blogEntriesElem().innerHTML = o.responseText;
+        }        
+    };
+    
     /* Callback/Config objects for transactions */
     var allCallback = {
         method: "GET",
-        success: handleSuccess,
+        success: loadIndex,
         failure: handleFailure
     };
 
@@ -48,9 +55,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
         failure: handleFailure
     };
 
-    //Handler to make XHR request for just showing all entries
-    var homeRequest = function(isAjaxR){
-        AjaxR('../shells/index/', callback);
+    //Handler to make XHR request for showing recent entries
+    var indexRequest = function(){
+        var request = AjaxR('../blog/index', allCallback);
     };
     
     //Handler to make XHR request for adding an entry
@@ -76,16 +83,29 @@ this.Iam.Admin = this.Iam.Admin || function() {
         } else return false;
     };
     
-    var toggleForm = function() {
+    var toggleForm = function(cmd) {
         // save off the current values of the input boxes
         var currTitleVal = formTitleElem().value || 'title';
         var currEntryVal = formEntryElem().value || 'entry';
-        formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
-        formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Entry';
+        
+        if(cmd==="close") {
+            formDivElem().style.display = "";
+            formToggleDivElem().innerHTML = "Add an Entry";
+        } else {
+            formDivElem().style.display = (formDivElem().style.display=='block')?'':'block';
+            formToggleDivElem().innerHTML = (formDivElem().style.display=='block')?'Close':'Add an Entry';
+        }
         
         if (formDivElem().style.display=='') {
             formTitleElem().value = currTitleVal;
             formEntryElem().value = currEntryVal;
+        }
+    };
+    
+    var clearForm = function() {
+        if (formDivElem().style.display=='') {
+            formTitleElem().value = 'title';
+            formEntryElem().value = 'entry';
         }
     };
     

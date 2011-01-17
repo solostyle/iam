@@ -7,13 +7,13 @@ this.Iam.Shell = this.Iam.Shell || function() {
         //"DOMReady", [], obj
 
         // load blog entries web part
-        Iam.Blog.Load();
+        Iam.Blog.Load(); // actually loads blog entries and then may listen for clicks
 
         // load archive navigation web part
         //Iam.Archmenu.Load();
         
         // load admin web part
-        Iam.Admin.Load();
+        Iam.Admin.Load(); // doesn't load anything (header.php does it); just listens for clicks
     };
 
     return {
