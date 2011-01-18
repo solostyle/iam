@@ -407,7 +407,7 @@ function insert_record($tablename,$fields,$values) {
       for ($j=1; $j<=count($values)-1; $j++)
          $sqlstatement .= ",'$values[$j]'";
       $sqlstatement .= ");";
-print $sqlstatement;
+//print $sqlstatement;
       mysql_query($sqlstatement);
      }
 }

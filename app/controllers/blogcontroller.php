@@ -25,7 +25,7 @@ class BlogController extends Controller {
     $this->set('includeForm',$includeForm);  // looks like this has to be defined
   }
 
-/* make sure ID is big enough */
+
 function add() {
     $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 
@@ -58,4 +58,34 @@ function add() {
     $this->Entry->id = $_POST['id'];
     $this->Entry->delete();
   }
+  
+    function update() {
+        $this->doNotRenderHeader = true;
+        $this->Entry->id = $_POST['id'];
+        $entry = $this->Entry->search();
+      
+        $fields = array('id','time','title','entry');
+
+        $oldValues = array($entry['Entry']['id'], $entry['Entry']['time'], $entry['Entry']['title'], $entry['Entry']['entry']);
+
+        select_db();
+        //doesn't work sometimes
+        insert_record('deleted_blog', $fields, $oldValues);
+
+        $newTime = (isset($_POST['time']))? mysql_real_escape_string($_POST['time']) : $entry['Entry']['time'];
+        $newTitle = (isset($_POST['title']))? mysql_real_escape_string($_POST['title']) : $entry['Entry']['title'];
+        $newEntry = (isset($_POST['entry']))? mysql_real_escape_string($_POST['entry']) : $entry['Entry']['entry'];
+
+        $oldIdArray = explode("/", $entry['Entry']['id']);
+        $oldYear = $oldIdArray[0];
+        $oldMonth = $oldIdArray[1];
+        $oldDate = $oldIdArray[2];        
+        $newId = create_id($newTitle, $oldYear, $oldMonth, $oldDate);
+        
+        $newValues = array($newId, $newTime, $newTitle, $newEntry);
+      
+        update_record($fields, $newValues, $entry['Entry']['id']);
+        //assign_category($blog_id, mysql_real_escape_string($_POST['category']));
+        mysql_close();
+    }
 }

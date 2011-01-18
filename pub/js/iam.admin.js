@@ -16,6 +16,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
     formMinuteElem = function() {return Ydom.get('minute');},
     
     formEditElem = function(pre, id) {return Ydom.get(pre+'_'+id);},
+    updTitle = function() {return formEditElem("entryTitle", id).innerHTML;},
+    updEntry = function() {return formEditElem("entryEntry", id).innerHTML;},
     
     inpEntry = function() {return formEntryElem().value;}, // TODO: escape quotes!
     inpTitle = function() {return formTitleElem().value;}, // TODO: escape quotes!
@@ -75,6 +77,11 @@ this.Iam.Admin = this.Iam.Admin || function() {
     var deleteEntryRequest = function(id) {
         callback.data = 'id='+id;
         var deleteRequest = AjaxR('../blog/delete', callback);
+    };
+    
+    var updateEntryRequest = function(id) {
+        callback.data = 'id='+id+'&title='+updTitle()+'&entry='+Iam.ConvertBrAndP(updEntry());
+        var updateRequest = AjaxR('../blog/update', callback);
     };
   
     var chooseCategory = function(cat_id) {
@@ -147,7 +154,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         //el.onclick = null; //not needed b/c it didn't have an event
     };
     
-    var makeUneditableTitle = function(saveButton, id) {
+    var saveTitle = function(saveButton, id) {
         // change behavior of the entryTitle h2 element
         var titleEl = formEditElem("entryTitle", id);
         var childEl = titleEl.childNodes[0];
@@ -156,6 +163,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryEditButton for title
         saveButton.setAttribute('id', "editTitle_" + id);
         saveButton.innerHTML = "Edit";
+        
+        var request = updateEntryRequest(id);
     };
     
     var makeEditableEntry = function(editButton, id) {
@@ -170,7 +179,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         //el.onclick = null; //not needed b/c it didn't have an event
     };
     
-    var makeUneditableEntry = function(saveButton, id) {
+    var saveEntry = function(saveButton, id) {
         // change behavior of the entryEntry div element
         var entryEl = formEditElem("entryEntry", id);
         var childEl = entryEl.childNodes[0];
@@ -180,6 +189,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryEditButton for title
         saveButton.setAttribute('id', "editEntry_" + id);
         saveButton.innerHTML = "Edit";
+        
+        var request = updateEntryRequest(id);
     };
     
     var handleClick = function(e) {
@@ -204,13 +215,13 @@ this.Iam.Admin = this.Iam.Admin || function() {
             makeEditableTitle(e.target, id);
             break;
         case "saveTitle":
-            makeUneditableTitle(e.target, id);
+            saveTitle(e.target, id);
             break;
         case "editEntry":
             makeEditableEntry(e.target, id);
             break;
         case "saveEntry":
-            makeUneditableEntry(e.target, id);
+            saveEntry(e.target, id);
             break;
         default:
             break;
