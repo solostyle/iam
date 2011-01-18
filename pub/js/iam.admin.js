@@ -165,7 +165,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
         
         // change behavior of the entryEntry div element
         var entryEl = formEditElem("entryEntry", id);
-        entryEl.innerHTML = '<textarea>'+entryEl.innerHTML+'</textarea>';
+        var clean = Iam.ConvertBrAndP(entryEl.innerHTML);
+        entryEl.innerHTML = '<textarea>'+clean+'</textarea>';
         //el.onclick = null; //not needed b/c it didn't have an event
     };
     
@@ -173,7 +174,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryEntry div element
         var entryEl = formEditElem("entryEntry", id);
         var childEl = entryEl.childNodes[0];
-        entryEl.innerHTML = childEl.value;
+        var htmlized = Iam.ConvertNewLines(childEl.value);
+        entryEl.innerHTML = htmlized;
         
         // change behavior of the entryEditButton for title
         saveButton.setAttribute('id', "editEntry_" + id);
@@ -223,8 +225,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
 
             // set event handle for clicks in the web part
             Listen("click", handleClick, 'right');
-        },
-        makeUneditableTitle: makeUneditableTitle
+        }
     };
 
 }();
