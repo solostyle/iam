@@ -90,6 +90,28 @@ function rtrv_entries_by_tag($tag_arr, $method, $lim=0) {
 }
 
 
+// Retrieve an array of entries given an array of tags
+// returns an array of entry data rows using OR logic
+// results have any of the requested tags
+// 20 sep 09: created, right now does not handle $method
+function rtrv_ids_by_tag($tag_arr, $method='', $lim=0) {
+
+    $id_arr = array();
+
+    // retrieve entries, without duplicates
+    $tag_list = "'".implode("','",$tag_arr)."'";
+    $query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_tags` b
+            WHERE a.`id` = b.`blog_id` AND b.`tag_nm` in (".$tag_list.")";
+    $query .= ($lim)? " LIMIT $lim" : "";
+    $result = mysql_query($query);
+    while ($id = mysql_fetch_array($result)) {
+        array_push($id_arr, $id["blog_id"]);
+    }
+    mysql_free_result($result);
+
+    return $id_arr;
+}
+
 // Display one or many entries
 // takes in an array of entry data rows
 // returns the markup

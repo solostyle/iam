@@ -41,6 +41,10 @@ class SQLQuery {
         $this->_extraConditions .= '`'.$this->_model.'`.`'.$field.'` REGEXP \''.mysql_real_escape_string($value).'\' AND ';
     }
 
+    function in($field, $vList) {
+        $this->_extraConditions .= '`'.$this->_model.'`.`'.$field.'` IN (\''.$vList.'\') AND ';
+    }
+
     function showHasOne() {
         $this->_hO = 1;
     }
