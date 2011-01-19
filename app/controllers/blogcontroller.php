@@ -22,7 +22,6 @@ class BlogController extends Controller {
         $this->Entry->setLimit(3);
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
-        //$this->set('blog', $this->Entry->custom("SELECT * FROM `blog` ORDER BY `time` DESC LIMIT 3"));
     }
 
     function add() {

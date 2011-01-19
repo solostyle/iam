@@ -332,31 +332,30 @@ function list_entry_categorize($row) {
 // 13 feb 09: display tags in columns, maybe a table? allow write-ins?
 // 11 feb 09: created
 // 15 mar 09: show a checked box when the tag association exists
-function tags_form($blog_id) {
-	$result = rtrv_tags();
-	$content = '<p>';
+function tags_arr($blog_id) {
+    $allTags = rtrv_all_tags();
+    $tags_arr = array();
 
-	// create the array of tag names
-	$tag_nms = array();
-	while ($tag_nm = mysql_fetch_array($result)) {
-		array_push($tag_nms, $tag_nm[0]);
-	}
+    // create the array of tag names
+    $tag_nms = array();
+    while ($tag = mysql_fetch_array($allTags)) {
+        array_push($tag_nms, $tag[0]);
+    }
 
-	// create the checkboxes	
-	for ($i=0; $i<=count($tag_nms); $i++) {
-		$content .= '<input type="checkbox" name="tag_nms[]" value="' . $tag_nms[$i] . '"';
-		$query = "SELECT 1 FROM `blog_tags` WHERE `blog_id` = '" . $blog_id . "'";
-		$query .= " AND `tag_nm` = '" . $tag_nms[$i] . "'";
-		$bool = mysql_query($query);
-		while ($row = mysql_fetch_array($bool))
-			if ($row[0] = 1)
-				$content .= ' checked="checked"';
-		$content .= '>';
-		$content .= $tag_nms[$i] . '&nbsp;&nbsp;'; 
-	}
+    // find out if selected or not
+    foreach ($tag_nms as $tag_nm) {
+        $query = "SELECT 1 FROM `blog_tags` WHERE `blog_id` = '" . $blog_id . "' AND `tag_nm` = '" . $tag_nm . "'";
+        $bool = mysql_query($query);
 
-	$content .= '</p>';
-	return $content;
+        if (mysql_num_rows($bool)>0) {
+            $assigned = mysql_fetch_array($bool);
+            $tags_arr[$tag_nm] = $assigned[0];
+        } else {
+            $tags_arr[$tag_nm] = "";
+        }
+    }
+
+    return $tags_arr;
 }
 
 
@@ -381,7 +380,7 @@ function list_tags() {
 function rtrv_all_tags() {
 	$query = "
 		SELECT `tag_nm`
-		FROM `tag`";
+		FROM `tags`";
 	$result = mysql_query($query);
 	return $result;
 }

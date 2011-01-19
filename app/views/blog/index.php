@@ -9,7 +9,8 @@
     $l = make_url($entry['Entry']['id']);
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
-    $tags = show_tags($entry['Entry']['id']);
+    $assigned_tags = show_tags($entry['Entry']['id']);
+    $tags_arr = tags_arr($entry['Entry']['id']);
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
@@ -35,9 +36,20 @@
         <div class="info">
             <p>Posted on <?php echo $date . ' at ' . $time?></p>
             <!--<p><a href="#">0 comments</a> so far</p>-->
-            <?php if ($tags!=''):?>
-                <p>Tagged with <?php echo $tags?></p>
+            <?php if (isset($_SESSION['logged_in'])):?>
+                <ul id="tagEntry_<?php echo $entry['Entry']['id']?>">
+
+                <?php foreach ($tags_arr as $tag => $assigned): ?>
+
+                    <li><input type="checkbox" id="tagEntry_<?php echo $entry['Entry']['id']?>_<?php echo $tag?>" name="tags_<?php echo $entry['Entry']['id']?>[]" value="<?php echo $tag?>" <?php echo ($assigned) ? 'checked="checked' : ""?> /><?php echo $tag?></li>
+
+                <?php endforeach; ?>
+
+                </ul>
+            <?php elseif ($assigned_tags!=''):?>
+                <div>Tagged with <?php echo $assigned_tags?></div>
             <?php endif; ?>
+
             <p><a href="<?php echo $l?>">Permalink</a></p>
 
             <?php if (isset($_SESSION['logged_in'])):?>
