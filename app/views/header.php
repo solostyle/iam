@@ -114,7 +114,6 @@ if(isset($_POST['login_submit'])) {
                 <li>Name: <input type="text" size="8" name="username" tabindex="1" /> </li>
                 <li>Pass: <input type="password" size="7" name="password" tabindex="2" /> </li>
                 <li><input type="submit" name="login_submit" value="Log in" tabindex="3" /> </li>
-                <li><a href="http://iam.solostyle.net/members/login_woe" tabindex="9">login woe?</a></li>
                 </form>
             </ul>
 
