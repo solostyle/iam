@@ -420,7 +420,7 @@ function rtrv_categories() {
     $categories = array();
     $query = "
         SELECT `category_nm`
-        FROM `category`";
+        FROM `categories`";
     $result = mysql_query($query);
     while($c = mysql_fetch_array($result)) {
         $categories[] = $c[0];
