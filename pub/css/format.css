@@ -39,3 +39,14 @@ option {border:0;padding:0 3px;}
 #addForm ul {list-style-type: none;}
 
 .entryEditButton {float:right;font-size:.8em}
+
+#loginToggle {cursor:pointer;display:block;font-size:0.6em;height:13px;position:absolute;right:0;top:0;width:30px;text-align:center;z-index:1}
+#login {
+    /*display:none; this is taken care of in header.php html */
+    font-size:0.7em;
+    position:absolute;
+    right:10px;
+    top:0;
+}
+#login input {font-size:0.8em}
+#login ul li {display:block;list-style-type:none}

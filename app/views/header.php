@@ -82,7 +82,8 @@ if(isset($_POST['login_submit'])) {
 <body>
 <div id="page">
     <h1 id="pagetitle"><a href="/">meditations</a></h1>
-    <div id="login">
+    <div id="loginToggle" onmouseup="Ydom.get('login').style.display = (Ydom.get('login').style.display=='none')? 'block' : 'none';"><?php if (isset($_SESSION['logged_in'])):?>Funcs<?php else:?>Login<?php endif;?></div>
+    <div id="login" style="display:none">
 
         <?php if (isset($_SESSION['logged_in']) AND substr($_SERVER['REQUEST_URI'],-8) != 'log_out'): ?>
             <ul>
