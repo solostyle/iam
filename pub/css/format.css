@@ -4,6 +4,13 @@ modify at will
 */
 
 body {background:#333;color:#ccc;font-family:sans-serif}
+acronym:hover {cursor:help;}
+ul {padding:0;}
+ul li {display:inline;padding:0;}
+input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:16px}
+input:focus, textarea:focus, select:focus {border-color:#999}
+option {border:0;padding:0 3px;}
+
 #content .entry h2 {
     float:none;
     margin:0;
@@ -13,9 +20,9 @@ body {background:#333;color:#ccc;font-family:sans-serif}
 #left h3 {margin:0;}
 #blogAddForm h2 {font-size:.8em; color:#970}
 #blogAddForm h2:hover {color:#fc0}
-acronym:hover {cursor:help;}
-ul {padding:0;}
-ul li {display:inline;padding:0 5px;}
+#mainnav {padding:4px 0;background-color:#222}
+#mainnav li {display:inline;padding:4px 4%;background-color:#222;border: 1px solid #333}
+#mainnav li:hover {background-color:black}
 ul.tags li {display:block}
 a:link, a:visited {color:#970;text-decoration:none;}
 a:hover, a:active {color:#fc0;}
@@ -27,10 +34,6 @@ ul.archlev2 li {padding:0 0 0 10px;display:block}
 ul.archlev3 li {padding:0 0 0 20px;display:block}
 
 /* form classes */
-input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:16px}
-input:focus, textarea:focus, select:focus {border-color:#999}
-option {border:0;padding:0 3px;}
-
 #addForm {
     display:none;
 }

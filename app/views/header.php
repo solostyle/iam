@@ -82,19 +82,33 @@ if(isset($_POST['login_submit'])) {
 <body>
 <div id="page">
     <h1 id="pagetitle"><a href="/">meditations</a></h1>
+
+    <!-- some lame tagline -->
+    <p id="pagesubtitle"><em>an exploration of yoga, meditation, and self discovery</em></p>
+
+    <!-- show some main navigation -->
+    <ul id="mainnav"><?php 
+        $cats = rtrv_categories();
+        echo make_list_item(make_link('about', make_url('about')));
+        foreach ($cats as $c) {
+            $link = str_replace(" ", "_", $c);
+            echo make_list_item(make_link($c, make_url('category/'.$link)));
+        }
+            ?>
+    </ul>
+
     <div id="loginToggle" onmouseup="Ydom.get('login').style.display = (Ydom.get('login').style.display=='none')? 'block' : 'none';"><?php if (isset($_SESSION['logged_in'])):?>Funcs<?php else:?>Login<?php endif;?></div>
     <div id="login" style="display:none">
 
         <?php if (isset($_SESSION['logged_in']) AND substr($_SERVER['REQUEST_URI'],-8) != 'log_out'): ?>
-            <ul>
-            <?php 
+            <ul><?php 
                 $adminFuncs = array('publish_feeds' => 'publish feeds',
                                 'tag_entries' => 'tag entries',
                                 'categorize_entries' => 'categorize entries');
                 foreach ($adminFuncs as $link => $name) {
                     echo make_list_item(make_link($name, make_url('admin/'.$link)));
                 }
-            ?>
+                ?>
             </ul>
             <ul>
             <?php

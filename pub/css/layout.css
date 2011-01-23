@@ -9,9 +9,16 @@ be careful when changing or recalculating these
     max-width: 61.75em;		/* 988px / 16px = 61.75em */
 }
 
-#pagetitle {
+#pagetitle, #pagesubtitle {
     margin-left: 20.243%;	/* 200px / 988px = 0.20243 */
+    margin-bottom: 0;
+    margin-top: 0.2em;
     width: 70.85%;			/* 700px / 988px = 0.7085 */
+}
+
+#mainnav {
+    margin:1em 0;
+    width: 100%;
 }
 
 #content {
