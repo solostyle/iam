@@ -11,5 +11,6 @@ $irregularWords = array(
 $irregularWords = array(
     'entry' => 'blog',
     'archlink' => 'archmenu',
-    'admin' => 'admin'
+    'admin' => 'admin',
+    'category' => 'categories'
 );
