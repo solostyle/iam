@@ -23,6 +23,9 @@ option {border:0;padding:0 3px;}
 #mainnav {padding:4px 0;background-color:#222}
 #mainnav li {display:inline;padding:4px 4%;background-color:#222;border: 1px solid #333}
 #mainnav li:hover {background-color:black}
+
+.info {font-size:.8em}
+.entry p {line-height:1.3em}
 ul.tags li {display:block}
 a:link, a:visited {color:#970;text-decoration:none;}
 a:hover, a:active {color:#fc0;}
