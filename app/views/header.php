@@ -63,7 +63,7 @@ if(isset($_POST['login_submit'])) {
 
 <html>
 <head>
-<title>Test MVC for iam.solostyle.net</title>
+<title>meditations : iam.solostyle.net</title>
 <!-- Individual YUI JS files --> 
 <?php $html = new HTML();?>
 <?php echo $html->includeJs('yui28yahoo');?>
@@ -90,12 +90,14 @@ if(isset($_POST['login_submit'])) {
 
     <!-- show some main navigation -->
     <ul id="mainnav"><?php 
+        select_db();
         $cats = rtrv_categories();
         echo make_list_item(make_link('about', make_url('about')));
         foreach ($cats as $c) {
             $link = str_replace(" ", "_", $c);
             echo make_list_item(make_link($c, make_url('categories/'.$link)));
         }
+        mysql_close();
             ?>
     </ul>
 

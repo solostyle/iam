@@ -74,10 +74,11 @@ function DetermineRequest() {
     global $url;
     global $default;
     $error_page = ROOT . DS . 'error404.php';
-    $url_page = ROOT . DS . $url;
+    
     $queryString = array();
 
-//echo 'prefix: ' . $uri_array[0] . '<br />';
+    $url = routeURL($url);
+    $url_page = ROOT . DS . 'pub' . DS . $url;
 
     if (!isset($url)) {
         $controller = $default['controller'];
@@ -89,7 +90,7 @@ function DetermineRequest() {
     }
     else {
 
-        $url = routeURL($url);
+        //$url = routeURL($url);
         $urlArray = array();
         $urlArray = explode("/",$url);
 

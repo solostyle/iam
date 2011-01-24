@@ -8,6 +8,7 @@ $routing = array(
                 '/^([0-9]{4}\/.*)/' => 'ids/index/\1',
                 '/^tags\/(.*?)/' => 'tags/index/\1',
                 '/^categories\/(.*?)/' => 'categories/index/\1',
+                '/^about/' => 'about.php',
                  );
 
 /* If the root domain name is requested
