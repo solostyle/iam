@@ -76,6 +76,8 @@ if(isset($_POST['login_submit'])) {
 <?php echo $html->includeJs('iam.archmenu');?>
 <?php echo $html->includeJs('iam.admin');?>
 <?php echo $html->includeJs('iam.ids');?>
+<?php echo $html->includeJs('iam.tags');?>
+<?php echo $html->includeJs('iam.categories');?>
 <?php echo $html->includeCss('layout');?>
 <?php echo $html->includeCss('format');?>
 </head>

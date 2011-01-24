@@ -1,4 +1,4 @@
-this.Iam.Tags = this.Iam.Tags || function() {
+this.Iam.Categories = this.Iam.Categories || function() {
 
     // Globals, bah!
     var root = "http://iam.solostyle.net", ds = "/";
@@ -25,16 +25,17 @@ this.Iam.Tags = this.Iam.Tags || function() {
         failure: handleFailure
     };
 
-    var tagRequest = function(tag){
-        var requestStr = root+ds+'blog/tag/'+tag;
+    var catRequest = function(cat){
+        cat = cat.replace(/[_]/gi, " ");
+        var requestStr = root+ds+'blog/category/'+cat;
         var request = AjaxR(requestStr, callback);
     };
 
     return {
 
-        Load: function(tag){
+        Load: function(cat){
             // initial load
-            tagRequest(tag);
+            catRequest(cat);
         }
     };
 

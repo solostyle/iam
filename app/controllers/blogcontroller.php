@@ -16,7 +16,15 @@ class BlogController extends Controller {
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
     }
-
+    
+    function category($queryArray) {
+        $this->doNotRenderHeader = true;
+        $ids = rtrv_ids_by_category($queryArray[0]);
+        $this->Entry->in('id',implode("','",$ids));
+        $this->Entry->orderBy('time','DESC');
+        $this->set('blog', $this->Entry->search());
+    }
+    
     function index() {
         $this->doNotRenderHeader = true;
         $this->Entry->setLimit(3);
