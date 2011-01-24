@@ -30,31 +30,12 @@ this.Iam.Blog = this.Iam.Blog || function() {
         var indexRequest = AjaxR('../blog/index', allCallback);
     };
   
-// 	var handleClick = function(e) {
-// 		var targetId= e.target.getAttribute('id'),
-// 		// clean the id string, everything before a number
-// 		command = (targetId)?targetId.split('_', 2)[0]:null;
-// 		id = (targetId)?targetId.split('_', 2)[1]:null;
-// 		switch (command) {
-// 		case "addEntry": 
-// 			addEntryRequest();
-// 			break;
-// 		case "deleteEntry":
-// 			deleteEntryRequest(id);
-// 			break;
-// 		default:
-// 			break;
-// 		}
-// 	};
-
 	return {
 		
 		Load: function(){
 			// initial load
 			indexRequest();
 
-			// set event handle for clicks in the web part
-			//Listen("click", handleClick, 'blogWP');
 		}
 	};
 
