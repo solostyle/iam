@@ -10,6 +10,8 @@
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
     $tags = show_tags($entry['Entry']['id']);
+		$cat = get_category($entry['Entry']['id']);
+		$c = make_link($cat, make_url('categories/' . $cat));
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
@@ -39,6 +41,7 @@
                 <p>Tagged with <?php echo $tags?></p>
             <?php endif; ?>
             <p><a href="<?php echo $l?>">Permalink</a></p>
+						<p>Categorized under <?php echo $c?></p>
 
             <?php if (isset($_SESSION['logged_in'])):?>
                 <p><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></p>

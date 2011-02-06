@@ -134,6 +134,22 @@ function rtrv_ids_by_category($cat, $lim=0) {
 }
 
 
+// 06 feb 11: created
+function get_category($blogid) {
+
+    // retrieve entries, without duplicates
+    $query = "SELECT `category_nm` FROM `blog_categories`
+							WHERE `blog_id` = '".$blogid."'";
+    $result = mysql_query($query);
+    if (mysql_num_rows($result) > 0) {
+				$row = mysql_fetch_array($result);
+		}
+    mysql_free_result($result);
+
+    return $row[0];
+}
+
+
 // Display one or many entries
 // takes in an array of entry data rows
 // returns the markup
