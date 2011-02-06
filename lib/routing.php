@@ -9,6 +9,7 @@ $routing = array(
                 '/^tags\/(.*?)/' => 'tags/index/\1',
                 '/^categories\/(.*?)/' => 'categories/index/\1',
                 '/^about/' => 'passives/about',
+                '/^publishfeeds/' => 'passives/publishfeeds',
                  );
 
 /* If the root domain name is requested
