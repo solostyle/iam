@@ -27,6 +27,7 @@ class BlogController extends Controller {
     
     function index() {
         $this->doNotRenderHeader = true;
+				$this->Entry->setPage(1);
         $this->Entry->setLimit(3);
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
