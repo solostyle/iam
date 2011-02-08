@@ -124,8 +124,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
     
     var doubleDigitString = function(digitString) {
-        if (digitString.length == 1) {
-            return "0" + digitString;
+        if (digitString.toString().length == 1) {
+            return "0" + digitString.toString();
         } else return digitString;
     };
     
