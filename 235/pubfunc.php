@@ -118,7 +118,11 @@ function dcdateformat($entrydate) {
 // My current dreamhost server uses Pacific
 // Add 2 to get Central
 function my_mktime() {
-    $time = mktime(date("H")+2, date("i")-11); // for some reason the time is 11 min fast too!
+    // for chicago
+		//$time = mktime(date("H")+2, date("i")-11); // for some reason the time is 11 min fast too!
+		// for mysore
+		$time = mktime(date("H")+14, date("i")-41);
+		print ('mysore time is ' . $time);
     return $time;
 }
 
