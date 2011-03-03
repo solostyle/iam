@@ -18,7 +18,7 @@ option {border:0;padding:0 3px;}
 }
 #content .entry h3 {text-align:left;}
 #left h3 {margin:0;}
-#blogAddForm h2 {font-size:.8em; color:#970}
+#blogAddForm h2 {font-size:.8em; color:#c52}
 #blogAddForm h2:hover {color:#fc0}
 #mainnav {padding:4px 0;background-color:#111}
 #mainnav li {display:inline;padding:4px 4%;background-color:#111;border: 1px solid #000}
@@ -27,7 +27,7 @@ option {border:0;padding:0 3px;}
 .info {font-size:.8em}
 .entry p {line-height:1.3em}
 ul.tags li {display:block}
-a:link, a:visited {color:#970;text-decoration:none;}
+a:link, a:visited {color:#c52;text-decoration:none;}
 a:hover, a:active {color:#fc0;}
 
 /* unordered list classes for archive navigation menu */
