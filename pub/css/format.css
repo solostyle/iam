@@ -3,12 +3,12 @@
 modify at will
 */
 
-body {background:#333;color:#ccc;font-family:sans-serif}
+body {background:#000;color:#ccc;font-family:sans-serif}
 acronym:hover {cursor:help;}
 ul {padding:0;}
 ul li {display:inline;padding:0;}
-input, textarea, select, option {background:#333;color:#ccc;border:1px solid #666;padding:0;font-size:16px;font-family:sans-serif}
-input:focus, textarea:focus, select:focus {border-color:#999}
+input, textarea, select, option {background:#000;color:#ccc;border:1px solid #333;padding:0;font-size:16px;font-family:sans-serif}
+input:focus, textarea:focus, select:focus {border-color:#666}
 option {border:0;padding:0 3px;}
 
 #content .entry h2 {
@@ -20,9 +20,9 @@ option {border:0;padding:0 3px;}
 #left h3 {margin:0;}
 #blogAddForm h2 {font-size:.8em; color:#970}
 #blogAddForm h2:hover {color:#fc0}
-#mainnav {padding:4px 0;background-color:#222}
-#mainnav li {display:inline;padding:4px 4%;background-color:#222;border: 1px solid #333}
-#mainnav li:hover {background-color:black}
+#mainnav {padding:4px 0;background-color:#111}
+#mainnav li {display:inline;padding:4px 4%;background-color:#111;border: 1px solid #000}
+#mainnav li:hover {background-color:#000}
 
 .info {font-size:.8em}
 .entry p {line-height:1.3em}
