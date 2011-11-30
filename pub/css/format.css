@@ -10,6 +10,18 @@ ul li {display:inline;padding:0;}
 input, textarea, select, option {background:#000;color:#ccc;border:1px solid #333;padding:0;font-size:16px;font-family:sans-serif}
 input:focus, textarea:focus, select:focus {border-color:#666}
 option {border:0;padding:0 3px;}
+a:link, a:visited {color:#c52;text-decoration:none;}
+a:hover, a:active {color:#fc0;}
+
+/* unordered list classes for archive navigation menu */
+ul.archlev1 {font-size:.8em}
+ul.archlev1 li {padding:0;display:block}
+ul.archlev2 li {padding:0 0 0 10px;display:block}
+ul.archlev3 li {padding:0 0 0 20px;display:block}
+
+#pagetitle {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF}
+#pagetitle > a:link, #pagetitle > a:visited {color:#000}
+#pagetitle > a:hover, #pagetitle > a:active {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #fc0}
 
 #content .entry h2 {
     float:none;
@@ -27,14 +39,6 @@ option {border:0;padding:0 3px;}
 .info {font-size:.8em}
 .entry p {line-height:1.3em}
 ul.tags li {display:block}
-a:link, a:visited {color:#c52;text-decoration:none;}
-a:hover, a:active {color:#fc0;}
-
-/* unordered list classes for archive navigation menu */
-ul.archlev1 {font-size:.8em}
-ul.archlev1 li {padding:0;display:block}
-ul.archlev2 li {padding:0 0 0 10px;display:block}
-ul.archlev3 li {padding:0 0 0 20px;display:block}
 
 /* form classes */
 #addForm {
