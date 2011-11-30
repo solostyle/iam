@@ -91,8 +91,7 @@ class BlogController extends Controller {
         
         $newValues = array($newId, $newTime, $newTitle, $newEntry);
       
-        update_record($fields, $newValues, $entry['Entry']['id']);
-        //assign_category($blog_id, mysql_real_escape_string($_POST['category']));
+        update_record($fields, $newValues, $entry['Entry']['id']); // also updates tags and categories
         mysql_close();
     }
 }

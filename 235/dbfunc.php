@@ -443,12 +443,19 @@ function delete_record($blog_id) {
 
 // Update an entry
 // 6 feb 09: changed the input parameters because we have one table now
+// 30 nov 11: when id changes, update `blog`, `blog_categories` and `blog_tags` tables.
 function update_record($fields,$values,$id) {
-	$sqlstatement = "UPDATE `blog` SET `$fields[0]` = '$values[0]'";
+	$query1 = "UPDATE `blog` SET `$fields[0]` = '$values[0]'";
 	for ($i=1; $i<=count($fields)-1; $i++)
-		$sqlstatement .= ", `$fields[$i]` = '$values[$i]'";
-	$sqlstatement .= " WHERE `$fields[0]` = '$id'";
-	mysql_query($sqlstatement);
+		$query1 .= ", `$fields[$i]` = '$values[$i]'";
+	$query1 .= " WHERE `$fields[0]` = '$id'";
+	mysql_query($query1);
+	
+	$query2 = "UPDATE `blog_categories` SET `blog_id` = '$values[0]'
+					WHERE `blog_id` = '$id'";
+	mysql_query($query2);
+	
+	// still need to update `blog_tags`, but we're not using the table yet
 }
 
 

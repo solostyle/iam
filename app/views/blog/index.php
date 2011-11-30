@@ -10,8 +10,8 @@
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
     $tags = show_tags($entry['Entry']['id']);
-		$cat = get_category($entry['Entry']['id']);
-		$c = make_link($cat, make_url('categories/' . $cat));
+	$cat = get_category($entry['Entry']['id']);
+	$c = make_link($cat, make_url('categories/' . $cat));
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
