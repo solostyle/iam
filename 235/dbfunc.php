@@ -140,6 +140,7 @@ function get_category($blogid) {
     // retrieve entries, without duplicates
     $query = "SELECT `category_nm` FROM `blog_categories`
 							WHERE `blog_id` = '".$blogid."'";
+//print 'the query that is failing is ' . $query;
     $result = mysql_query($query);
     if (mysql_num_rows($result) > 0) {
 				$row = mysql_fetch_array($result);
