@@ -64,24 +64,26 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
 
     //Handler to make XHR request for showing recent entries
+	// TODO: Actually I want to load whatever the current URL is. 
+	// So if you add/update/delete from root/2011/04/ url, it shouldn't load blog/index, but /blog/id/2011/04
     var indexRequest = function(){
-        var request = AjaxR('../blog/index', allCallback);
+        var request = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index', allCallback);
     };
     
     //Handler to make XHR request for adding an entry
     var addEntryRequest = function(){
         callback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+inpEntry()+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
-        var addRequest = AjaxR('../blog/add', callback);
+        var addRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
 
     var deleteEntryRequest = function(id) {
         callback.data = 'id='+id;
-        var deleteRequest = AjaxR('../blog/delete', callback);
+        var deleteRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/delete', callback);
     };
     
     var updateEntryRequest = function(id) {
         callback.data = 'id='+id+'&title='+updTitle()+'&entry='+Iam.ConvertBrAndP(updEntry());
-        var updateRequest = AjaxR('../blog/update', callback);
+        var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/update', callback);
     };
   
     var chooseCategory = function(cat_id) {

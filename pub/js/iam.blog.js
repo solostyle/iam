@@ -27,7 +27,7 @@ this.Iam.Blog = this.Iam.Blog || function() {
     };
 
     var indexRequest = function(){
-        var indexRequest = AjaxR('../blog/index', allCallback);
+        var indexRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index', allCallback);
     };
   
 	return {

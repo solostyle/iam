@@ -1,8 +1,5 @@
 this.Iam.Tags = this.Iam.Tags || function() {
 
-    // Globals, bah!
-    var root = "http://iam.solostyle.net", ds = "/";
-
     // Elements
     var blogWPElem = function() {return Ydom.get('blogEntries');};
 
@@ -26,7 +23,7 @@ this.Iam.Tags = this.Iam.Tags || function() {
     };
 
     var tagRequest = function(tag){
-        var requestStr = root+ds+'blog/tag/'+tag;
+        var requestStr = Iam.RootDir()+Iam.Ds()+'blog/tag/1/'+tag;
         var request = AjaxR(requestStr, callback);
     };
 

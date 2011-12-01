@@ -27,7 +27,7 @@ this.Iam.Categories = this.Iam.Categories || function() {
 
     var catRequest = function(cat){
         cat = cat.replace(/[_]/gi, " ");
-        var requestStr = root+ds+'blog/category/'+cat;
+        var requestStr = root+ds+'blog/category/1/'+cat;
         var request = AjaxR(requestStr, callback);
     };
 

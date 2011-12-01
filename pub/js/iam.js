@@ -28,9 +28,19 @@ this.Iam = this.Iam || function() {
         finalText = finalText.replace(/<\/p>/gi, "");
         return finalText;
     };
+	
+	var rootDir = function() {
+		return 'http://iam.solostyle.net';
+	};
+	
+	var ds = function() {
+		return '/';
+	};
     
     return {
         ConvertNewLines: convertNewLines,
-        ConvertBrAndP: convertBrAndP
+        ConvertBrAndP: convertBrAndP,
+		RootDir: rootDir,
+		Ds: ds
     };
 }();

@@ -5,9 +5,9 @@ $routing = array(
                 /* keep these separated by slashes */
                 /* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3'
                 */
-                '/^([0-9]{4}\/.*)/' => 'ids/index/\1',
-                '/^tags\/(.*?)/' => 'tags/index/\1',
-                '/^categories\/(.*?)/' => 'categories/index/\1',
+                '/^([0-9]{4}\/.*)/' => 'blog/id/0/\1',
+                '/^tags\/(.*?)/' => 'blog/tag/0/\1',
+                '/^categories\/(.*?)/' => 'blog/category/0/\1',
                 '/^about/' => 'passives/about',
                 '/^publishfeeds/' => 'passives/publishfeeds',
                  );

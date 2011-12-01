@@ -97,6 +97,7 @@ function DetermineRequest() {
 
   $queryString = array();
 
+  // Determine the controller and the action
   if (!isset($url)) {
         // Go to the home page
     $controller = $default['controller'];
@@ -120,18 +121,19 @@ function DetermineRequest() {
         $action = 'index'; // Default Action
     }
   }
-  
+ 
   $controllerName = ucfirst($controller) . 'Controller';
 
     /* __autoload() checks that $controllerName exists
      * If it doesn't exist, echoes error */
   $dispatch = new $controllerName($controller,$action);
   
+  // Run the controller and action
   if ((int)method_exists($controllerName, $action)) {
         if (method_exists($dispatch,"beforeAction")) {
             call_user_func_array(array($dispatch,"beforeAction"), $queryString);
         }
-    call_user_func_array(array($dispatch,$action),$queryString);
+		call_user_func_array(array($dispatch,$action),$queryString);
         if (method_exists($dispatch,"afterAction")) {
             call_user_func_array(array($dispatch,"afterAction"),$queryString);
         }

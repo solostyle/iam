@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<div id="blogEntries">
+
+<?php select_db(); ?>
 <?php foreach ($blog as $entry):?>
 
 <?php 
@@ -51,3 +53,13 @@
     </div><!-- end .entry -->
 
 <?php endforeach?>
+<?php mysql_close(); ?>
+
+
+</div><!-- end #blogEntries -->
+</div><!-- end #right -->
+
+<script type="text/javascript">
+this.Iam.Admin.Load();
+this.Iam.Archmenu.Load();
+</script>

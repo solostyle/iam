@@ -1,8 +1,5 @@
 this.Iam.Ids = this.Iam.Ids || function() {
 
-    // Globals, bah!
-    var root = "http://iam.solostyle.net", ds = "/";
-
     // Elements
     var blogWPElem = function() {return Ydom.get('blogEntries');};
 
@@ -26,7 +23,7 @@ this.Iam.Ids = this.Iam.Ids || function() {
     };
 
     var idRequest = function(id){
-        var requestStr = root+ds+'blog/id/'+id;
+        var requestStr = Iam.RootDir()+Iam.Ds()+'blog/id/1/'+id;
         var request = AjaxR(requestStr, callback);
     };
 

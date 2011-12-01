@@ -2,15 +2,19 @@
 
 class BlogController extends Controller {
 
+// first item in $queryArray must be 0 or 1, for whether to render header
+
     function id($queryArray) {
-        $this->doNotRenderHeader = true;
+        $this->doNotRenderHeader = $queryArray[0];
+		array_shift($queryArray);
         $this->Entry->regexp('id',implode("/", $queryArray));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
     }
 
     function tag($queryArray) {
-        $this->doNotRenderHeader = true;
+        $this->doNotRenderHeader = $queryArray[0];
+		array_shift($queryArray);
         $ids = rtrv_ids_by_tag($queryArray);
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
@@ -18,7 +22,8 @@ class BlogController extends Controller {
     }
     
     function category($queryArray) {
-        $this->doNotRenderHeader = true;
+        $this->doNotRenderHeader = $queryArray[0];
+		array_shift($queryArray);
         $ids = rtrv_ids_by_category($queryArray[0]);
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
@@ -26,8 +31,9 @@ class BlogController extends Controller {
     }
     
     function index() {
-        $this->doNotRenderHeader = true;
-				$this->Entry->setPage(1);
+        $this->doNotRenderHeader = $queryArray[0];
+		array_shift($queryArray);
+		$this->Entry->setPage(1);
         $this->Entry->setLimit(3);
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
