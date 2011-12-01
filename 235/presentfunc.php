@@ -130,27 +130,33 @@ function show_tags($blog_id) {
 // Creates the archive navigation menu
 // 6 jan 11: created
 function create_archive_nav_menu($arr) {
-  $content = '<ul class="archlev1">';
+  $html = '<ul class="archlev1 archmenu_list_years" id="archmenu">';
   $years = array_keys($arr);
   foreach($years as $y) {
-    $content .= make_list_item(make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/')));
+	$html .= '<li>';
+	$html .= '<span class="archmenu_ty" id="archmenu_ty_' . $y . '">&gt;&nbsp;</span>'; // handle clicks with JS
+	$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
+	$html .= '</li>';
     unset($arr[$y][0]);
     $months = array_keys($arr[$y]);
-    $content .= '<ul class="archlev2">';
+    $html .= '<ul class="archlev2 archmenu_list_months" id="archmenu_y_' . $y . '">';
     foreach($months as $m) {
-      $content .= make_list_item(make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/')));
+	  $html .= '<li>';
+	  $html .= '<span class="archmenu_tm" id="archmenu_tm_' . $m . '">&gt;&nbsp;</span>'; // handle clicks with JS
+      $html .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/'));
+	  $html .= '</li>';
       unset($arr[$y][$m][0]);
       $titles = $arr[$y][$m];
-      $content .= '<ul class="archlev3">';
+      $html .= '<ul class="archlev3 archmenu_list_titles" id="archmenu_m_' . $m . '">';
       foreach($titles as $id => $title) {
-        $content .= make_list_item(make_link($title, make_url($id)));
+        $html .= make_list_item(make_link($title, make_url($id)));
       }
-      $content .= '</ul>';
+      $html .= '</ul>';
     }
-    $content .= '</ul>';
+    $html .= '</ul>';
   }
-  $content .= '</ul>';
-  return $content;
+  $html .= '</ul>';
+  return $html;
 }
 
 

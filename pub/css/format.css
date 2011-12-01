@@ -62,3 +62,7 @@ ul.tags li {display:block}
 #login ul li {display:block;list-style-type:none}
 
 #content #right #main ul li {display:list-item;list-style-type:circle;margin:0 0 0 20px}
+
+.hidden {display:none}
+.archmenu_ty, .archmenu_tm {color:#c52;text-decoration:none}
+.archmenu_ty:hover, .archmenu_tm:hover {color:#fc0;cursor:pointer}

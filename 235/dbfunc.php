@@ -185,7 +185,7 @@ function rtrv_titles($blog_id, $lim=0) {
 
    $rtn_arr = array();
    $regex = '^' . $blog_id;
-   $query = "SELECT `id`, `title` FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` DESC";
+   $query = "SELECT `id`, `title` FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` ASC";
   if ($lim) $query .= " LIMIT $lim";
 
    $result = mysql_query($query);

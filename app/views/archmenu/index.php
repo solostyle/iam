@@ -1,6 +1,6 @@
 <h3>archives</h3>
 
-<div>
+<div id="archmenuWP">
 
 <?php
     select_db();
