@@ -42,13 +42,14 @@
             </p> -->
         </div><!-- end .main -->
         <div class="info">
-            <p>Posted on <?php echo $date . ' at ' . $time?></p>
+            <p><?php echo $date . ' at ' . $time?></p>
             <!--<p><a href="#">0 comments</a> so far</p>-->
-            <?php if ($tags!=''):?>
+            <p><a href="<?php echo $l?>">Permalink</a></p>
+			<?php if ($tags!=''):?>
                 <p>Tagged with <?php echo $tags?></p>
             <?php endif; ?>
-            <p><a href="<?php echo $l?>">Permalink</a></p>
-						<p>Categorized under <?php echo $c?></p>
+            
+			<p>Categorized under <?php echo $c?></p>
 
             <?php if (isset($_SESSION['logged_in'])):?>
                 <p><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></p>
