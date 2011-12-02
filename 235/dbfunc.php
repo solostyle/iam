@@ -185,7 +185,7 @@ function rtrv_titles($blog_id, $lim=0) {
 
    $rtn_arr = array();
    $regex = '^' . $blog_id;
-   $query = "SELECT `id`, `title` FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` ASC";
+   $query = "SELECT `id`, `title` FROM `blog` WHERE `id` REGEXP '$regex' ORDER BY `time` DESC";
   if ($lim) $query .= " LIMIT $lim";
 
    $result = mysql_query($query);
@@ -332,7 +332,7 @@ function create_archive_nav_array() {
       $titles_counts_array[$y] = array();
       $titles_counts_array[$y][0] = $num_rows_in_year;
 
-      for($m='1';$m<='12';$m++) {
+      for($m='12';$m>='1';$m--) {
         if ($m<='9') {
           $m = '0' . $m;
         }
