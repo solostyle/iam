@@ -24,7 +24,8 @@ class BlogController extends Controller {
     function category($queryArray) {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
-        $ids = rtrv_ids_by_category($queryArray[0]);
+		
+        $ids = rtrv_ids_by_category(str_replace("_", " ",$queryArray[0]));
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());

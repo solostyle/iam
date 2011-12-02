@@ -13,7 +13,8 @@
     $time = parse_time($entry['Entry']['time']);
     $tags = show_tags($entry['Entry']['id']);
 		$cat = get_category($entry['Entry']['id']);
-		$c = make_link($cat, make_url('categories/' . $cat));
+		$catUrl = str_replace(" ", "_", $cat); // make it a kosher URL
+		$c = make_link($cat, make_url('categories/' . $catUrl));
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
