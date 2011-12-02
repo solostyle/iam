@@ -3,10 +3,13 @@
 class BlogController extends Controller {
 
 // first item in $queryArray must be 0 or 1, for whether to render header
+// set to 0 in routing.php
+// not set to 1 anywhere as of 1 dec 11
 
     function id($queryArray) {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
+		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->regexp('id',implode("/", $queryArray));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
@@ -15,6 +18,7 @@ class BlogController extends Controller {
     function tag($queryArray) {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
+		$this->set('isAjax', $this->doNotRenderHeader);
         $ids = rtrv_ids_by_tag($queryArray);
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
@@ -24,15 +28,17 @@ class BlogController extends Controller {
     function category($queryArray) {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
-		
+		$this->set('isAjax', $this->doNotRenderHeader);
         $ids = rtrv_ids_by_category(str_replace("_", " ",$queryArray[0]));
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
     }
     
-    function index() {
-        $this->doNotRenderHeader = true;
+    function index($queryArray) {
+        $this->doNotRenderHeader = $queryArray[0];
+		array_shift($queryArray);
+		$this->set('isAjax', $this->doNotRenderHeader);
 		$this->Entry->setPage(1);
         $this->Entry->setLimit(3);
         $this->Entry->orderBy('time','DESC');
@@ -41,6 +47,7 @@ class BlogController extends Controller {
 
     function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
+		$this->set('isAjax', $this->doNotRenderHeader);
 
         $blog_id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
     
@@ -68,12 +75,14 @@ class BlogController extends Controller {
     
         // now delete from main blog table
         $this->doNotRenderHeader = true;
+		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->id = $_POST['id'];
         $this->Entry->delete();
     }
   
     function update() {
         $this->doNotRenderHeader = true;
+		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->id = $_POST['id'];
         $entry = $this->Entry->search();
       

@@ -102,6 +102,7 @@ function DetermineRequest() {
         // Go to the home page
     $controller = $default['controller'];
     $action = $default['action'];
+	
   } else {
     $url = routeURL($url);
     $urlArray = array();

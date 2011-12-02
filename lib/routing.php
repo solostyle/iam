@@ -16,6 +16,7 @@ $routing = array(
  * e.g. test.solostyle.net/
  * then this is where they will be directed
  */
-//$default['controller'] = 'comments';
-$default['controller'] = 'shells';
+$default['controller'] = 'blog';
+//$default['controller'] = 'shells';
 $default['action'] = 'index';
+$default['queryString'] = array('0'); // do render the header

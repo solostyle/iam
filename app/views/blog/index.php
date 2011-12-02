@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<div id="blogEntries">
+
+<?php select_db(); ?>
+<?php if ($isAjax) {
+		session_start();
+	}
+?>
 <?php foreach ($blog as $entry):?>
 
 <?php 
@@ -10,9 +16,9 @@
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
     $tags = show_tags($entry['Entry']['id']);
-	$cat = get_category($entry['Entry']['id']);
-	$catUrl = str_replace(" ", "_", $cat); // make it a kosher URL
-	$c = make_link($cat, make_url('categories/' . $catUrl));
+		$cat = get_category($entry['Entry']['id']);
+		$catUrl = str_replace(" ", "_", $cat); // make it a kosher URL
+		$c = make_link($cat, make_url('categories/' . $catUrl));
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
@@ -52,3 +58,13 @@
     </div><!-- end .entry -->
 
 <?php endforeach?>
+<?php mysql_close(); ?>
+
+
+</div><!-- end #blogEntries -->
+</div><!-- end #right -->
+
+<script type="text/javascript">
+this.Iam.Admin.Load();
+this.Iam.Archmenu.Load();
+</script>

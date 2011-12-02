@@ -66,8 +66,9 @@ this.Iam.Admin = this.Iam.Admin || function() {
     //Handler to make XHR request for showing recent entries
 	// TODO: Actually I want to load whatever the current URL is. 
 	// So if you add/update/delete from root/2011/04/ url, it shouldn't load blog/index, but /blog/id/2011/04
+	// blog/index/1 because it's an ajax request
     var indexRequest = function(){
-        var request = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index', allCallback);
+        var request = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index/1', allCallback);
     };
     
     //Handler to make XHR request for adding an entry

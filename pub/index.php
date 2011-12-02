@@ -83,6 +83,7 @@ function DetermineRequest() {
     if (!isset($url)) {
         $controller = $default['controller'];
         $action = $default['action'];
+		$queryString = $default['queryString'];
     }
     elseif (file_exists($url_page)) {
         include $url_page;
