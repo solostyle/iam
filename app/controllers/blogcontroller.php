@@ -31,8 +31,7 @@ class BlogController extends Controller {
     }
     
     function index() {
-        $this->doNotRenderHeader = $queryArray[0];
-		array_shift($queryArray);
+        $this->doNotRenderHeader = true;
 		$this->Entry->setPage(1);
         $this->Entry->setLimit(3);
         $this->Entry->orderBy('time','DESC');
