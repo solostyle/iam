@@ -9,4 +9,3 @@ mysql_close();
 ?>
 
 <?php endif; ?>
-</div> <!-- end #right -->

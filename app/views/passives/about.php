@@ -4,5 +4,3 @@ This blog explores ideas and chronicles my experiences as a student of the inter
     <div class="info">
 <img src="" />
     </div><!-- end about's main div -->
-
-</div><!-- end #right -->

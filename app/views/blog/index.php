@@ -63,9 +63,3 @@
 
 
 </div><!-- end #blogEntries -->
-</div><!-- end #right -->
-
-<script type="text/javascript">
-this.Iam.Admin.Load();
-this.Iam.Archmenu.Load();
-</script>
