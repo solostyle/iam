@@ -3,7 +3,10 @@
 modify at will
 */
 
-body {background:#000 url('../img/bamboo5.jpg') no-repeat fixed right top;color:#ccc;font-family:sans-serif}
+body {
+/*background:#000 url('../img/bamboo5.jpg') no-repeat fixed right top;*/
+background:#000;
+color:#ccc;font-family:sans-serif}
 acronym:hover {cursor:help;}
 ul {padding:0;}
 ul li {display:inline;padding:0;}
