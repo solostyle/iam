@@ -18,7 +18,8 @@
     $tags = show_tags($entry['Entry']['id']);
 		$cat = get_category($entry['Entry']['id']);
 		$catUrl = str_replace(" ", "_", $cat); // make it a kosher URL
-		$c = make_link($cat, make_url('categories/' . $catUrl));
+		$c = make_link($cat, make_url('categories/' . $catUrl));  // when saving new category, do it in the javascript
+		// TODO: blog/update needs to take the category argument now!
 ?>
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
@@ -49,7 +50,11 @@
                 <p>Tagged with <?php echo $tags?></p>
             <?php endif; ?>
             
-			<p>Categorized under <?php echo $c?></p>
+			<?php if (isset($_SESSION['logged_in'])):?>
+                <div class="entryEditButton" id="editCategory_<?php echo $entry['Entry']['id']?>">Edit</div>
+            <?php endif; ?>
+			
+			<p>Categorized under <span id="entryCategory_<?php echo $entry['Entry']['id']?>"><?php echo $c?></span></p>
 
             <?php if (isset($_SESSION['logged_in'])):?>
                 <p><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></p>

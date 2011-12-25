@@ -51,7 +51,7 @@ ul.tags li {display:block}
 #addForm ul li, .info ul li {display:block;}
 #addForm ul {list-style-type: none;}
 
-.entryEditButton {float:right;font-size:.8em}
+.entryEditButton {float:right;font-size:.8em;cursor:pointer}
 
 #loginToggle {cursor:pointer;display:block;font-size:0.6em;height:13px;position:absolute;right:0;top:0;width:30px;text-align:center;z-index:1}
 #login {

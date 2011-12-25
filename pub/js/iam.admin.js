@@ -18,7 +18,8 @@ this.Iam.Admin = this.Iam.Admin || function() {
     formEditElem = function(pre, id) {return Ydom.get(pre+'_'+id);},
     updTitle = function() {return formEditElem("entryTitle", id).innerHTML;},
     updEntry = function() {return formEditElem("entryEntry", id).innerHTML;},
-    
+    updCategory = function() {return formEditElem("entryCategory", id).innerHTML;},
+	
     inpEntry = function() {return formEntryElem().value;}, // TODO: escape quotes!
     inpTitle = function() {return formTitleElem().value;}, // TODO: escape quotes!
     inpCategory = function() {return chooseCategory();},
@@ -68,6 +69,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
 	// So if you add/update/delete from root/2011/04/ url, it shouldn't load blog/index, but /blog/id/2011/04
 	// blog/index/1 because it's an ajax request
     var indexRequest = function(){
+		// Get the current URI
         var request = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index/1', allCallback);
     };
     
@@ -196,7 +198,34 @@ this.Iam.Admin = this.Iam.Admin || function() {
         var request = updateEntryRequest(id);
     };
     
-    var handleClick = function(e) {
+    // TODO: make this show all the categories in a <select>
+    var makeEditableCategory = function(editButton, id) {
+        // change behavior of the entryEditButton for category
+        editButton.setAttribute('id', "saveCategory_" + id);
+        editButton.innerHTML = "Save";
+        
+        // change behavior of the entryCategory span element
+        var categoryEl = formEditElem("entryCategory", id);
+        //categoryEl.innerHTML = '<select>'+clean+'</select>';
+		categoryEl.innerHTML = '<input type="text" value="'+categoryEl.lastChild.innerHTML+'" />';
+        //el.onclick = null; //not needed b/c it didn't have an event
+    };
+    
+    var saveCategory = function(saveButton, id) {
+        // change behavior of the entryCategory span element
+        var categoryEl = formEditElem("entryCategory", id);
+        var childEl = categoryEl.childNodes[0];
+		var htmlized = '<a href="'+Iam.RootDir()+Iam.Ds()+'categories'+Iam.Ds()+childEl.value+'">'+childEl.value+'</a>';
+        categoryEl.innerHTML = htmlized; // link
+        
+        // change behavior of the entryEditButton for category
+        saveButton.setAttribute('id', "editCategory_" + id);
+        saveButton.innerHTML = "Edit";
+        
+        //var request = updateEntryRequest(id);
+    };
+    
+	var handleClick = function(e) {
         var targetId= e.target.getAttribute('id'),
         // clean the id string, everything before a number
         command = (targetId)?targetId.split('_', 2)[0]:null;
@@ -226,7 +255,12 @@ this.Iam.Admin = this.Iam.Admin || function() {
         case "saveEntry":
             saveEntry(e.target, id);
             break;
-        default:
+        case "editCategory":
+            makeEditableCategory(e.target, id);
+            break;
+        case "saveCategory":
+            saveCategory(e.target, id);
+			default:
             break;
         }
     };
