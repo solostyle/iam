@@ -444,18 +444,26 @@ function delete_record($blog_id) {
 // Update an entry
 // 6 feb 09: changed the input parameters because we have one table now
 // 30 nov 11: when id changes, update `blog`, `blog_categories` and `blog_tags` tables.
-function update_record($fields,$values,$id) {
-	$query1 = "UPDATE `blog` SET `$fields[0]` = '$values[0]'";
+// 25 dec 11: duh, didn't i realize I'd need to use this to update tables other than blog? so now there's
+// 		a ocnditional just for if we update `blog` so that we update categories and tags
+//		AND we pass in the actual tablename!
+function update_record($tablename, $fields, $values, $id) {
+	$query1 = "UPDATE `$tablename` SET `$fields[0]` = '$values[0]'";
 	for ($i=1; $i<=count($fields)-1; $i++)
 		$query1 .= ", `$fields[$i]` = '$values[$i]'";
 	$query1 .= " WHERE `$fields[0]` = '$id'";
-	mysql_query($query1);
+
+	$result = mysql_query($query1);
 	
-	$query2 = "UPDATE `blog_categories` SET `blog_id` = '$values[0]'
+	if ($tablename == 'blog') {
+		$query2 = "UPDATE `blog_categories` SET `blog_id` = '$values[0]'
 					WHERE `blog_id` = '$id'";
-	mysql_query($query2);
+		mysql_query($query2);
 	
-	// still need to update `blog_tags`, but we're not using the table yet
+		// still need to update `blog_tags`, but we're not using the table yet
+	}
+
+	return ($result) ? true : false;
 }
 
 
@@ -476,8 +484,10 @@ function insert_record($tablename,$fields,$values) {
          $sqlstatement .= ",'$values[$j]'";
       $sqlstatement .= ");";
 //print $sqlstatement;
-      mysql_query($sqlstatement);
+      $result = mysql_query($sqlstatement);
      }
+
+	return ($result) ? true : false;
 }
 
 

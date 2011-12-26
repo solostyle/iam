@@ -66,18 +66,21 @@ class BlogController extends Controller {
         $this->Entry->id = $_POST['id'];
         $entry = $this->Entry->search();
 
-        $values = array($entry['Entry']['id'], $entry['Entry']['time'], $entry['Entry']['title'], $entry['Entry']['entry']);
+        $values = array(mysql_real_escape_string($entry['Entry']['id']), mysql_real_escape_string($entry['Entry']['time']), mysql_real_escape_string($entry['Entry']['title']), mysql_real_escape_string($entry['Entry']['entry']));
         $fields = array('id','time','title','entry');
 
         select_db();
-        insert_record('deleted_blog', $fields, $values);
-//         mysql_close(); // the next lines to delete() will fail if mysql_close() runs
+		// doesn't work if the ID is the same, and there is already a row in the table for this ID
+		// so it won't save 2nd and subsequent edits if the title is the same
+        $result = insert_record('deleted_blog', $fields, $values) || update_record('deleted_blog', $fields, $values, mysql_real_escape_string($entry['Entry']['id']));
     
         // now delete from main blog table
         $this->doNotRenderHeader = true;
 		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->id = $_POST['id'];
         $this->Entry->delete();
+		
+//		mysql_close(); // do I need this?
     }
   
     function update() {
@@ -88,12 +91,13 @@ class BlogController extends Controller {
       
         $fields = array('id','time','title','entry');
 
-        $oldValues = array($entry['Entry']['id'], $entry['Entry']['time'], $entry['Entry']['title'], $entry['Entry']['entry']);
+        $oldValues = array(mysql_real_escape_string($entry['Entry']['id']), mysql_real_escape_string($entry['Entry']['time']), mysql_real_escape_string($entry['Entry']['title']), mysql_real_escape_string($entry['Entry']['entry']));
 
         select_db();
-        //doesn't work sometimes
-        insert_record('deleted_blog', $fields, $oldValues);
-
+        // if the ID is the same, and there is already a row in the table for this ID
+		// it won't save 2nd and subsequent edits if the title is the same, so update if insert fails
+		$result = insert_record('deleted_blog', $fields, $oldValues) || update_record('deleted_blog', $fields, $oldValues, mysql_real_escape_string($entry['Entry']['id']));
+		
         $newTime = (isset($_POST['time']))? mysql_real_escape_string($_POST['time']) : $entry['Entry']['time'];
         $newTitle = (isset($_POST['title']))? mysql_real_escape_string($_POST['title']) : $entry['Entry']['title'];
         $newEntry = (isset($_POST['entry']))? mysql_real_escape_string($_POST['entry']) : $entry['Entry']['entry'];
@@ -106,7 +110,7 @@ class BlogController extends Controller {
         
         $newValues = array($newId, $newTime, $newTitle, $newEntry);
       
-        update_record($fields, $newValues, $entry['Entry']['id']); // also updates tags and categories
+        update_record('blog', $fields, $newValues, mysql_real_escape_string($entry['Entry']['id'])); // also updates tags and categories
         mysql_close();
     }
 }
