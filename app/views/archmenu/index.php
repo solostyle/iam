@@ -1,4 +1,4 @@
-<h3>archives</h3>
+<h3>Archives</h3>
 
 <div id="archmenuWP">
 

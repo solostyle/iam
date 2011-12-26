@@ -128,16 +128,16 @@ function create_archive_nav_menu($arr) {
   $years = array_keys($arr);
   foreach($years as $y) {
 	$html .= '<li>';
-	$html .= '<span class="archmenu_ty" id="archmenu_ty_' . $y . '">&gt;&nbsp;</span>'; // handle clicks with JS
 	$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
+	$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">+</span>'; // handle clicks with JS
 	$html .= '</li>';
     unset($arr[$y][0]);
     $months = array_keys($arr[$y]);
     $html .= '<ul class="archlev2 archmenu_list_months" id="archmenu_y_' . $y . '">';
     foreach($months as $m) {
 	  $html .= '<li>';
-	  $html .= '<span class="archmenu_tm" id="archmenu_tm_' . $m . '">&gt;&nbsp;</span>'; // handle clicks with JS
       $html .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/'));
+	  $html .= '<span class="archmenu_tm archToggleButton" id="archmenu_tm_' . $m . '">+</span>'; // handle clicks with JS
 	  $html .= '</li>';
       unset($arr[$y][$m][0]);
       $titles = $arr[$y][$m];

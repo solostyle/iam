@@ -38,21 +38,19 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
   
 
-	// Toggles the view of menus
-	var toggleYearMenu = function(id) {
-		toggleMenu(id);
-	};
-	
-	var toggleMonthMenu = function(id) {
-		toggleMenu(id);
-	};
-  
-	var toggleMenu = function(id) {
-		var list = Ydom.get(id);
-		if (Ydom.hasClass(list, 'hidden')) {
-			Ydom.removeClass(list, 'hidden'); 
+	// Toggles the view of menus and their buttons
+	var toggleMenu = function(menuId, buttonId) {
+		var menu = Ydom.get(menuId),
+		button = Ydom.get(buttonId);
+		
+		// SHOW
+		if (Ydom.hasClass(menu, 'hidden')) {
+			Ydom.removeClass(menu, 'hidden');
+			button.innerHTML = "--";
 		} else {
-			Ydom.addClass(list, 'hidden');
+		// HIDE
+			Ydom.addClass(menu, 'hidden');
+			button.innerHTML = "+";
 		}
 	};
   
@@ -64,12 +62,10 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		
 		switch (command) {
 		case "ty": // toggle year menu
-			toggleYearMenu('archmenu_y_'+id);
-			//addArchlinkRequest();
+			toggleMenu('archmenu_y_'+id, targetId);
 			break;
 		case "tm": // toggle month menu
-			toggleMonthMenu('archmenu_m_'+id);
-			//deleteArchlinkRequest(id);
+			toggleMenu('archmenu_m_'+id, targetId);
 			break;
 		default:
 			break;
@@ -82,6 +78,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		currentMonth = date.getMonth()+1;
 		currentMonth = currentMonth.toString();
 		currentMonth = (currentMonth < 10)? '0'+currentMonth : currentMonth;
+		
 		for(var i=0, len=arr.length; i < len; i++){
 			if (arr[i].getAttribute('id').split('_', 3)[2] == currentMonth) {
 				// expand or keep expanded
@@ -90,12 +87,16 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 				Ydom.addClass(arr[i], 'hidden');
 			}
 		}
+		
+		Ydom.get('archmenu_tm_'+currentMonth).innerHTML = "--";
 	};
 
 	// Expands this year, collapses the rest
 	var initCollapseYears = function(arr) {
 		var date = new Date(),
-		currentYear = date.getFullYear().toString();
+		currentYear = date.getFullYear().toString(),
+		toggleButton = Ydom.get('archmenu_ty_'+currentYear);
+		
 		for(var i=0, len=arr.length; i < len; i++){
 			if (arr[i].getAttribute('id').split('_', 3)[2] == currentYear) {
 				// expand or keep expanded
@@ -104,6 +105,8 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 				Ydom.addClass(arr[i], 'hidden');
 			}
 		}
+		
+		Ydom.get('archmenu_ty_'+currentYear).innerHTML = "--";
 	};
 
 	// Initialize how the menu looks, expanded/collapsed
