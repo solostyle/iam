@@ -14,13 +14,14 @@ input, textarea, select, option {background:#000;color:#ccc;border:1px solid #33
 input:focus, textarea:focus, select:focus {border-color:#666}
 option {border:0;padding:0 3px;}
 a:link, a:visited {color:#c52;text-decoration:none;}
-a:hover, a:active {color:#fc0;}
+a:hover, a:active {color:#fc0}
 
 /* unordered list classes for archive navigation menu */
-ul.archlev1 {font-size:.8em}
-ul.archlev1 li {padding:0;display:block}
-ul.archlev2 li {padding:0 0 0 10px;display:block}
-ul.archlev3 li {padding:0 0 0 20px;display:block}
+ul.archlev1 {font-size:.9em}
+ul.archlev1 li {padding:0;display:block;background-color:#222}
+ul.archlev2 li {padding:4 0 4 0px;display:block;background-color:#111}
+ul.archlev3 li {padding:4 0 4 0px;display:block;background-color:#000}
+ul li:hover {background-color:transparent}
 
 #pagetitle {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF}
 #pagetitle > a:link, #pagetitle > a:visited {color:#000}
@@ -39,7 +40,7 @@ ul.archlev3 li {padding:0 0 0 20px;display:block}
 #mainnav li {display:inline;padding:4px 4%;background-color:#111;border: 1px solid #000}
 #mainnav li:hover {background-color:#000}
 
-.info {font-size:.8em}
+.info {font-size:.9em}
 .entry p {line-height:1.3em}
 ul.tags li {display:block}
 
