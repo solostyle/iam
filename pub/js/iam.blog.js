@@ -4,10 +4,6 @@ this.Iam.Blog = this.Iam.Blog || function() {
     var blogWPElem = function() {return Ydom.get('blogEntries');};
 
     // Success and failure functions for different requests
-    var handleSuccess = function(o){
-        allRequest(false);
-    };
-
     var handleFailure = function(o){
         if(o.responseText !== undefined){
             blogWPElem().innerHTML = "request failure: " + o.responseText + blogWPElem().innerHTML;

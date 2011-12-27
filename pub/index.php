@@ -4,9 +4,6 @@ define('DS', DIRECTORY_SEPARATOR);
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);
 define('HOST', $_SERVER['HTTP_HOST']);
 
-$url = $_GET['url'];
-//echo 'url is ' . $url;
-
 require_once (ROOT . DS . 'lib' . DS . 'config.php');
 require_once (ROOT . DS . 'lib' . DS . 'routing.php');
 require_once (ROOT . DS . 'lib' . DS . 'inflection.php');
@@ -69,6 +66,20 @@ function routeURL($url) {
   return ($url);
 }
 
+/** Autoload any classes that are required **/
+function __autoload($className) {
+    if (file_exists(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php')) {
+        require_once(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php');
+    } else if (file_exists(ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
+        require_once(ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php');
+    } else if (file_exists(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php')) {
+        require_once(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
+    } else {
+        /* Error Generation Code Here */
+        echo 'error: class ' . $className . ' not found';
+    }
+}
+
 function DetermineRequest() {
     // declare variables
     global $url;
@@ -106,12 +117,6 @@ function DetermineRequest() {
         } else {
             $action = 'index'; // Default Action
         }
-//             case ($controller == "admin"):
-//             case ($controller == "members"):
-//             case ($controller == "news"):
-//             case ($controller == "contact"):
-//             case ($controller == "articles"):
-//                 //handle_articles($urlArray);
     }
 
     $controllerName = ucfirst($controller) . 'Controller';
@@ -130,44 +135,8 @@ function DetermineRequest() {
     }
 }
 
-
-/** Autoload any classes that are required **/
-function __autoload($className) {
-    if (file_exists(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php')) {
-        require_once(ROOT . DS . 'lib' . DS . strtolower($className) . '.class.php');
-    } else if (file_exists(ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php')) {
-        require_once(ROOT . DS . 'app' . DS . 'controllers' . DS . strtolower($className) . '.php');
-    } else if (file_exists(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php')) {
-        require_once(ROOT . DS . 'app' . DS . 'models' . DS . strtolower($className) . '.php');
-    } else {
-        /* Error Generation Code Here */
-        echo 'error: class ' . $className . ' not found';
-    }
-}
-
-// // Handles the request for an article
-// // right now these are links actually stored in the directory
-// // may want to integrate them with blog?
-// // 24 sep 09: created
-// function handle_articles($arr) {
-// 
-// 	 // for each segment in the array, add it to the regular expression
-// 	 $id_str = implode("/", $arr);
-// 
-// 	 // get the array of entries
-// 	 select_db();
-// 	 $entries_arr = rtrv_entries($id_str);
-// 
-// 	 // send it to the guy who can display them
-// 	 // if (count($entries_arr) > 3) show preview, else full
-// 	 // this should construct the whole page and print it to the screen
-// 	 $entries_markup = show_entries($entries_arr);
-// 
-// 	 mysql_close();
-// 
-// 	 // display the page
-// 	 display_page($article_markup);
-// }
+$url = $_GET['url'];
+//echo 'url is ' . $url;
 
 $inflect =& new Inflection();
 $cache =& new Cache();
@@ -179,43 +148,4 @@ DetermineRequest();
 // REMEMBER!!!
 // get rid of display_page(), instead return json
 // have a render.js that creates the markup from json
-
-// urls to support
-//http://iam.solostyle.net/
-
-//http://iam.solostyle.net/admin/add_entry
-//http://iam.solostyle.net/admin/modify_entry
-//http://iam.solostyle.net/admin/delete_entry
-//http://iam.solostyle.net/admin/publish_feeds
-//http://iam.solostyle.net/admin/tag
-//http://iam.solostyle.net/admin/categorize (maybe not needed)
-
-//http://iam.solostyle.net/members/news (new entries since last login)
-//http://iam.solostyle.net/members/profile (maybe not needed)
-
-//http://iam.solostyle.net/news (maybe this is all that is needed)
-
-//http://iam.solostyle.net/contact
-
-//http://iam.solostyle.net/articles/Fastest-Way-to-Meditation-Success
-//http://iam.solostyle.net/articles/tag/meditation/
-// should articles have tags?
-// or should they have categories?
-// or should they exist as blog posts?
-// it seems like they are a separate section
-// right now i want them to remain separate.
-// articles = professional writing
-// blog posts = personal writing (diary)
-
-// done implementing:
-//http://iam.solostyle.net/2008/ (all entries for this year preview)
-//http://iam.solostyle.net/2008/09 (all entries in september 2008)
-//http://iam.solostyle.net/2008/09/16/ (all entries in 16 sept 08)
-//http://iam.solostyle.net/2008/09/16/blog-entry (this particular entry)
-
-//http://iam.solostyle.net/tag/spirituality/ (all entries tagged with spirituality)
-//http://iam.solostyle.net/tag/spirituality|health/ (all entries tagged with either)
-//http://iam.solostyle.net/tag/spirituality&health/ (all entries tagged with both)
-//give users an easy way of selecting these tags
-
 ?>

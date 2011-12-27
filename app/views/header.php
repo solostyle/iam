@@ -75,6 +75,7 @@ if(isset($_POST['login_submit'])) {
 <?php echo $html->includeJs('iam.blog');?>
 <?php echo $html->includeJs('iam.archmenu');?>
 <?php echo $html->includeJs('iam.admin');?>
+<?php echo $html->includeJs('iam.objects');?>
 <?php echo $html->includeCss('layout');?>
 <?php echo $html->includeCss('format');?>
 </head>
@@ -191,3 +192,8 @@ if(isset($_POST['login_submit'])) {
 
         </div><!-- end $blogAddForm -->
         <?php endif; ?>
+		
+<script type="text/javascript">
+Iam.Objects.Categories = <?php echo json_encode($cats); ?>;
+Iam.Objects.Session = <?php echo json_encode($_SESSION); ?>;
+</script>
