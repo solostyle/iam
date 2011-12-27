@@ -13,3 +13,7 @@
 ?>
 
 </div>
+
+<script type="text/javascript">
+Iam.Objects.ArchNavMenu = <?php echo json_encode($archive_nav_array); ?>;
+</script>
