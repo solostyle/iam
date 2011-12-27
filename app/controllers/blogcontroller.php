@@ -40,7 +40,7 @@ class BlogController extends Controller {
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
 		$this->Entry->setPage(1);
-        $this->Entry->setLimit(3);
+        $this->Entry->setLimit(1);
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
     }
