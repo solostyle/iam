@@ -50,13 +50,13 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	
 	//Handler to make XHR request for just showing all entries
 	var indexRequest = function(isAjaxR){
-      if (isAjaxR) AjaxR('../archmenu/index/1', indexCallback);
-      else AjaxR('../archmenu/index/0', indexCallback);
+      if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/index/1', indexCallback);
+      else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/index/0', indexCallback);
 	};
   
 	var menuRequest = function(isAjaxR){
-      if (isAjaxR) AjaxR('../archmenu/menu/1', menuCallback);
-      else AjaxR('../archmenu/menu/0', menuCallback);
+      if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/1', menuCallback);
+      else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/0', menuCallback);
 	};
 
 	// Saves the view of the menu so that it can load it this way next time
