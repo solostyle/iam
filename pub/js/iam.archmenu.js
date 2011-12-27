@@ -9,6 +9,12 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	* year: "archmenu_ty" ID: "archmenu_ty_2011"
 	* month: "archmenu_tm" ID: "archmenu_tm_01"
 	*/
+	
+	/* Objects
+	* Iam.Objects.ArchNavMenu is set when first page loads
+	* if it is null, call /menu
+	*/
+
 	var leftWPElem = function() {return Ydom.get('left');}, // #left houses #archmenuWP
 	archmenuWPElem = function() {return Ydom.get('archmenuWP');};
 
@@ -19,25 +25,41 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		}
 	};
 
-	var handleSuccess = function(o) {
+	var insertMenu = function(o) {
 		if(o.responseText !== undefined){
 			leftWPElem().innerHTML = o.responseText;
 		}
 	};
 
-	var allCallback ={
+	var storeMenu = function(o) {
+		if(o.responseText !== undefined){
+			Iam.Objects.ArchNavMenu = o.responseText;
+		}
+	};
+	
+	var indexCallback ={
 		method:"GET",
-		success: handleSuccess,
+		success: insertMenu,
 		failure: handleFailure
 	};
-
+	var menuCallback ={
+		method:"GET",
+		success: storeMenu,
+		failure: handleFailure
+	};
+	
 	//Handler to make XHR request for just showing all entries
 	var indexRequest = function(isAjaxR){
-      if (isAjaxR) AjaxR('../archmenu/index/1', allCallback);
-      else AjaxR('../archmenu/index/0', allCallback);
+      if (isAjaxR) AjaxR('../archmenu/index/1', indexCallback);
+      else AjaxR('../archmenu/index/0', indexCallback);
 	};
   
+	var menuRequest = function(isAjaxR){
+      if (isAjaxR) AjaxR('../archmenu/menu/1', menuCallback);
+      else AjaxR('../archmenu/menu/0', menuCallback);
+	};
 
+	
 	// Toggles the view of menus and their buttons
 	var toggleMenu = function(menuId, buttonId) {
 		var menu = Ydom.get(menuId),
@@ -53,26 +75,8 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			button.innerHTML = "+";
 		}
 	};
-  
-	// Handles Clicks in the web part
-	var handleClick = function(e) {
-		var targetId = e.target.getAttribute('id'),
-		command = (targetId)?targetId.split('_', 3)[1]:null,
-		id = (targetId)?targetId.split('_', 3)[2]:null;
-		
-		switch (command) {
-		case "ty": // toggle year menu
-			toggleMenu('archmenu_y_'+id, targetId);
-			break;
-		case "tm": // toggle month menu
-			toggleMenu('archmenu_m_'+id, targetId);
-			break;
-		default:
-			break;
-		}
-	};
 	
-	// Expands this month, collapses the rest
+  	// Expands this month, collapses the rest
 	var initCollapseMonths = function(arr) {
 		var date = new Date(),
 		currentMonth = date.getMonth()+1;
@@ -119,11 +123,34 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		initCollapseYears(arrayOfMonths);
 	};
 	
+	
+	// Handles Clicks in the web part
+	var handleClick = function(e) {
+		var targetId = e.target.getAttribute('id'),
+		command = (targetId)?targetId.split('_', 3)[1]:null,
+		id = (targetId)?targetId.split('_', 3)[2]:null;
+		
+		switch (command) {
+		case "ty": // toggle year menu
+			toggleMenu('archmenu_y_'+id, targetId);
+			break;
+		case "tm": // toggle month menu
+			toggleMenu('archmenu_m_'+id, targetId);
+			break;
+		default:
+			break;
+		}
+	};
+	
 	return {
 		
 		Load: function(){
 			// initial load
+			// currently header.php loads this
 			//indexRequest(true);
+			
+			// store menu as js object
+			menuRequest(true);
 			
 			// set up collapsed/expanded
 			initMenuView();
