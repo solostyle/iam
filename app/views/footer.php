@@ -2,8 +2,8 @@
 </div><!-- end #content -->
 
 <script type="text/javascript">
-this.Iam.Admin.Load();
-this.Iam.Archmenu.Load();
+Iam.Admin.Load();
+Iam.Archmenu.Load();
 </script>
 
 </body>

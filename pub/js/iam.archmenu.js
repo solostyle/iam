@@ -59,6 +59,10 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
       else AjaxR('../archmenu/menu/0', menuCallback);
 	};
 
+	// Saves the view of the menu so that it can load it this way next time
+	var saveMenuState = function(buttonid) {
+		
+	};
 	
 	// Toggles the view of menus and their buttons
 	var toggleMenu = function(menuId, buttonId) {
@@ -137,6 +141,9 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		case "tm": // toggle month menu
 			toggleMenu('archmenu_m_'+id, targetId);
 			break;
+		case "list": // save menu state before navigating to blog
+			saveMenuState(targetid);
+			break;
 		default:
 			break;
 		}
@@ -149,10 +156,12 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			// currently header.php loads this
 			//indexRequest(true);
 			
-			// store menu as js object
+			// store menu as js objectj
+			// TODO: Only run this if anything has been added/deleted/modified
 			menuRequest(true);
 			
 			// set up collapsed/expanded
+			// based on the state the user left it at
 			initMenuView();
 
 			// set event handler for clicks in the web part

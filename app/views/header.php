@@ -71,7 +71,6 @@ if(isset($_POST['login_submit'])) {
 <?php echo $html->includeJs('yui28connection');?>
 <?php echo $html->includeJs('yui28dom');?>
 <?php echo $html->includeJs('iam');?>
-<?php echo $html->includeJs('iam.shell');?>
 <?php echo $html->includeJs('iam.blog');?>
 <?php echo $html->includeJs('iam.archmenu');?>
 <?php echo $html->includeJs('iam.admin');?>
