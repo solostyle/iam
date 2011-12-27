@@ -33,7 +33,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 
 	var storeMenu = function(o) {
 		if(o.responseText !== undefined){
-			Iam.Objects.ArchNavMenu = o.responseText;
+			Iam.Objects.ArchMenu = o.responseText;
 		}
 	};
 	
@@ -61,7 +61,8 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 
 	// Saves the view of the menu so that it can load it this way next time
 	var saveMenuState = function(buttonid) {
-		
+		// capture the state
+		Iam.Objects.ArchMenuState = ;
 	};
 	
 	// Toggles the view of menus and their buttons
@@ -141,12 +142,11 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		case "tm": // toggle month menu
 			toggleMenu('archmenu_m_'+id, targetId);
 			break;
-		case "list": // save menu state before navigating to blog
-			saveMenuState(targetid);
-			break;
 		default:
 			break;
 		}
+		
+		saveMenuState(targetid);
 	};
 	
 	return {

@@ -11,8 +11,8 @@ this.Iam.Objects = this.Iam.Objects || function() {
 		Blog : "",
 		Categories : "",
 		Tags : "",
-		TopNavMenu : "",
-		ArchNavMenu : "",
+		TopMenu : "",
+		ArchMenu : "",
 		Session : ""
     };
 }();
