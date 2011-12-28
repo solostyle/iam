@@ -41,7 +41,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // b/c successful, clear the form
         clearForm();
         // load the entries again into #blogEntries
-        indexRequest();
+        reloadCurrentPageRequest();
     };
 
     var loadIndex = function(o){
@@ -64,12 +64,16 @@ this.Iam.Admin = this.Iam.Admin || function() {
         failure: handleFailure
     };
 
-    //Handler to make XHR request for showing recent entries
-	// TODO: Actually I want to load whatever the current URL is. 
+    //Handler to make XHR request for showing entries
+	// current URL is window.location.href
 	// So if you add/update/delete from root/2011/04/ url, it shouldn't load blog/index, but /blog/id/2011/04
+	var reloadCurrentPageRequest = function() {
+		window.location.reload();
+	};
+		
+	// currently not used
 	// blog/index/1 because it's an ajax request
     var indexRequest = function(){
-		// Get the current URI
         var request = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index/1', allCallback);
     };
     
