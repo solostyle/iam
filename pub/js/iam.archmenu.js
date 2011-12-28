@@ -60,7 +60,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
 
 	// Saves the view of the menu so that it can load it this way next time
-	var saveMenuState = function(num, id) {
+	var saveMenuState = function(id, yr, mo) {
 		// rules:
 		// > show anything the user wanted to show
 		// > show the current url's submenu
@@ -74,13 +74,18 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 
 		if (!Iam.Objects.ArchMenu) {
 			menuRequest(true);
-			saveMenuState(num, id);
+			saveMenuState(id, yr, mo);
 		} else {
 			// look up the id in the array
 			// if it's not found, do nothing
 			// if found, get the class of the element
 			// if it has a hidden class, change the display of the id to hide
-			console.log(num + " " + id);
+			var menu = Ydom.get(id);
+			if (mo) {
+				Iam.Objects.ArchMenu[yr][mo]['display'] = Ydom.hasClass(menu, 'hidden') ? 'hide' : 'show';
+			} else {
+				Iam.Objects.ArchMenu[yr]['display'] = Ydom.hasClass(menu, 'hidden') ? 'hide' : 'show';
+			}
 		}
 	};
 	
@@ -107,20 +112,23 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		cmd = (targetId)?targetId.split('_')[1]:null,
 		year = (targetId)?targetId.split('_')[2]:null,
 		cmd = (targetId && targetId.split('_')[3]) ? targetId.split('_')[3] : cmd,
-		month = (targetId)?targetId.split('_')[4]:null;
+		month = (targetId)?targetId.split('_')[4]:null,
+		menuId = "";
 		
 		switch (cmd) {
 		case "ty": // toggle year menu
-			toggleMenu('archmenu_y_'+year, targetId);
+			menuId = 'archmenu_y_'+year;
+			toggleMenu(menuId, targetId);
+			saveMenuState(menuId, year, month);
 			break;
 		case "tm": // toggle month menu
-			toggleMenu('archmenu_y_'+year+'_m_'+month, targetId);
+			menuId = 'archmenu_y_'+year+'_m_'+month;
+			toggleMenu(menuId, targetId);
+			saveMenuState(menuId, year, month);
 			break;
 		default:
 			break;
 		}
-		
-		saveMenuState(targetId, year, month);
 	};
 	
 	return {
