@@ -33,7 +33,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 
 	var storeMenu = function(o) {
 		if(o.responseText !== undefined){
-			Iam.Objects.ArchMenu = o.responseText;
+			Iam.Objects.ArchMenu = JSON.parse(o.responseText);
 		}
 	};
 	
@@ -60,9 +60,14 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
 
 	// Saves the view of the menu so that it can load it this way next time
-	var saveMenuState = function(buttonid) {
-		// capture the state
-		Iam.Objects.ArchMenuState = ;
+	var saveMenuState = function(arrOfIdsToShow) {
+
+		if (!Iam.Objects.ArchMenu) {
+			menuRequest(true);
+			saveMenuState(arrOfIdsToShow);
+		} else {
+			
+		}
 	};
 	
 	// Toggles the view of menus and their buttons
@@ -87,35 +92,44 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		currentMonth = date.getMonth()+1;
 		currentMonth = currentMonth.toString();
 		currentMonth = (currentMonth < 10)? '0'+currentMonth : currentMonth;
+		var toggleButton = Ydom.get('archmenu_tm_'+currentMonth),
+		idsToShow = [];
 		
 		for(var i=0, len=arr.length; i < len; i++){
 			if (arr[i].getAttribute('id').split('_', 3)[2] == currentMonth) {
-				// expand or keep expanded
+				// SHOW
 				Ydom.removeClass(arr[i], 'hidden');
+				idsToShow[idsToShow.length] = arr[i];
 			} else {
+				// HIDE
 				Ydom.addClass(arr[i], 'hidden');
 			}
 		}
 		
-		Ydom.get('archmenu_tm_'+currentMonth).innerHTML = "--";
+		toggleButton.innerHTML = "--";
+		saveMenuState(idsToShow);
 	};
 
 	// Expands this year, collapses the rest
 	var initCollapseYears = function(arr) {
 		var date = new Date(),
 		currentYear = date.getFullYear().toString(),
-		toggleButton = Ydom.get('archmenu_ty_'+currentYear);
+		toggleButton = Ydom.get('archmenu_ty_'+currentYear),
+		idsToShow = [];
 		
 		for(var i=0, len=arr.length; i < len; i++){
 			if (arr[i].getAttribute('id').split('_', 3)[2] == currentYear) {
-				// expand or keep expanded
+				// SHOW
 				Ydom.removeClass(arr[i], 'hidden');
+				idsToShow[idsToShow.length] = arr[i];
 			} else {
+				// HIDE
 				Ydom.addClass(arr[i], 'hidden');
 			}
 		}
 		
-		Ydom.get('archmenu_ty_'+currentYear).innerHTML = "--";
+		toggleButton.innerHTML = "--";
+		saveMenuState(idsToShow);
 	};
 
 	// Initialize how the menu looks, expanded/collapsed
@@ -162,7 +176,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			
 			// set up collapsed/expanded
 			// based on the state the user left it at
-			initMenuView();
+			//initMenuView();
 
 			// set event handler for clicks in the web part
 			Listen("click", handleClick, 'archmenuWP');
