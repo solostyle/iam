@@ -124,10 +124,6 @@ function show_tags($blog_id) {
 // Creates the archive navigation menu
 // 6 jan 11: created
 function create_archive_nav_menu($arr) {
-	// keep track of the current month and year
-	$now  = my_mktime();
-	$now_year = strftime('%G',$now);
-	$now_month= strftime('%m',$now);
 
 	// start the html
 	$html = '<ul class="archlev1 archmenu_list_years" id="archmenu">';
@@ -138,8 +134,10 @@ function create_archive_nav_menu($arr) {
 		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">+</span>'; // handle clicks with JS
 		$html .= '</li>';
 		unset($arr[$y][0]);
+		$displayState = $arr[$y]['display'];
+		unset($arr[$y]['display']);
 		$months = array_keys($arr[$y]);
-		$hiddenClass = ($y != $now_year) ? ' hidden' : '';
+		$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
 		$html .= '<ul class="archlev2 archmenu_list_months' . $hiddenClass . '" id="archmenu_y_' . $y . '">';
 		foreach($months as $m) {
 			$html .= '<li>';
@@ -147,8 +145,10 @@ function create_archive_nav_menu($arr) {
 			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_tm_' . $m . '">+</span>'; // handle clicks with JS
 			$html .= '</li>';
 			unset($arr[$y][$m][0]);
+			$displayState = $arr[$y][$m]['display'];
+			unset($arr[$y][$m]['display']);
 			$titles = $arr[$y][$m];
-			$hiddenClass = ($m != $now_month) ? ' hidden' : '';
+			$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
 			$html .= '<ul class="archlev3 archmenu_list_titles' . $hiddenClass . '" id="archmenu_m_' . $m . '">';
 			foreach($titles as $id => $title) {
 				$html .= make_list_item(make_link($title, make_url($id)));
