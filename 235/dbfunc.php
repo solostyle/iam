@@ -327,6 +327,9 @@ function create_archive_nav_array() {
 	$now  = my_mktime();
 	$now_year = strftime('%G',$now);
 	$now_month= strftime('%m',$now);
+	
+	// keep track of current url
+	$urlArray = explode("/",$_GET['url']);
 
   for($y=$end_year;$y>=$start_year;$y--) {
     $num_rows_in_year = count(rtrv_titles($y));
@@ -334,7 +337,7 @@ function create_archive_nav_array() {
     if ($num_rows_in_year) {
 
       $titles_counts_array[$y] = array();
-	  $titles_counts_array[$y]['display'] = ($y == $now_year) ? "show" : "hide";
+	  $titles_counts_array[$y]['display'] = (($y == $now_year) || ($y == $urlArray[0])) ? "show" : "hide";
       $titles_counts_array[$y][0] = $num_rows_in_year;
 
       for($m='12';$m>='1';$m--) {
@@ -347,7 +350,7 @@ function create_archive_nav_array() {
         if ($num_rows_in_month) {
 
           $titles_counts_array[$y][$m] = array();
-		  $titles_counts_array[$y][$m]['display'] = ($m == $now_month) ? "show" : "hide";
+		  $titles_counts_array[$y][$m]['display'] = (($m == $now_month) || ($m == $urlArray[1])) ? "show" : "hide";
           $titles_counts_array[$y][$m][0] = $num_rows_in_month;
 
           foreach($ids_titles as $id_title) {
