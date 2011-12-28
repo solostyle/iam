@@ -142,14 +142,14 @@ function create_archive_nav_menu($arr) {
 		foreach($months as $m) {
 			$html .= '<li>';
 			$html .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/'));
-			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_tm_' . $m . '">+</span>'; // handle clicks with JS
+			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">+</span>'; // handle clicks with JS
 			$html .= '</li>';
 			unset($arr[$y][$m][0]);
 			$displayState = $arr[$y][$m]['display'];
 			unset($arr[$y][$m]['display']);
 			$titles = $arr[$y][$m];
 			$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
-			$html .= '<ul class="archlev3 archmenu_list_titles' . $hiddenClass . '" id="archmenu_m_' . $m . '">';
+			$html .= '<ul class="archlev3 archmenu_list_titles' . $hiddenClass . '" id="archmenu_y_' . $y . '_m_' . $m . '">';
 			foreach($titles as $id => $title) {
 				$html .= make_list_item(make_link($title, make_url($id)));
 			}

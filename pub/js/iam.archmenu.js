@@ -4,10 +4,10 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	* LISTING <ul>
 	* housing all years: "archlev1, archmenu_list_years" ID: "archmenu"
 	* housing all months in a year: "archlev2, archmenu_list_months" ID: "archmenu_y_2011">
-	* housing all titles in a month: "archlev3, archmenu_list_titles" ID: "archmenu_m_01">
+	* housing all titles in a month: "archlev3, archmenu_list_titles" ID: "archmenu_y_2011_m_01">
 	* TOGGLING <span>
 	* year: "archmenu_ty" ID: "archmenu_ty_2011"
-	* month: "archmenu_tm" ID: "archmenu_tm_01"
+	* month: "archmenu_tm" ID: "archmenu_ty_2011_tm_01"
 	*/
 	
 	/* Objects
@@ -104,21 +104,23 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	// Handles Clicks in the web part
 	var handleClick = function(e) {
 		var targetId = e.target.getAttribute('id'),
-		command = (targetId)?targetId.split('_', 3)[1]:null,
-		id = (targetId)?targetId.split('_', 3)[2]:null;
+		cmd = (targetId)?targetId.split('_')[1]:null,
+		year = (targetId)?targetId.split('_')[2]:null,
+		cmd = (targetId && targetId.split('_')[3]) ? targetId.split('_')[3] : cmd,
+		month = (targetId)?targetId.split('_')[4]:null;
 		
-		switch (command) {
+		switch (cmd) {
 		case "ty": // toggle year menu
-			toggleMenu('archmenu_y_'+id, targetId);
+			toggleMenu('archmenu_y_'+year, targetId);
 			break;
 		case "tm": // toggle month menu
-			toggleMenu('archmenu_m_'+id, targetId);
+			toggleMenu('archmenu_y_'+year+'_m_'+month, targetId);
 			break;
 		default:
 			break;
 		}
 		
-		saveMenuState(id, targetId);
+		saveMenuState(targetId, year, month);
 	};
 	
 	return {
