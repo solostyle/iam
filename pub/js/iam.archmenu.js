@@ -60,13 +60,27 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
 
 	// Saves the view of the menu so that it can load it this way next time
-	var saveMenuState = function(arrOfIdsToShow) {
+	var saveMenuState = function(num, id) {
+		// rules:
+		// > show anything the user wanted to show
+		// > show the current url's submenu
+		//		2011/10
+		//			> expand 2011
+		//		2011/10/04/entry
+		//			> expand 2011 and 10
+		//		2011/
+		//			> don't expand anything unless user did
+		// > hide everything else
 
 		if (!Iam.Objects.ArchMenu) {
 			menuRequest(true);
-			saveMenuState(arrOfIdsToShow);
+			saveMenuState(num, id);
 		} else {
-			
+			// look up the id in the array
+			// if it's not found, do nothing
+			// if found, get the class of the element
+			// if it has a hidden class, change the display of the id to hide
+			console.log(num + " " + id);
 		}
 	};
 	
@@ -85,63 +99,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			button.innerHTML = "+";
 		}
 	};
-	
-  	// Expands this month, collapses the rest
-	var initCollapseMonths = function(arr) {
-		var date = new Date(),
-		currentMonth = date.getMonth()+1;
-		currentMonth = currentMonth.toString();
-		currentMonth = (currentMonth < 10)? '0'+currentMonth : currentMonth;
-		var toggleButton = Ydom.get('archmenu_tm_'+currentMonth),
-		idsToShow = [];
-		
-		for(var i=0, len=arr.length; i < len; i++){
-			if (arr[i].getAttribute('id').split('_', 3)[2] == currentMonth) {
-				// SHOW
-				Ydom.removeClass(arr[i], 'hidden');
-				idsToShow[idsToShow.length] = arr[i];
-			} else {
-				// HIDE
-				Ydom.addClass(arr[i], 'hidden');
-			}
-		}
-		
-		toggleButton.innerHTML = "--";
-		saveMenuState(idsToShow);
-	};
 
-	// Expands this year, collapses the rest
-	var initCollapseYears = function(arr) {
-		var date = new Date(),
-		currentYear = date.getFullYear().toString(),
-		toggleButton = Ydom.get('archmenu_ty_'+currentYear),
-		idsToShow = [];
-		
-		for(var i=0, len=arr.length; i < len; i++){
-			if (arr[i].getAttribute('id').split('_', 3)[2] == currentYear) {
-				// SHOW
-				Ydom.removeClass(arr[i], 'hidden');
-				idsToShow[idsToShow.length] = arr[i];
-			} else {
-				// HIDE
-				Ydom.addClass(arr[i], 'hidden');
-			}
-		}
-		
-		toggleButton.innerHTML = "--";
-		saveMenuState(idsToShow);
-	};
-
-	// Initialize how the menu looks, expanded/collapsed
-	var initMenuView = function() {
-		// expand this month, collapse the rest
-		// collapse other years
-		var arrayOfTitles = Ydom.getElementsByClassName("archlev3", "ul", archmenuWPElem()),
-		arrayOfMonths = Ydom.getElementsByClassName("archlev2", "ul", archmenuWPElem());
-		initCollapseMonths(arrayOfTitles);
-		initCollapseYears(arrayOfMonths);
-	};
-	
 	
 	// Handles Clicks in the web part
 	var handleClick = function(e) {
@@ -160,7 +118,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			break;
 		}
 		
-		saveMenuState(targetid);
+		saveMenuState(id, targetId);
 	};
 	
 	return {
@@ -173,10 +131,6 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			// store menu as js objectj
 			// TODO: Only run this if anything has been added/deleted/modified
 			menuRequest(true);
-			
-			// set up collapsed/expanded
-			// based on the state the user left it at
-			//initMenuView();
 
 			// set event handler for clicks in the web part
 			Listen("click", handleClick, 'archmenuWP');
