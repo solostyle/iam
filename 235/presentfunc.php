@@ -129,24 +129,42 @@ function create_archive_nav_menu($arr) {
 	$html = '<ul class="archlev1 archmenu_list_years" id="archmenu">';
 	$years = array_keys($arr);
 	foreach($years as $y) {
-		$html .= '<li>';
-		$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
-		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">+</span>'; // handle clicks with JS
-		$html .= '</li>';
-		unset($arr[$y][0]);
 		$displayState = $arr[$y]['display'];
 		unset($arr[$y]['display']);
+		if ($displayState == 'hide') {
+			$hiddenClass = ' hidden';
+			$toggleButtonText = '+';
+		} else {
+			$hiddenClass = '';
+			$toggleButtonText = '--';
+		}
+		
+		$html .= '<li>';
+		$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
+		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">' . $toggleButtonText . '</span>'; // handle clicks with JS
+		$html .= '</li>';
+		unset($arr[$y][0]);
+		
 		$months = array_keys($arr[$y]);
-		$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
 		$html .= '<ul class="archlev2 archmenu_list_months' . $hiddenClass . '" id="archmenu_y_' . $y . '">';
+		
 		foreach($months as $m) {
+			$displayState = $arr[$y][$m]['display'];
+			unset($arr[$y][$m]['display']);		
+			if ($displayState == 'hide') {
+				$hiddenClass = ' hidden';
+				$toggleButtonText = '+';
+			} else {
+				$hiddenClass = '';
+				$toggleButtonText = '--';
+			}
+			
 			$html .= '<li>';
 			$html .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/'));
-			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">+</span>'; // handle clicks with JS
+			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">' . $toggleButtonText . '</span>'; // handle clicks with JS
 			$html .= '</li>';
 			unset($arr[$y][$m][0]);
-			$displayState = $arr[$y][$m]['display'];
-			unset($arr[$y][$m]['display']);
+
 			$titles = $arr[$y][$m];
 			$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
 			$html .= '<ul class="archlev3 archmenu_list_titles' . $hiddenClass . '" id="archmenu_y_' . $y . '_m_' . $m . '">';
