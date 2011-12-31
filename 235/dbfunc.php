@@ -329,7 +329,7 @@ function create_archive_nav_array() {
 	$now_month= strftime('%m',$now);
 	
 	// keep track of current url
-	$urlArray = explode("/",$_GET['url']);
+	$urlArray = (isset($_GET['url'])) ? explode("/",$_GET['url']) : array("","");
 
   for($y=$end_year;$y>=$start_year;$y--) {
     $num_rows_in_year = count(rtrv_titles($y));
