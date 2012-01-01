@@ -33,7 +33,7 @@ function publish_feed($rss_or_atom, $num_of_entries) {
 
 //Accumulate XML for RSS or Atom feed
 function make_feed($rss_or_atom, $lim) {
-	$now  = my_mktime();
+	$now  = my_time();
 	$now_f = strftime('%G-%m-%d %H:%M:%S',$now);
 	$now_d = dcdateformat($now_f);
 	//accumulate content;
@@ -117,11 +117,13 @@ function dcdateformat($entrydate) {
 // Unix server-adjusted timestamp
 // My current dreamhost server uses Pacific
 // Add 2 to get Central
-function my_mktime() {
+function my_time() {
     // for chicago
-	$time = mktime(date("H")+2, date("i")-11); // for some reason the time is 11 min fast too!
+	$time = time() + (2 * 60 * 60) - (11 * 60);
+	// two hours behind, 11 min ahead
 	// for mysore
-	//	$time = mktime(date("H")+14, date("i")-41);
+	//	$time = time() + (14 * 60 * 60) - (41 * 60)
+	//  fourteen hours ahead, 41 minutes behind
 	//	print ('mysore time is ' . $time);
     return $time;
 }

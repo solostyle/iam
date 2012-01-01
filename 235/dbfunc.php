@@ -316,54 +316,55 @@ function blog_first_and_last_dates() {
 // year->count, year->months, month->count, month->id->title
 // 6 jan 11: created
 function create_archive_nav_array() {
-  $start_and_end_dates = blog_first_and_last_dates();
-  $start_date = $start_and_end_dates[0];
-  $end_date = $start_and_end_dates[1];
-  $start_year = strftime("%Y", strtotime($start_date));
-  $end_year = strftime("%Y", strtotime($end_date));
-  $titles_counts_array = array();
+	$start_and_end_dates = blog_first_and_last_dates();
+	$start_date = $start_and_end_dates[0];
+	$end_date = $start_and_end_dates[1];
+	$start_year = strftime("%Y", strtotime($start_date));
+	$end_year = strftime("%Y", strtotime($end_date));
+	$titles_counts_array = array();
 
-  	// keep track of the current month and year
-	$now  = my_mktime();
-	$now_year = strftime('%G',$now);
-	$now_month= strftime('%m',$now);
+  	// for expand/collapse
+	$now  = my_time();
+	$now_year = date('Y', $now);
+	$now_month= date('m', $now);
+
+	// build the array
+	for($y=$end_year;$y>=$start_year;$y--) {
+		$num_rows_in_year = count(rtrv_titles($y));
+
+		if ($num_rows_in_year) {
+
+			$titles_counts_array[$y] = array();
+			$titles_counts_array[$y][0] = $num_rows_in_year;
+
+			for($m='12';$m>='1';$m--) {
+				if ($m<='9') {
+				  $m = '0' . $m;
+				}
+				$ids_titles = rtrv_titles($y . '/' . $m);
+				$num_rows_in_month = count($ids_titles);
+
+				if ($num_rows_in_month) {
+
+					$titles_counts_array[$y][$m] = array();
+					$titles_counts_array[$y][$m][0] = $num_rows_in_month;
+
+					foreach($ids_titles as $id_title) {
+						$id = $id_title[0];
+						$title = $id_title[1];
+						$titles_counts_array[$y][$m][$id] = array();
+						$titles_counts_array[$y][$m][$id]['title'] = $title;
+					}
+				}
+			}
+		}
+	}
 	
-	// keep track of current url
-	$urlArray = (isset($_GET['url'])) ? explode("/",$_GET['url']) : array("","");
+	// add display tokens
+	$titles_counts_array[$now_year]['display'] = "show";
+	$titles_counts_array[$now_year][$now_month]['display'] = "show";
 
-  for($y=$end_year;$y>=$start_year;$y--) {
-    $num_rows_in_year = count(rtrv_titles($y));
-
-    if ($num_rows_in_year) {
-
-      $titles_counts_array[$y] = array();
-	  $titles_counts_array[$y]['display'] = (($y == $now_year) || ($y == $urlArray[0])) ? "show" : "hide";
-      $titles_counts_array[$y][0] = $num_rows_in_year;
-
-      for($m='12';$m>='1';$m--) {
-        if ($m<='9') {
-          $m = '0' . $m;
-        }
-        $ids_titles = rtrv_titles($y . '/' . $m);
-        $num_rows_in_month = count($ids_titles);
-
-        if ($num_rows_in_month) {
-
-          $titles_counts_array[$y][$m] = array();
-		  $titles_counts_array[$y][$m]['display'] = (($m == $now_month) || ($m == $urlArray[1])) ? "show" : "hide";
-          $titles_counts_array[$y][$m][0] = $num_rows_in_month;
-
-          foreach($ids_titles as $id_title) {
-            $titles_counts_array[$y][$m][$id_title[0]] = $id_title[1];
-          }
-        }
-      }
-    }
-  }
-  //echo '<pre>';
-  //print_r($titles_counts_array);
-  //echo '</pre>';
-  return $titles_counts_array;
+	return $titles_counts_array;
 }
 
 

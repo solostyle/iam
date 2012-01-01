@@ -43,7 +43,7 @@ if(isset($_POST['login_submit'])) {
             $_SESSION['last_last']= $last_last = $user['last'];
             session_write_close();
             // save the time logged in as LAST, and previous last as LAST LAST
-            $now  = my_mktime();
+            $now  = my_time();
             $now_f = strftime('%G.%m.%d %H:%M',$now);
             $update_lasts = "UPDATE `users` SET `last` = '$now_f', `last_last` = '$last_last' WHERE `username` = '$u_login'";
             mysql_query($update_lasts);

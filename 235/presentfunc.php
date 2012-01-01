@@ -128,15 +128,21 @@ function create_archive_nav_menu($arr) {
 	// start the html
 	$html = '<ul class="archlev1 archmenu_list_years" id="archmenu">';
 	$years = array_keys($arr);
+
 	foreach($years as $y) {
-		$displayState = $arr[$y]['display'];
-		unset($arr[$y]['display']);
-		if ($displayState == 'hide') {
-			$hiddenClass = ' hidden';
-			$toggleButtonText = '+';
-		} else {
+		if (isset($arr[$y]['display'])) {
 			$hiddenClass = '';
 			$toggleButtonText = '--';
+			unset($arr[$y]['display']);
+		} else {
+			$hiddenClass = ' hidden';
+			$toggleButtonText = '+';
+		}
+		
+		if (isset($arr[$y]['highlight'])) {
+			// TODO: use this
+			unset($arr[$y]['highlight']);
+		} else {
 		}
 		
 		$html .= '<li>';
@@ -149,14 +155,19 @@ function create_archive_nav_menu($arr) {
 		$html .= '<ul class="archlev2 archmenu_list_months' . $hiddenClass . '" id="archmenu_y_' . $y . '">';
 		
 		foreach($months as $m) {
-			$displayState = $arr[$y][$m]['display'];
-			unset($arr[$y][$m]['display']);		
-			if ($displayState == 'hide') {
-				$hiddenClass = ' hidden';
-				$toggleButtonText = '+';
-			} else {
+			if (isset($arr[$y][$m]['display'])) {
 				$hiddenClass = '';
 				$toggleButtonText = '--';
+				unset($arr[$y][$m]['display']);
+			} else {
+				$hiddenClass = ' hidden';
+				$toggleButtonText = '+';
+			}
+			
+			if (isset($arr[$y][$m]['highlight'])) {
+				// TODO: something
+				unset($arr[$y][$m]['highlight']);
+			} else {
 			}
 			
 			$html .= '<li>';
@@ -165,11 +176,11 @@ function create_archive_nav_menu($arr) {
 			$html .= '</li>';
 			unset($arr[$y][$m][0]);
 
-			$titles = $arr[$y][$m];
-			$hiddenClass = ($displayState == 'hide') ? ' hidden' : '';
+			$entries = $arr[$y][$m];
 			$html .= '<ul class="archlev3 archmenu_list_titles' . $hiddenClass . '" id="archmenu_y_' . $y . '_m_' . $m . '">';
-			foreach($titles as $id => $title) {
-				$html .= make_list_item(make_link($title, make_url($id)));
+			foreach($entries as $id => $entry) {
+
+				$html .= make_list_item(make_link($entry['title'], make_url($id)));
 			}
 			$html .= '</ul>';
 		}
