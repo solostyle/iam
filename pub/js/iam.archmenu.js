@@ -59,6 +59,12 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
       if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/1', menuCallback);
       else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/0', menuCallback);
 	};
+	
+	// Initializes the menu state with highlights and displays
+	var initMenuState = function() {
+		var menu = Iam.Objects.ArchMenu;
+		
+	};
 
 	// Saves the view of the menu so that it can load it this way next time
 	var saveMenuState = function(id, yr, mo) {
@@ -142,6 +148,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			// store menu as js object
 			// TODO: Only run this if anything has been added/deleted/modified
 			menuRequest(true);
+			initMenuState();
 
 			// set event handler for clicks in the web part
 			Listen("click", handleClick, 'archmenuWP');

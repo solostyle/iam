@@ -139,12 +139,6 @@ function create_archive_nav_menu($arr) {
 			$toggleButtonText = '+';
 		}
 		
-		if (isset($arr[$y]['highlight'])) {
-			// TODO: use this
-			unset($arr[$y]['highlight']);
-		} else {
-		}
-		
 		$html .= '<li>';
 		$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
 		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">' . $toggleButtonText . '</span>'; // handle clicks with JS
@@ -162,12 +156,6 @@ function create_archive_nav_menu($arr) {
 			} else {
 				$hiddenClass = ' hidden';
 				$toggleButtonText = '+';
-			}
-			
-			if (isset($arr[$y][$m]['highlight'])) {
-				// TODO: something
-				unset($arr[$y][$m]['highlight']);
-			} else {
 			}
 			
 			$html .= '<li>';
