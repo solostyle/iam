@@ -160,7 +160,6 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryTitle h2 element
         var titleEl = formEditElem("entryTitle", id);
         titleEl.innerHTML = '<input type="text" value="'+titleEl.innerHTML+'" />';
-        //el.onclick = null; //not needed b/c it didn't have an event
     };
     
     var saveTitle = function(saveButton, id) {
@@ -185,7 +184,6 @@ this.Iam.Admin = this.Iam.Admin || function() {
         var entryEl = formEditElem("entryEntry", id);
         var clean = Iam.ConvertBrAndP(entryEl.innerHTML);
         entryEl.innerHTML = '<textarea>'+clean+'</textarea>';
-        //el.onclick = null; //not needed b/c it didn't have an event
     };
     
     var saveEntry = function(saveButton, id) {
@@ -212,7 +210,6 @@ this.Iam.Admin = this.Iam.Admin || function() {
         var categoryEl = formEditElem("entryCategory", id);
         //categoryEl.innerHTML = '<select>'+clean+'</select>';
 		categoryEl.innerHTML = '<input type="text" value="'+categoryEl.lastChild.innerHTML+'" />';
-        //el.onclick = null; //not needed b/c it didn't have an event
     };
     
     var saveCategory = function(saveButton, id) {
