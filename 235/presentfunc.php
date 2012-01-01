@@ -133,22 +133,22 @@ function create_archive_nav_menu($arr) {
 
 	$html .= '<li>';
 		$html .= make_link($y . ' (' . $arr[$y][0] . ')', make_url($y.'/'));
-		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">' . $toggleButtonText . '</span>'; // handle clicks with JS
+		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">+</span>'; // handle clicks with JS
 		$html .= '</li>';
 		unset($arr[$y][0]);
 		
 		$months = array_keys($arr[$y]);
-		$html .= '<ul class="archlev2 archmenu_list_months" id="archmenu_y_' . $y . '">';
+		$html .= '<ul class="archlev2 archmenu_list_months hidden" id="archmenu_y_' . $y . '">';
 		
 		foreach($months as $m) {
 			$html .= '<li>';
 			$html .= make_link(monthname($m) . ' (' . $arr[$y][$m][0] . ')', make_url($y.'/'.$m.'/'));
-			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">' . $toggleButtonText . '</span>'; // handle clicks with JS
+			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">+</span>'; // handle clicks with JS
 			$html .= '</li>';
 			unset($arr[$y][$m][0]);
 
 			$entries = $arr[$y][$m];
-			$html .= '<ul class="archlev3 archmenu_list_titles" id="archmenu_y_' . $y . '_m_' . $m . '">';
+			$html .= '<ul class="archlev3 archmenu_list_titles hidden" id="archmenu_y_' . $y . '_m_' . $m . '">';
 			foreach($entries as $id => $entry) {
 
 				$html .= make_list_item(make_link($entry['title'], make_url($id)));
