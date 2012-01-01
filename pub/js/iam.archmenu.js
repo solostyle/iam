@@ -54,6 +54,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
       else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/index/0', indexCallback);
 	};
   
+	// Stores the menu in Json in Iam.Objects.ArchMenu
 	var menuRequest = function(isAjaxR){
       if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/1', menuCallback);
       else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/0', menuCallback);
@@ -138,7 +139,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			// currently header.php loads this
 			//indexRequest(true);
 			
-			// store menu as js objectj
+			// store menu as js object
 			// TODO: Only run this if anything has been added/deleted/modified
 			menuRequest(true);
 
