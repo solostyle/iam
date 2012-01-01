@@ -17,8 +17,8 @@ class Controller {
 
     $model = ucfirst($inflect->singularize($controller));
     $this->render = 1;
-    $this->$model =& new $model;
-    $this->_template =& new Template($controller,$action);
+    $this->$model = new $model;
+    $this->_template = new Template($controller,$action);
 
   }
 
