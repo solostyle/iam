@@ -18,9 +18,14 @@ class SQLQuery {
     protected $_limit;
   
     /** Connects to database **/
-      function connect($address, $account, $pwd, $name) {
-        $this->_dbHandle = @mysql_connect($address, $account, $pwd);
-        return ($this->_dbHandle && mysql_select_db($name, $this->_dbHandle)) ? true:false;
+      function connect($host, $usr, $pwd, $db) {
+		if (!isset($host)) $host = DB_HOST;
+		if (!isset($usr)) $usr = DB_USER;
+		if (!isset($pwd)) $pwd = DB_PASSWORD;
+		if (!isset($db)) $db = DB_NAME;
+		
+        $this->_dbHandle = @mysql_connect($host, $usr, $pwd);
+        return ($this->_dbHandle && mysql_select_db($db, $this->_dbHandle)) ? true:false;
     }
  
     /** Disconnects from database **/
