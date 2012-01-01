@@ -62,8 +62,13 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	
 	// Initializes the menu state with highlights and displays
 	var initMenuState = function() {
-		var menu = Iam.Objects.ArchMenu;
-		
+		var menu = Iam.Objects.ArchMenu,
+		uriArray = window.location.pathname.split('/');
+		uriArray.shift();
+		// for(var i=0;i<uriArray.length;i++) {
+			// alert("uriArray["+i+"] is => "+uriArray[i]);
+		// }
+		// start with adding highlights
 	};
 
 	// Saves the view of the menu so that it can load it this way next time

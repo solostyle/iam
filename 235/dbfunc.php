@@ -360,10 +360,6 @@ function create_archive_nav_array() {
 		}
 	}
 	
-	// add display tokens
-	$titles_counts_array[$now_year]['display'] = "show";
-	$titles_counts_array[$now_year][$now_month]['display'] = "show";
-
 	return $titles_counts_array;
 }
 
