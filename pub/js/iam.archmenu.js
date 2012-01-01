@@ -34,6 +34,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	var storeMenu = function(o) {
 		if(o.responseText !== undefined){
 			Iam.Objects.ArchMenu = JSON.parse(o.responseText);
+			initMenuState();
 		}
 	};
 	
@@ -62,28 +63,72 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	
 	// Initializes the menu state with highlights and displays
 	var initMenuState = function() {
-		var menu = Iam.Objects.ArchMenu,
-		uriArray = window.location.pathname.split('/');
-		uriArray.shift();
-		// for(var i=0;i<uriArray.length;i++) {
-			// alert("uriArray["+i+"] is => "+uriArray[i]);
-		// }
-		// start with adding highlights
-	};
-
-	// Saves the view of the menu so that it can load it this way next time
-	var saveMenuState = function(id, yr, mo) {
 		// rules:
-		// > show anything the user wanted to show
 		// > show the current url's submenu
 		//		2011/10
 		//			> expand 2011
 		//		2011/10/04/entry
 		//			> expand 2011 and 10
 		//		2011/
-		//			> don't expand anything unless user did
+		//			> don't expand anything
+		// > show anything the user wanted to show
 		// > hide everything else
+		var menu = Iam.Objects.ArchMenu,
+		uriArray = window.location.pathname.split('/'),
+		r = false, y = false, m = false, t = false, id;
+		uriArray.shift();
+		uriArray = uriArray.filter(function(){return true});
+		
+		//first check for the existence of all of it
+		if (!uriArray[0]) r = true;
+		if (uriArray[0] in menu) {
+			y = true;
+			if (uriArray[1] && uriArray[1] in menu[uriArray[0]]) {
+				m = true;
+				if (uriArray[3] && uriArray.join('/') in menu[uriArray[0]][uriArray[1]]) {
+					t = true;
+					id = uriArray.join('/');
+				}
+			}
+		}
+		
+		switch (true) {
+		case r : // if we're at the root path
+			// expand the latest year submenu
+			var latestyear = Object.keys(menu)[0], latestmonth = Object.keys(menu[latestyear])[0];
+			toggleMenu('archmenu_y_'+latestyear, 'archmenu_ty_'+latestyear, 'show');
+			// expand the latest month submenu
+			toggleMenu('archmenu_y_'+latestyear+'_m_'+latestmonth, 'archmenu_ty_'+latestyear+'_tm_'+latestmonth, 'show');
+			// no highlighting
+			break;
+		case t : // year/mo/da/a-title
+			// expand month submenu
+			menu[uriArray[0]][uriArray[1]]['display'] = 'show';
+			toggleMenu('archmenu_y_'+uriArray[0]+'_m_'+uriArray[1], 'archmenu_ty_'+uriArray[0]+'_tm_'+uriArray[1], 'show');
+			// expand year submenu
+			menu[uriArray[0]]['display'] = 'show';
+			toggleMenu('archmenu_y_'+uriArray[0], 'archmenu_ty_'+uriArray[0], 'show');
+			// highlight the title
+			menu[uriArray[0]][uriArray[1]][id]['highlight'] = 'true';
+			break;
+		case m : // year/mo
+			// expand year submenu
+			menu[uriArray[0]]['display'] = 'show';
+			toggleMenu('archmenu_y_'+uriArray[0], 'archmenu_ty_'+uriArray[0], 'show');
+			// highlight the month
+			menu[uriArray[0]][uriArray[1]]['highlight'] = 'true';
+			break;
+		case y : // year/
+			// highlight the year
+			menu[uriArray[0]]['highlight'] = 'true';
+			break;
+		default:
+			break;
+		}
+	};
 
+	// Saves the view of the menu so that it can load it this way next time
+	var saveMenuState = function(id, yr, mo) {
 		if (!Iam.Objects.ArchMenu) {
 			menuRequest(true);
 			saveMenuState(id, yr, mo);
@@ -102,12 +147,12 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
 	
 	// Toggles the view of menus and their buttons
-	var toggleMenu = function(menuId, buttonId) {
+	var toggleMenu = function(menuId, buttonId, override) {
 		var menu = Ydom.get(menuId),
 		button = Ydom.get(buttonId);
 		
 		// SHOW
-		if (Ydom.hasClass(menu, 'hidden')) {
+		if (override === 'show' || Ydom.hasClass(menu, 'hidden')) {
 			Ydom.removeClass(menu, 'hidden');
 			button.innerHTML = "--";
 		} else {
@@ -153,7 +198,6 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			// store menu as js object
 			// TODO: Only run this if anything has been added/deleted/modified
 			menuRequest(true);
-			initMenuState();
 
 			// set event handler for clicks in the web part
 			Listen("click", handleClick, 'archmenuWP');
