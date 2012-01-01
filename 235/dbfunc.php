@@ -335,7 +335,7 @@ function create_archive_nav_array() {
 		if ($num_rows_in_year) {
 
 			$titles_counts_array[$y] = array();
-			$titles_counts_array[$y][0] = $num_rows_in_year;
+			$titles_counts_array[$y]['count'] = $num_rows_in_year;
 
 			for($m='12';$m>='1';$m--) {
 				if ($m<='9') {
@@ -347,7 +347,7 @@ function create_archive_nav_array() {
 				if ($num_rows_in_month) {
 
 					$titles_counts_array[$y][$m] = array();
-					$titles_counts_array[$y][$m][0] = $num_rows_in_month;
+					$titles_counts_array[$y][$m]['count'] = $num_rows_in_month;
 
 					foreach($ids_titles as $id_title) {
 						$id = $id_title[0];
