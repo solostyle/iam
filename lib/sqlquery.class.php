@@ -5,6 +5,7 @@ class SQLQuery {
     protected $_result;
     protected $_query;
     protected $_table;
+	protected $_backupTable; // added by archana
   
     protected $_describe = array();
   
@@ -308,6 +309,22 @@ class SQLQuery {
 
     function delete() {
         if ($this->id) {
+			// save row in backup table (added by archana)
+			// TODO: get the data first
+			$fields = '';
+            $values = '';
+            foreach ($this->_describe as $field) {
+                if ($this->$field) {
+                    $fields .= '`'.$field.'`,';
+                    $values .= '\''.mysql_real_escape_string($this->$field).'\',';
+                }
+            }
+            $values = substr($values,0,-1);
+            $fields = substr($fields,0,-1);
+
+            $query = 'INSERT INTO '.$this->_backupTable.' ('.$fields.') VALUES ('.$values.')';
+			
+			// delete row from table
             $query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';		
             $this->_result = mysql_query($query, $this->_dbHandle);
             $this->clear();
@@ -324,9 +341,9 @@ class SQLQuery {
 
     /** Saves an Object i.e. Updates/Inserts Query **/
 
-    function save() {
+    function save($upd) {
         $query = '';
-        if (isset($this->id)) {
+        if ($upd) { // changed by archana: was if (isset($this->id))
             $updates = '';
             foreach ($this->_describe as $field) {
                 if ($this->$field) {
@@ -336,7 +353,7 @@ class SQLQuery {
 
             $updates = substr($updates,0,-1);
 
-            $query = 'UPDATE '.$this->_table.' SET '.$updates.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';			
+            $query = 'UPDATE '.$this->_table.' SET '.$updates.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
         } else {
             $fields = '';
             $values = '';
@@ -351,6 +368,8 @@ class SQLQuery {
 
             $query = 'INSERT INTO '.$this->_table.' ('.$fields.') VALUES ('.$values.')';
         }
+		
+		print $query;
         $this->_result = mysql_query($query, $this->_dbHandle);
         $this->clear();
         if ($this->_result == 0) {

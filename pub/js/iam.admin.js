@@ -90,7 +90,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
     
     var updateEntryRequest = function(id) {
         callback.data = 'id='+id+'&title='+updTitle()+'&entry='+Iam.ConvertBrAndP(updEntry());
-        var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/update', callback);
+        var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
   
     var chooseCategory = function(cat_id) {
