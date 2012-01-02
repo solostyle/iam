@@ -18,9 +18,9 @@ a:hover, a:active {color:#fc0}
 
 /* unordered list classes for archive navigation menu */
 ul.archlev1 {font-size:.9em}
-ul.archlev1 li {padding:0;display:block;background-color:#222}
-ul.archlev2 li {padding:4 0 4 0px;display:block;background-color:#111}
-ul.archlev3 li {padding:4 0 4 0px;display:block;background-color:#000}
+ul.archlev1 li {padding:4px 0 4px 0;display:block;background-color:#222}
+ul.archlev2 li {padding:4px 0 4px 0;display:block;background-color:#111}
+ul.archlev3 li {padding:4px 0 4px 0;display:block;background-color:#000}
 ul li:hover {background-color:transparent}
 
 #pagetitle {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF}
