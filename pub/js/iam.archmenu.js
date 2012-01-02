@@ -95,7 +95,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		switch (true) {
 		case r : // if we're at the root path
 			// expand the latest year submenu
-			var latestyear = Object.keys(menu)[0], latestmonth = Object.keys(menu[latestyear])[0];
+			var latestyear = Object.keys(menu)[0], latestmonth = Object.keys(menu[latestyear])[1]; // latest month is not index 0 which is 'count'
 			toggleMenu('archmenu_y_'+latestyear, 'archmenu_ty_'+latestyear, 'show');
 			// expand the latest month submenu
 			toggleMenu('archmenu_y_'+latestyear+'_m_'+latestmonth, 'archmenu_ty_'+latestyear+'_tm_'+latestmonth, 'show');
