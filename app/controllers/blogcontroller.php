@@ -72,7 +72,7 @@ class BlogController extends Controller {
 				$this->Entry->time = $entry['Entry']['time'];
 			}
 		} else {
-			// new entry only (looks to be working)
+			// new entry only
 			$upd = false;
 			$this->Entry->id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
 			$this->Entry->time = $_POST['time'];
