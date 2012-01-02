@@ -5,6 +5,9 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	* housing all years: "archlev1, archmenu_list_years" ID: "archmenu"
 	* housing all months in a year: "archlev2, archmenu_list_months" ID: "archmenu_y_2011">
 	* housing all titles in a month: "archlev3, archmenu_list_titles" ID: "archmenu_y_2011_m_01">
+	* list element for year: ID: "archmenu_li_y_2011"
+	* list element for month: ID: "archmenu_li_y_2011_m_01"
+	* list element for title: ID: "archmenu_li_id_2011/01/13/a-title"
 	* TOGGLING <span>
 	* year: "archmenu_ty" ID: "archmenu_ty_2011"
 	* month: "archmenu_tm" ID: "archmenu_ty_2011_tm_01"
@@ -110,6 +113,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			toggleMenu('archmenu_y_'+uriArray[0], 'archmenu_ty_'+uriArray[0], 'show');
 			// highlight the title
 			menu[uriArray[0]][uriArray[1]][id]['highlight'] = 'true';
+			highlightMenu('archmenu_li_id_'+id);
 			break;
 		case m : // year/mo
 			// expand year submenu
@@ -117,16 +121,19 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			toggleMenu('archmenu_y_'+uriArray[0], 'archmenu_ty_'+uriArray[0], 'show');
 			// highlight the month
 			menu[uriArray[0]][uriArray[1]]['highlight'] = 'true';
+			highlightMenu('archmenu_li_y_'+uriArray[0]+'_m_'+uriArray[1]);
 			break;
 		case y : // year/
 			// highlight the year
 			menu[uriArray[0]]['highlight'] = 'true';
+			highlightMenu('archmenu_li_y_'+uriArray[0]);
 			break;
 		default:
 			break;
 		}
 	};
 
+	// currently unused
 	// Saves the view of the menu so that it can load it this way next time
 	var saveMenuState = function(id, yr, mo) {
 		if (!Iam.Objects.ArchMenu) {
@@ -162,6 +169,12 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		}
 	};
 
+	// Highlights the link we're on
+	var highlightMenu = function(id) {
+		var el = Ydom.get(id);
+		Ydom.addClass(el, 'highlight');
+	};
+	
 	
 	// Handles Clicks in the web part
 	var handleClick = function(e) {

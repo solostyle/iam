@@ -70,3 +70,4 @@ ul.tags li {display:block}
 .hidden {display:none}
 .archmenu_ty, .archmenu_tm {color:#c52;text-decoration:none}
 .archmenu_ty:hover, .archmenu_tm:hover {color:#fc0;cursor:pointer}
+.highlight *, .highlight a:link, .highlight a:visited {color:#fc0;font-weight:bold}
