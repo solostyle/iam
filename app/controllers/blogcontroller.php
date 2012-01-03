@@ -78,6 +78,7 @@ class BlogController extends Controller {
 			$this->Entry->time = $_POST['time'];
 		}
 
+		$this->Entry->category = $_POST['category'];
 		$this->Entry->title = $_POST['title'];
 		$this->Entry->entry = $_POST['entry'];
 		$this->Entry->save($upd); // clears the object

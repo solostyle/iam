@@ -1,6 +1,5 @@
 <div id="blogEntries">
 
-<?php select_db(); ?>
 <?php if ($isAjax) {
 		session_start();
 	}
@@ -15,12 +14,12 @@
     $l = make_url($entry['Entry']['id']);
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
-    $tags = show_tags($entry['Entry']['id']);
-		$cat = get_category($entry['Entry']['id']);
-		$catUrl = str_replace(" ", "_", $cat); // make it a kosher URL
-		$c = make_link($cat, make_url('categories/' . $catUrl));  // when saving new category, do it in the javascript
-		// TODO: blog/update needs to take the category argument now!
+    $tags = '';//show_tags($entry['Entry']['id']);
+	$cat = str_replace(" ", "_", $entry['Entry']['category']); // make it a kosher URL piece
+	$c = make_link($entry['Entry']['category'], make_url('categories/' . $cat));  // when saving new category, do it in the javascript
+	// TODO: blog/update needs to take the category argument now!
 ?>
+
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
         <div class="main">
         
@@ -64,7 +63,6 @@
     </div><!-- end .entry -->
 
 <?php endforeach?>
-<?php mysql_close(); ?>
 
 
 </div><!-- end #blogEntries -->

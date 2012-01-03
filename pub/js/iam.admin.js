@@ -16,13 +16,13 @@ this.Iam.Admin = this.Iam.Admin || function() {
     formMinuteElem = function() {return Ydom.get('minute');},
     
     formEditElem = function(pre, id) {return Ydom.get(pre+'_'+id);},
-    updTitle = function() {return formEditElem("entryTitle", id).innerHTML;},
-    updEntry = function() {return formEditElem("entryEntry", id).innerHTML;},
-    updCategory = function() {return formEditElem("entryCategory", id).innerHTML;},
+    updTitle = function(id) {return formEditElem("entryTitle", id).innerHTML;},
+    updEntry = function(id) {return formEditElem("entryEntry", id).innerHTML;},
+    updCategory = function(id) {return formEditElem("entryCategory", id).lastChild.innerHTML;},
 	
     inpEntry = function() {return formEntryElem().value;}, // TODO: escape quotes!
     inpTitle = function() {return formTitleElem().value;}, // TODO: escape quotes!
-    inpCategory = function() {return chooseCategory();},
+    inpCategory = function() {return findCategory();},
     inpTime = function() {return formTimeElem().value;},
     inpYear = function() {return formYearElem().value;},
     inpMonth = function() {return formMonthElem().value;},
@@ -89,11 +89,11 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
     
     var updateEntryRequest = function(id) {
-        callback.data = 'id='+id+'&title='+updTitle()+'&entry='+Iam.ConvertBrAndP(updEntry());
+        callback.data = 'id='+id+'&title='+updTitle(id)+'&category='+updCategory(id)+'&entry='+Iam.ConvertBrAndP(updEntry(id));
         var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
   
-    var chooseCategory = function(cat_id) {
+    var findCategory = function() {
         var el = Ydom.getElementBy(findCatName, 'input', addEntryWPElem());
         return el.getAttribute('id').split('_', 2)[1];
     };
@@ -223,7 +223,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editCategory_" + id);
         saveButton.innerHTML = "Edit";
         
-        //var request = updateEntryRequest(id);
+        var request = updateEntryRequest(id);
     };
     
 	var handleClick = function(e) {
