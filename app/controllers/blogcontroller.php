@@ -12,17 +12,12 @@ class BlogController extends Controller {
 		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->regexp('id',implode("/", $queryArray));
         $this->Entry->orderBy('time','DESC');
-        $this->set('blog', $this->Entry->search());
-    }
-
-    function tag($queryArray) {
-        $this->doNotRenderHeader = $queryArray[0];
-		array_shift($queryArray);
-		$this->set('isAjax', $this->doNotRenderHeader);
-        //$ids = rtrv_ids_by_tag($queryArray);   // need to make this better. use a table for tags and join on that or something
-        $this->Entry->in('id',implode("','",$ids));
-        $this->Entry->orderBy('time','DESC');
-        $this->set('blog', $this->Entry->search());
+		$this->Entry->showHMABTM();
+		$data = $this->Entry->search();
+		// echo '<pre>';
+		// print_r($data);
+		// echo '</pre>';
+        $this->set('blog', $data);
     }
     
     function category($queryArray) {
@@ -31,7 +26,8 @@ class BlogController extends Controller {
 		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->where('category',str_replace("_", " ",$queryArray[0]));
         $this->Entry->orderBy('time','DESC');
-        $this->set('blog', $this->Entry->search());
+		$data = $this->Entry->search();
+        $this->set('blog', $data);
     }
     
     function index($queryArray) {
@@ -41,9 +37,10 @@ class BlogController extends Controller {
 		$this->Entry->setPage(1);
         $this->Entry->setLimit(1);
         $this->Entry->orderBy('time','DESC');
-        $this->set('blog', $this->Entry->search());
+        $data = $this->Entry->search();
+        $this->set('blog', $data);
     }
-
+	
     function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 		$this->set('isAjax', $this->doNotRenderHeader);
