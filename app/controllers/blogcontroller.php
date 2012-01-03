@@ -26,11 +26,10 @@ class BlogController extends Controller {
     }
     
     function category($queryArray) {
-        $this->doNotRenderHeader = $queryArray[0];
+        $this->doNotRenderHeader = $queryArray[0]; // set to '0' in routing.php
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
-        $ids = rtrv_ids_by_category(str_replace("_", " ",$queryArray[0]));
-        $this->Entry->in('id',implode("','",$ids));
+        $this->Entry->where('category',str_replace("_", " ",$queryArray[0]));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
     }
