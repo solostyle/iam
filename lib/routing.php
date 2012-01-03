@@ -6,7 +6,7 @@ $routing = array(
                 /* '/admin\/(.*?)\/(.*?)\/(.*)/' => 'admin/\1/\2/\3'
                 */
                 '/^([0-9]{4}\/.*)/' => 'blog/id/0/\1',
-				'/^tag\/(.*?)/' => 'tags/view/0/\1',
+				'/^tag\/(.*?)/' => 'tags/view_by_tag/0/\1',
                 '/^categories\/(.*?)/' => 'blog/category/0/\1',
                 '/^about/' => 'passives/about',
                  );

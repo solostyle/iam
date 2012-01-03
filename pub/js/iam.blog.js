@@ -25,12 +25,13 @@ this.Iam.Blog = this.Iam.Blog || function() {
     var indexRequest = function(){
         var indexRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/index', allCallback);
     };
-  
+	
+
 	return {
 		
 		Load: function(){
-			// initial load
-			indexRequest();
+			// initial load : currently loaded as server-side default controller/action
+			//indexRequest();
 
 		}
 	};

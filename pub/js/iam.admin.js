@@ -216,7 +216,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryCategory span element
         var categoryEl = formEditElem("entryCategory", id);
         var childEl = categoryEl.childNodes[0];
-		var htmlized = '<a href="'+Iam.RootDir()+Iam.Ds()+'categories'+Iam.Ds()+childEl.value+'">'+childEl.value+'</a>';
+		var htmlized = '<a href="'+Iam.RootDir()+Iam.Ds()+'category'+Iam.Ds()+childEl.value+'">'+childEl.value+'</a>';
         categoryEl.innerHTML = htmlized; // link
         
         // change behavior of the entryEditButton for category

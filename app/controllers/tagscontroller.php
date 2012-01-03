@@ -2,8 +2,9 @@
 
 class TagsController extends Controller {
 
-    function view($queryArray) {
-	    $this->doNotRenderHeader = $queryArray[0]; // set to '0' in routing.php
+	# gets all the entries for a tag
+    function view_by_tag($queryArray) {
+	    $this->doNotRenderHeader = $queryArray[0]; # set to '0' in routing.php
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
 		

@@ -16,7 +16,7 @@
     $time = parse_time($entry['Entry']['time']);
     $tags = '';//show_tags($entry['Entry']['id']);
 	$cat = str_replace(" ", "_", $entry['Entry']['category']); // make it a kosher URL piece
-	$c = make_link($entry['Entry']['category'], make_url('categories/' . $cat));  // when saving new category, do it in the javascript
+	$c = make_link($entry['Entry']['category'], make_url('category/' . $cat));  // when saving new category, do it in the javascript
 	// TODO: blog/update needs to take the category argument now!
 ?>
 
