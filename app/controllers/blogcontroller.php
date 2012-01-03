@@ -14,9 +14,6 @@ class BlogController extends Controller {
         $this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
 		$data = $this->Entry->search();
-		// echo '<pre>';
-		// print_r($data);
-		// echo '</pre>';
         $this->set('blog', $data);
     }
     
@@ -26,6 +23,7 @@ class BlogController extends Controller {
 		$this->set('isAjax', $this->doNotRenderHeader);
         $this->Entry->where('category',str_replace("_", " ",$queryArray[0]));
         $this->Entry->orderBy('time','DESC');
+		$this->Entry->showHMABTM();
 		$data = $this->Entry->search();
         $this->set('blog', $data);
     }
@@ -37,6 +35,7 @@ class BlogController extends Controller {
 		$this->Entry->setPage(1);
         $this->Entry->setLimit(1);
         $this->Entry->orderBy('time','DESC');
+		$this->Entry->showHMABTM();
         $data = $this->Entry->search();
         $this->set('blog', $data);
     }

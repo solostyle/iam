@@ -1,7 +1,11 @@
 <div id="blogEntries">
 
-<?php if ($isAjax) {
+<?php 
+	if ($isAjax) {
 		session_start();
+	}
+	if (isset($tag)) {
+		echo '<h3>Entries tagged with '.$tag['tag_nm'].':</h3>';
 	}
 ?>
 <?php foreach ($blog as $entry):?>
@@ -14,10 +18,17 @@
     $l = make_url($entry['Entry']['id']);
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
-    $tags = '';//show_tags($entry['Entry']['id']);
+	$tags = array();
+	if (!isset($tag)) {
+		$tagInfo = (count($entry['Tag']) > 0) ? $entry['Tag'] : '';
+		if ($tagInfo) {
+			foreach ($tagInfo as $tagInfo) {
+				array_push($tags, make_link($tagInfo['Tag']['tag_nm'], make_url('tag/' . $tagInfo['Tag']['tag_nm'])));
+			}
+		}
+	}
 	$cat = str_replace(" ", "_", $entry['Entry']['category']); // make it a kosher URL piece
 	$c = make_link($entry['Entry']['category'], make_url('category/' . $cat));  // when saving new category, do it in the javascript
-	// TODO: blog/update needs to take the category argument now!
 ?>
 
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
@@ -45,8 +56,8 @@
             <p><?php echo $date . ' at ' . $time?></p>
             <!--<p><a href="#">0 comments</a> so far</p>-->
             <p><a href="<?php echo $l?>">Permalink</a></p>
-			<?php if ($tags!=''):?>
-                <p>Tagged with <?php echo $tags?></p>
+			<?php if ($tags):?>
+                <p>Tagged with <?php foreach ($tags as $tag) echo $tag.' '?></p>
             <?php endif; ?>
             
 			<?php if (isset($_SESSION['logged_in'])):?>

@@ -34,6 +34,7 @@ ul li:hover {background-color:transparent}
 }
 #content .entry h3 {text-align:left;}
 #left h3 {margin:0;}
+#right h3 {margin:0 0 10px;}
 #blogAddForm h2 {font-size:.8em; color:#c52}
 #blogAddForm h2:hover {color:#fc0}
 #mainnav {padding:4px 0;background-color:#111}
