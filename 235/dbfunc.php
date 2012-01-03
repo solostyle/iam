@@ -112,21 +112,17 @@ function rtrv_ids_by_tag($tag_arr, $method='', $lim=0) {
     return $id_arr;
 }
 
-// Retrieve an array of entries given a category
-// returns an array of entry data rows using OR logic
-// results have any of the requested tags
-// 20 sep 09: created, right now does not handle $method
+// Retrieve an array of ids given a category
+// 20 sep 09: created
 function rtrv_ids_by_category($cat, $lim=0) {
 
     $id_arr = array();
 
-    // retrieve entries, without duplicates
-    $query = "SELECT DISTINCT b.`blog_id` FROM `blog` a, `blog_categories` b
-            WHERE a.`id` = b.`blog_id` AND b.`category_nm` = '".$cat."'";
+    $query = "SELECT `id` FROM `blog` WHERE `category` = '".$cat."'";
     $query .= ($lim)? " LIMIT $lim" : "";
     $result = mysql_query($query);
-    while ($id = mysql_fetch_array($result)) {
-        array_push($id_arr, $id["blog_id"]);
+    while ($row = mysql_fetch_array($result)) {
+        array_push($id_arr, $row["id"]);
     }
     mysql_free_result($result);
 
