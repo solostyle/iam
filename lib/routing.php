@@ -7,7 +7,6 @@ $routing = array(
                 */
                 '/^([0-9]{4}\/.*)/' => 'blog/id/0/\1',
 				'/^tag\/(.*?)/' => 'tags/view/0/\1',
-                '/^tags\/(.*?)/' => 'blog/tag/0/\1',
                 '/^categories\/(.*?)/' => 'blog/category/0/\1',
                 '/^about/' => 'passives/about',
                  );

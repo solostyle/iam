@@ -3,9 +3,20 @@
 class TagsController extends Controller {
 
     function view($queryArray) {
-        $this->Tag->id = $queryArray[1];
+	    $this->doNotRenderHeader = $queryArray[0]; // set to '0' in routing.php
+		array_shift($queryArray);
+		$this->set('isAjax', $this->doNotRenderHeader);
+		
+		# get the id for the tag_nm in the url
+		$this->Tag->where('tag_nm', $queryArray[0]);
+		$tagInfo = $this->Tag->search();
+		$id = $tagInfo[0]['Tag']['id'];
+		
+		# get the entries for this tag id
+        $this->Tag->id = $id;
 		$this->Tag->showHMABTM();
-        $this->set('data', $this->Tag->search());
+		$data = $this->Tag->search();
+        $this->set('blog', $data['Entry']);
 		#print_r($data); 
 		#Array ( [Tag] => 
 		#						Array ( [id] => 37
