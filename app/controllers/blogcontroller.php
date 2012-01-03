@@ -19,7 +19,7 @@ class BlogController extends Controller {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
-        $ids = rtrv_ids_by_tag($queryArray);
+        //$ids = rtrv_ids_by_tag($queryArray);   // need to make this better. use a table for tags and join on that or something
         $this->Entry->in('id',implode("','",$ids));
         $this->Entry->orderBy('time','DESC');
         $this->set('blog', $this->Entry->search());
@@ -81,11 +81,7 @@ class BlogController extends Controller {
 		$this->Entry->title = $_POST['title'];
 		$this->Entry->entry = $_POST['entry'];
 		$this->Entry->save($upd); // clears the object
-		
-		// select_db();
-        // assign_category($this->Entry->id, mysql_real_escape_string($_POST['category']));
-        // mysql_close();
-    }
+	}
 
     function delete() {
         $this->doNotRenderHeader = true;
