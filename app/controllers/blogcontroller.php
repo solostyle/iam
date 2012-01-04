@@ -10,11 +10,24 @@ class BlogController extends Controller {
         $this->doNotRenderHeader = $queryArray[0];
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
-        $this->Entry->regexp('id',implode("/", $queryArray));
-        $this->Entry->orderBy('time','DESC');
+		
+		if ($queryArray[count($queryArray)-2] != 'page') {
+			array_push($queryArray, 'page', '1');
+		}
+		
+    	$this->Entry->setPage($queryArray[count($queryArray)-1]);
+		$this->Entry->setLimit('10');
+		$this->Entry->regexp('id',implode("/", array_slice($queryArray, 0, -2)));
+		$this->set('url', implode("/", array_slice($queryArray, 0, -2)));
+		
+		$this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
 		$data = $this->Entry->search();
-        $this->set('blog', $data);
+		$this->set('blog', $data);
+		
+		$totalPages = $this->Entry->totalPages();
+		$this->set('totalPages',$totalPages);
+		$this->set('currentPageNumber',$queryArray[count($queryArray)-1]);
     }
     
     function category($queryArray) {

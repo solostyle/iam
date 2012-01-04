@@ -8,6 +8,21 @@
 		echo '<h3>Entries tagged with '.$tag['tag_nm'].':</h3>';
 	}
 ?>
+
+<ul>
+<?php if (isset($totalPages)):?>
+<?php for ($i = 1; $i <= $totalPages; $i++):?>
+<li style="display:inline;padding:0 5px 0;">
+<?php if ($i == $currentPageNumber):?>
+<?php echo $currentPageNumber?>
+<?php else: ?>
+<?php echo $html->link($i,$url.'/page/'.$i)?>
+<?php endif?>
+</li>
+<?php endfor?>
+<?php endif?>
+</ul>
+
 <?php foreach ($blog as $entry):?>
 
 <?php 
@@ -23,7 +38,7 @@
 		$tagInfo = (count($entry['Tag']) > 0) ? $entry['Tag'] : '';
 		if ($tagInfo) {
 			foreach ($tagInfo as $tagInfo) {
-				array_push($tags, make_link($tagInfo['Tag']['tag_nm'], make_url('tag/' . $tagInfo['Tag']['tag_nm'])));
+				$tags[] = make_link($tagInfo['Tag']['tag_nm'], make_url('tag/' . $tagInfo['Tag']['tag_nm']));
 			}
 		}
 	}
