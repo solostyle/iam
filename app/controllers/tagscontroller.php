@@ -32,11 +32,12 @@ class TagsController extends Controller {
 		} else {
 			$currentPageNumber = $queryArray[count($queryArray)-1];
 			$queryArray = array_slice($queryArray, 0, -2);
-		}		
+		}
 		
 		# get blog data
 		$data2 = performAction('blog','findBlogTagsForEntries',array('entryIds'=>$entryIds,'currentPageNumber'=>$currentPageNumber));
 		
+		# set variables for the view
 		$this->set('totalPages',$data2['totalPages']);
 		$this->set('currentPageNumber',$currentPageNumber);
 		array_unshift($queryArray, 'tag');
