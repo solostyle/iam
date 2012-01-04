@@ -38,12 +38,10 @@
     $date = parse_date($entry['Entry']['time']);
     $time = parse_time($entry['Entry']['time']);
 	$tags = array();
-	if (!isset($tag)) {
-		$tagInfo = (count($entry['Tag']) > 0) ? $entry['Tag'] : '';
-		if ($tagInfo) {
-			foreach ($tagInfo as $tagInfo) {
-				$tags[] = make_link($tagInfo['Tag']['tag_nm'], make_url('tag/' . $tagInfo['Tag']['tag_nm']));
-			}
+	$tagInfo = (count($entry['Tag']) > 0) ? $entry['Tag'] : '';
+	if ($tagInfo) {
+		foreach ($tagInfo as $tagInfo) {
+			$tags[] = make_link($tagInfo['Tag']['tag_nm'], make_url('tag/' . $tagInfo['Tag']['tag_nm']));
 		}
 	}
 	$cat = str_replace(" ", "_", $entry['Entry']['category']); // make it a kosher URL piece

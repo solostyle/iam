@@ -12,6 +12,16 @@ require_once (ROOT . DS . 'lib' . DS . 'inflection.php');
 
 include (ROOT . DS . '235' . DS . 'func.php');
 
+/** Secondary Call Function **/
+function performAction($controller,$action,$queryString = null,$render = 0) {
+  
+  $controllerName = ucfirst($controller).'Controller';
+  $dispatch = new $controllerName($controller,$action);
+  $dispatch->render = $render;
+  return call_user_func(array($dispatch,$action),$queryString);
+}
+
+
 /** Check if environment is development and display errors **/
 function SetReporting() {
     if (DEVELOPMENT_ENVIRONMENT == true) {

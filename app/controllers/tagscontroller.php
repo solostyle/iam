@@ -17,8 +17,16 @@ class TagsController extends Controller {
         $this->Tag->id = $id;
 		$this->Tag->showHMABTM();
 		$data = $this->Tag->search();
-        $this->set('blog', $data['Entry']);
+        //$this->set('blog', $data['Entry']);
 		$this->set('tag', $data['Tag']);
+		
+		$entryIds = array();
+		foreach ($data['Entry'] as $entry) {
+			array_push($entryIds, $entry['Entry']['id']);
+		}		
+		$data2 = performAction('blog','findBlogTagsForEntries',$entryIds);
+		$this->set('blog', $data2);
+		
 		#print_r($data); 
 		#Array ( [Tag] => 
 		#						Array ( [id] => 37

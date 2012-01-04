@@ -15,7 +15,7 @@ class BlogController extends Controller {
 			array_push($queryArray, 'page', '1');
 		}
 		$this->Entry->setPage($queryArray[count($queryArray)-1]);
-		$this->Entry->setLimit('10');
+		$this->Entry->setLimit('5');
 		
 		$this->Entry->regexp('id',implode("/", array_slice($queryArray, 0, -2)));
 		$this->Entry->orderBy('time','DESC');
@@ -40,7 +40,7 @@ class BlogController extends Controller {
 			array_push($queryArray, 'page', '1');
 		}
 		$this->Entry->setPage($queryArray[count($queryArray)-1]);
-		$this->Entry->setLimit('10');
+		$this->Entry->setLimit('5');
 		
         $this->Entry->where('category',str_replace("_", " ",$queryArray[0]));
         $this->Entry->orderBy('time','DESC');
@@ -67,6 +67,18 @@ class BlogController extends Controller {
         $data = $this->Entry->search();
         $this->set('blog', $data);
     }
+	
+	function findBlogTagsForEntries($entryIds) {
+		$this->doNotRenderHeader = true; /* i want this to be an ajax request*/
+		$this->set('isAjax', $this->doNotRenderHeader);
+		
+		$entryIdList = implode("','", $entryIds);
+		$this->Entry->in('id', $entryIdList);
+		$this->Entry->orderBy('time','DESC');
+		$this->Entry->showHMABTM();
+        $data = $this->Entry->search();		
+		return $data;
+	}
 	
     function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
