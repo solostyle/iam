@@ -20,12 +20,28 @@ class TagsController extends Controller {
         //$this->set('blog', $data['Entry']);
 		$this->set('tag', $data['Tag']);
 		
+		# build array of entryIds for this tag
 		$entryIds = array();
 		foreach ($data['Entry'] as $entry) {
 			array_push($entryIds, $entry['Entry']['id']);
+		}
+		
+		# set the current page number
+		if (count($queryArray)<2 || $queryArray[count($queryArray)-2] != 'page') {
+			$currentPageNumber = 1;
+		} else {
+			$currentPageNumber = $queryArray[count($queryArray)-1];
+			$queryArray = array_slice($queryArray, 0, -2);
 		}		
-		$data2 = performAction('blog','findBlogTagsForEntries',$entryIds);
-		$this->set('blog', $data2);
+		
+		# get blog data
+		$data2 = performAction('blog','findBlogTagsForEntries',array('entryIds'=>$entryIds,'currentPageNumber'=>$currentPageNumber));
+		
+		$this->set('totalPages',$data2['totalPages']);
+		$this->set('currentPageNumber',$currentPageNumber);
+		array_unshift($queryArray, 'tag');
+		$this->set('url', implode("/", $queryArray));
+		$this->set('blog', $data2['data']);
 		
 		#print_r($data); 
 		#Array ( [Tag] => 

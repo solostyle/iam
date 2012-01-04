@@ -68,16 +68,22 @@ class BlogController extends Controller {
         $this->set('blog', $data);
     }
 	
-	function findBlogTagsForEntries($entryIds) {
+	function findBlogTagsForEntries($args) {
 		$this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 		$this->set('isAjax', $this->doNotRenderHeader);
 		
-		$entryIdList = implode("','", $entryIds);
+		$this->Entry->setPage($args['currentPageNumber']);
+		$this->Entry->setLimit('5');
+
+		$entryIdList = implode("','", $args['entryIds']);
 		$this->Entry->in('id', $entryIdList);
 		$this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
-        $data = $this->Entry->search();		
-		return $data;
+        $data = $this->Entry->search();
+		
+		$totalPages = $this->Entry->totalPages();
+
+		return array('data' => $data, 'totalPages' => $totalPages);
 	}
 	
     function add() {
