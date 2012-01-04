@@ -51,9 +51,9 @@ class BlogController extends Controller {
 		$totalPages = $this->Entry->totalPages();
 		$this->set('totalPages',$totalPages);
 		$this->set('currentPageNumber',$queryArray[count($queryArray)-1]);
-		$queryString = implode("/", array_slice($queryArray, 0, -2));
-		array_unshift($queryString, 'category');
-		$this->set('url', $queryString);
+		$queryArray = array_slice($queryArray, 0, -2);
+		array_unshift($queryArray, 'category');
+		$this->set('url', implode("/", $queryArray));
     }
     
     function index($queryArray) {
