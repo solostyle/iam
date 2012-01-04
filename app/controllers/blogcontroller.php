@@ -14,12 +14,10 @@ class BlogController extends Controller {
 		if ($queryArray[count($queryArray)-2] != 'page') {
 			array_push($queryArray, 'page', '1');
 		}
-		
-    	$this->Entry->setPage($queryArray[count($queryArray)-1]);
+		$this->Entry->setPage($queryArray[count($queryArray)-1]);
 		$this->Entry->setLimit('10');
-		$this->Entry->regexp('id',implode("/", array_slice($queryArray, 0, -2)));
-		$this->set('url', implode("/", array_slice($queryArray, 0, -2)));
 		
+		$this->Entry->regexp('id',implode("/", array_slice($queryArray, 0, -2)));
 		$this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
 		$data = $this->Entry->search();
@@ -28,17 +26,34 @@ class BlogController extends Controller {
 		$totalPages = $this->Entry->totalPages();
 		$this->set('totalPages',$totalPages);
 		$this->set('currentPageNumber',$queryArray[count($queryArray)-1]);
+		$queryString = implode("/", array_slice($queryArray, 0, -2));
+		if (substr($queryString, -1) == '/') $queryString = substr($queryString, 0, -1);
+		$this->set('url', $queryString);
     }
     
     function category($queryArray) {
         $this->doNotRenderHeader = $queryArray[0]; // set to '0' in routing.php
 		array_shift($queryArray);
 		$this->set('isAjax', $this->doNotRenderHeader);
+		
+		if (count($queryArray)<2 || $queryArray[count($queryArray)-2] != 'page') {
+			array_push($queryArray, 'page', '1');
+		}
+		$this->Entry->setPage($queryArray[count($queryArray)-1]);
+		$this->Entry->setLimit('10');
+		
         $this->Entry->where('category',str_replace("_", " ",$queryArray[0]));
         $this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
 		$data = $this->Entry->search();
         $this->set('blog', $data);
+		
+		$totalPages = $this->Entry->totalPages();
+		$this->set('totalPages',$totalPages);
+		$this->set('currentPageNumber',$queryArray[count($queryArray)-1]);
+		$queryString = implode("/", array_slice($queryArray, 0, -2));
+		array_unshift($queryString, 'category');
+		$this->set('url', $queryString);
     }
     
     function index($queryArray) {

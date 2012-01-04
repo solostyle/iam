@@ -9,10 +9,12 @@
 	}
 ?>
 
+<?php if (isset($totalPages) && $totalPages>1):?>
 <ul>
-<?php if (isset($totalPages)):?>
+<li style="display:inline;padding:0 2px 0 3px;">
+<?php if ($currentPageNumber>1) echo $html->link('<< prev',$url.'/page/'.($currentPageNumber-1))?></li>
 <?php for ($i = 1; $i <= $totalPages; $i++):?>
-<li style="display:inline;padding:0 5px 0;">
+<li style="display:inline;padding:0 2px 0 3px;">
 <?php if ($i == $currentPageNumber):?>
 <?php echo $currentPageNumber?>
 <?php else: ?>
@@ -20,8 +22,10 @@
 <?php endif?>
 </li>
 <?php endfor?>
-<?php endif?>
+<?php if ($currentPageNumber<$totalPages) echo $html->link('next >>',$url.'/page/'.($currentPageNumber+1))?></li>
 </ul>
+<?php endif?>
+
 
 <?php foreach ($blog as $entry):?>
 
