@@ -155,7 +155,4 @@ RemoveMagicQuotes();
 UnregisterGlobals();
 DetermineRequest();
 
-// REMEMBER!!!
-// get rid of display_page(), instead return json
-// have a render.js that creates the markup from json
 ?>

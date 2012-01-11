@@ -140,6 +140,7 @@ if(isset($_POST['login_submit'])) {
         <div id="left">
             <?php
                include (ROOT.DS. 'app' .DS. 'views' .DS. 'archmenu' .DS. 'index.php');
+			   //echo performAction('archmenu','index',true);
             ?>
 
         </div><!-- end #left -->
