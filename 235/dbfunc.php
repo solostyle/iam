@@ -52,58 +52,6 @@ function blog_first_and_last_dates() {
 }
 
 
-// returns a multidimensional array of 
-// year->count, year->months, month->count, month->id->title
-// 6 jan 11: created
-function create_archive_nav_array() {
-	$start_and_end_dates = blog_first_and_last_dates();
-	$start_date = $start_and_end_dates[0];
-	$end_date = $start_and_end_dates[1];
-	$start_year = strftime("%Y", strtotime($start_date));
-	$end_year = strftime("%Y", strtotime($end_date));
-	$titles_counts_array = array();
-
-  	// for expand/collapse
-	$now  = my_time();
-	$now_year = date('Y', $now);
-	$now_month= date('m', $now);
-
-	// build the array
-	for($y=$end_year;$y>=$start_year;$y--) {
-		$num_rows_in_year = count(rtrv_titles($y));
-
-		if ($num_rows_in_year) {
-
-			$titles_counts_array[$y] = array();
-			$titles_counts_array[$y]['count'] = $num_rows_in_year;
-
-			for($m='12';$m>='1';$m--) {
-				if ($m<='9') {
-				  $m = '0' . $m;
-				}
-				$ids_titles = rtrv_titles($y . '/' . $m);
-				$num_rows_in_month = count($ids_titles);
-
-				if ($num_rows_in_month) {
-
-					$titles_counts_array[$y][$m] = array();
-					$titles_counts_array[$y][$m]['count'] = $num_rows_in_month;
-
-					foreach($ids_titles as $id_title) {
-						$id = $id_title[0];
-						$title = $id_title[1];
-						$titles_counts_array[$y][$m][$id] = array();
-						$titles_counts_array[$y][$m][$id]['title'] = $title;
-					}
-				}
-			}
-		}
-	}
-	
-	return $titles_counts_array;
-}
-
-
 //$h = haystack, $n = needle
 function strstrb($h,$n){
     return array_shift(explode($n,$h,2));

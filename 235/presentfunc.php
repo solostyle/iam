@@ -40,48 +40,6 @@ function make_list_item($item) {
   return '<li>' . $item . '</li>';
 }
 
-// Creates the archive navigation menu
-// 6 jan 11: created
-function create_archive_nav_menu($arr) {
-
-	// start the html
-	$html = '<ul class="archlev1 archmenu_list_years" id="archmenu">';
-	$years = array_keys($arr);
-
-	foreach($years as $y) {
-
-	$html .= '<li id="archmenu_li_y_' . $y . '">';
-		$html .= make_link($y . ' (' . $arr[$y]['count'] . ')', make_url($y.'/'));
-		$html .= '<span class="archmenu_ty archToggleButton" id="archmenu_ty_' . $y . '">+</span>'; // handle clicks with JS
-		$html .= '</li>';
-		unset($arr[$y]['count']);
-		
-		$months = array_keys($arr[$y]);
-		$html .= '<ul class="archlev2 archmenu_list_months hidden" id="archmenu_y_' . $y . '">';
-		
-		foreach($months as $m) {
-			$html .= '<li id="archmenu_li_y_' . $y . '_m_' . $m . '">';
-			$html .= make_link(monthname($m) . ' (' . $arr[$y][$m]['count'] . ')', make_url($y.'/'.$m.'/'));
-			$html .= '<span class="archmenu_tm archToggleButton" id="archmenu_ty_' . $y . '_tm_' . $m . '">+</span>'; // handle clicks with JS
-			$html .= '</li>';
-			unset($arr[$y][$m]['count']);
-
-			$entries = $arr[$y][$m];
-			$html .= '<ul class="archlev3 archmenu_list_titles hidden" id="archmenu_y_' . $y . '_m_' . $m . '">';
-			foreach($entries as $id => $entry) {
-
-				$html .= '<li id="archmenu_li_id_' . $id . '">';
-				$html .= make_link($entry['title'], make_url($id));
-				$html .= '</li>';
-			}
-			$html .= '</ul>';
-		}
-		$html .= '</ul>';
-	}
-	$html .= '</ul>';
-	return $html;
-}
-
 
 // Display all the tags in a checkbox form for tagging
 // 13 feb 09: display tags in columns, maybe a table? allow write-ins?
