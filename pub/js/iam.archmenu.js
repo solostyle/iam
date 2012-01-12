@@ -46,7 +46,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 		success: insertMenu,
 		failure: handleFailure
 	};
-	var menuCallback ={
+	var saveCallback ={
 		method:"GET",
 		success: storeMenu,
 		failure: handleFailure
@@ -59,9 +59,9 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	};
   
 	// Stores the menu in Json in Iam.Objects.ArchMenu
-	var menuRequest = function(isAjaxR){
-      if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/1', menuCallback);
-      else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/menu/0', menuCallback);
+	var saveMenuRequest = function(isAjaxR){
+      if (isAjaxR) AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/save/1', saveCallback);
+      else AjaxR(Iam.RootDir()+Iam.Ds()+'archmenu/save/0', saveCallback);
 	};
 	
 	// Initializes the menu state with highlights and displays
@@ -137,7 +137,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 	// Saves the view of the menu so that it can load it this way next time
 	var saveMenuState = function(id, yr, mo) {
 		if (!Iam.Objects.ArchMenu) {
-			menuRequest(true);
+			saveMenuRequest(true);
 			saveMenuState(id, yr, mo);
 		} else {
 			// look up the id in the array
@@ -210,7 +210,7 @@ this.Iam.Archmenu = this.Iam.Archmenu || function() {
 			
 			// store menu as js object
 			// TODO: Only run this if anything has been added/deleted/modified
-			menuRequest(true);
+			saveMenuRequest(true);
 
 			// set event handler for clicks in the web part
 			Listen("click", handleClick, 'archmenuWP');
