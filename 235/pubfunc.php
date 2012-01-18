@@ -74,29 +74,29 @@ function make_feed($rss_or_atom, $lim) {
 
 //Makes the RSS XML for each individual entry
 function make_xml_entry($rss_or_atom, $entryarray) {
-    $entrydate = dcdateformat($entryarray[2]);
-    $entryurl = make_url($entryarray[0]);
-    $entrytext = substr(strip_tags($entryarray[4]),0,300);
+    $entrydate = dcdateformat($entryarray['time']);
+    $entryurl = make_url($entryarray['id']);
+    $entrytext = substr(strip_tags($entryarray['entry']),0,300);
     $content = "";
 
     switch ($rss_or_atom) {
     case "rss":
 	    $content .= "<item>";
-	    $content .= "<title>$entryarray[3]</title>";
+	    $content .= "<title>".$entryarray['title']."</title>";
 	    $content .= "<link>\"$entryurl\"</link>";
     	    $content .= "<description>$entrytext</description>";
-	    $content .= "<dc:creator>$entryarray[1]</dc:creator>";
+	    $content .= "<dc:creator>solostyle</dc:creator>";
 	    $content .= "<dc:date>$entrydate</dc:date>";
 	    $content .= "<guid isPermaLink=\"true\">$entryurl</guid>";
 	    $content .= "</item>";
 	    break;
     case "atom":
     	    $content .= "<entry>";
-	    $content .= "<title>$entryarray[3]</title>";
+	    $content .= "<title>".$entryarray['title']."</title>";
 	    $content .= "<link href=\"$entryurl\" />";
-	    $content .= "<id>$entryarray[0]</id>";
+	    $content .= "<id>".$entryarray['id']."</id>";
 	    $content .= "<summary>$entrytext</summary>";
-	    $content .= "<author><name>$entryarray[1]</name></author>";
+	    $content .= "<author><name>solostyle</name></author>";
 	    $content .= "<updated>$entrydate</updated>";
 	    $content .= "</entry>";
 	    break;
