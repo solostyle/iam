@@ -23,9 +23,9 @@ ul.archlev2 li {padding:4px 5px;display:block;background-color:#111}
 ul.archlev3 li {padding:4px 5px;display:block;background-color:#000}
 ul li:hover {background-color:transparent}
 
-#pagetitle {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF}
+#pagetitle {text-shadow: 0 0 5px #FFF, 0 0.2em 10px #FFF, 0 0.2em 50px #FFF;letter-spacing:0.05em}
 #pagetitle > a:link, #pagetitle > a:visited {color:#000}
-#pagetitle > a:hover, #pagetitle > a:active {text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #fc0}
+#pagetitle > a:hover, #pagetitle > a:active {text-shadow: 0 0 5px #FFF, 0 0.2em 10px #c52, 0 0.2em 50px #fff}
 
 #footer {background-color:#111}
 #footer .block p {line-height:1.3em}

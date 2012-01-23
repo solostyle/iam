@@ -23,13 +23,12 @@ be careful when changing or recalculating these
 
 #footer {
     clear:both;
-	padding:1em;
     width: 100%;
 }
 #footer .block {
 	float: left;
-	margin: 0 .75em; /* 10px / 16px = .75em, 988px-60px margins = 928. 928/3=309 */
-	width: 30.275%; /* 309px / 988px = 0.31275 ? */
+	margin: 0 .625em; /* 10px / 16px = .625em, 988px-60px margins = 928. 928/3=309 */
+	width: 31.275%; /* 309px / 988px = 0.31275 ? */
 }
 #footer .clear {
 	clear: both;
