@@ -21,8 +21,26 @@ be careful when changing or recalculating these
     width: 100%;
 }
 
+#footer {
+    clear:both;
+	padding:1em;
+    width: 100%;
+}
+#footer .block {
+	float: left;
+	margin: 0 .75em; /* 10px / 16px = .75em, 988px-60px margins = 928. 928/3=309 */
+	width: 31.275%; /* 309px / 988px = 0.31275 ? */
+}
+#footer .clear {
+	clear: both;
+	font-size:1px;
+	height:1px;
+	line-height:1px;
+}
+
 #content {
     float: left;
+	margin-bottom:1em;
     width: 100%;
 }
 

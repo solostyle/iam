@@ -80,7 +80,7 @@ if(isset($_POST['login_submit'])) {
 </head>
 <body>
 <div id="page">
-    <h1 id="pagetitle"><a href="/">meditations</a></h1>
+    <h1 id="pagetitle"><a href="/">Meditations</a></h1>
 
     <!-- some lame tagline -->
     <p id="pagesubtitle"><em>on yoga, breath, and self discovery</em></p>
@@ -89,7 +89,6 @@ if(isset($_POST['login_submit'])) {
     <ul id="mainnav"><?php 
         select_db();
         $cats = rtrv_categories();
-        echo make_list_item(make_link('about', make_url('about')));
         foreach ($cats as $c) {
             $link = str_replace(" ", "_", $c);
             echo make_list_item(make_link($c, make_url('category/'.$link)));
