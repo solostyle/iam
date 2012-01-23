@@ -3,7 +3,8 @@
 
 <div id="footer">
 	<div class="block">
-		<p><img src="http://iam.solostyle.net/img/640/me.jpg" /></p>
+		<!-- <p><img src="http://iam.solostyle.net/img/640/me.jpg" /></p> -->
+		<p><img src="http://iam.solostyle.net/img/640/me_blurry.jpg" height="240px" /></p>
 	</div>
 	<div class="block">
 		<h2>About</h2>
@@ -15,8 +16,8 @@
 	</div>
 	<div class="block">
 		<h2>Feeds</h2>
-		<p><a href="http://iam.solostyle.net/rss.xml">RSS</a></p>
-		<p><a href="http://iam.solostyle.net/atom.xml">Atom</a></p>
+		<p>meditations: <a href="http://iam.solostyle.net/rss.xml">RSS</a> | <a href="http://iam.solostyle.net/atom.xml">Atom</a></p>
+		<p>last.fm: <a href="http://ws.audioscrobbler.com/1.0/user/solostyle/recenttracks.rss">RSS</a></p>
 	</div>
 	<div class="clear"><br></div>
 </div><!-- end #footer -->
