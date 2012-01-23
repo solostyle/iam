@@ -3,6 +3,9 @@
 
 <div id="footer">
 	<div class="block">
+		<p><img src="http://iam.solostyle.net/img/640/me.jpg" /></p>
+	</div>
+	<div class="block">
 		<h2>About</h2>
 		<p>I'm Archana. I teach and study yoga, provide therapeutic massage, and develop my own websites. I also enjoy rock climbing, singing, and challenging puzzles. Welcome to my personal blog.</p>
 	</div>
