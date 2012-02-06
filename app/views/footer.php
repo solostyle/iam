@@ -4,7 +4,8 @@
 <div id="footer">
 	<div class="block">
 		<!-- <p><img src="http://iam.solostyle.net/img/640/me.jpg" /></p> -->
-		<p style="text-align:center"><img src="http://iam.solostyle.net/img/640/me_blurry.jpg" height="240px" /></p>
+		<!-- <p style="text-align:center"><img src="http://iam.solostyle.net/img/640/me_blurry.jpg" height="240px" /></p> -->
+		<p style="text-align:center"><img style="max-width:100%" src="http://iam.solostyle.net/img/640/me_robe.jpg" /></p>
 	</div>
 	<div class="block">
 		<h2>About</h2>
