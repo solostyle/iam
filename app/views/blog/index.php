@@ -49,6 +49,25 @@
 ?>
 
     <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
+	    <div class="info">
+			<ul>
+				<li><?php echo $date . ' at ' . $time?></li>
+					<!--<p><a href="#">0 comments</a> so far</p>-->
+				<li><a href="<?php echo $l?>">Permalink</a></li>
+			<?php if ($tags):?>
+                <li>Tags: <?php foreach ($tags as $tag) echo $tag.' '?></li>
+            <?php endif; ?>
+            
+				<li>
+			<?php if (isset($_SESSION['logged_in'])):?>
+                <div class="entryEditButton" id="editCategory_<?php echo $entry['Entry']['id']?>">Edit</div>
+            <?php endif; ?> Category: <span id="entryCategory_<?php echo $entry['Entry']['id']?>"><?php echo $c?></span></li>
+
+            <?php if (isset($_SESSION['logged_in'])):?>
+                <li><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></li>
+            <?php endif; ?>
+        </div><!-- end .info -->
+
         <div class="main">
         
             <!--allow editing of title only if logged in-->
@@ -69,24 +88,6 @@
              <em><a name="bot" href="http://iam.solostyle.net/comment.php">comment</a></em>
             </p> -->
         </div><!-- end .main -->
-        <div class="info">
-            <p><?php echo $date . ' at ' . $time?></p>
-            <!--<p><a href="#">0 comments</a> so far</p>-->
-            <p><a href="<?php echo $l?>">Permalink</a></p>
-			<?php if ($tags):?>
-                <p>Tagged with <?php foreach ($tags as $tag) echo $tag.' '?></p>
-            <?php endif; ?>
-            
-			<?php if (isset($_SESSION['logged_in'])):?>
-                <div class="entryEditButton" id="editCategory_<?php echo $entry['Entry']['id']?>">Edit</div>
-            <?php endif; ?>
-			
-			<p>Categorized under <span id="entryCategory_<?php echo $entry['Entry']['id']?>"><?php echo $c?></span></p>
-
-            <?php if (isset($_SESSION['logged_in'])):?>
-                <p><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></p>
-            <?php endif; ?>
-        </div><!-- end .info -->
 
     </div><!-- end .entry -->
 
