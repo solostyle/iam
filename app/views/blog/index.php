@@ -10,11 +10,11 @@
 ?>
 
 <?php if (isset($totalPages) && $totalPages>1):?>
-<ul>
-<li style="display:inline;padding:0 2px 0 3px;">
+<ul class="article-pages">
+<li>
 <?php if ($currentPageNumber>1) echo $html->link('<< prev',$url.'/page/'.($currentPageNumber-1))?></li>
 <?php for ($i = 1; $i <= $totalPages; $i++):?>
-<li style="display:inline;padding:0 2px 0 3px;">
+<li>
 <?php if ($i == $currentPageNumber):?>
 <?php echo $currentPageNumber?>
 <?php else: ?>
@@ -22,6 +22,7 @@
 <?php endif?>
 </li>
 <?php endfor?>
+<li>
 <?php if ($currentPageNumber<$totalPages) echo $html->link('next >>',$url.'/page/'.($currentPageNumber+1))?></li>
 </ul>
 <?php endif?>
@@ -48,8 +49,16 @@
 	$c = make_link($entry['Entry']['category'], make_url('category/' . $cat));  // when saving new category, do it in the javascript
 ?>
 
-    <div class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
-	    <div class="info">
+    <article class="entry" id="entry_<?php echo $entry['Entry']['id']?>">
+		<header class="article-header">
+			<!--allow editing of title only if logged in-->
+            <?php if (isset($_SESSION['logged_in'])):?>
+                <div class="entryEditButton" id="editTitle_<?php echo $entry['Entry']['id']?>">Edit</div>
+            <?php endif; ?>
+            
+            <h2 id="entryTitle_<?php echo $entry['Entry']['id']?>"><?php echo $ttl?></h2>
+		</header>
+		<footer class="article-footer">
 			<ul>
 				<li><?php echo $date . ' at ' . $time?></li>
 					<!--<p><a href="#">0 comments</a> so far</p>-->
@@ -66,17 +75,10 @@
             <?php if (isset($_SESSION['logged_in'])):?>
                 <li><a id="deleteEntry_<?php echo $entry['Entry']['id']?>">Delete</a></li>
             <?php endif; ?>
-        </div><!-- end .info -->
-
-        <div class="main">
+			</ul>
+        </footer>
+        <div class="article-content">
         
-            <!--allow editing of title only if logged in-->
-            <?php if (isset($_SESSION['logged_in'])):?>
-                <div class="entryEditButton" id="editTitle_<?php echo $entry['Entry']['id']?>">Edit</div>
-            <?php endif; ?>
-            
-            <h2 id="entryTitle_<?php echo $entry['Entry']['id']?>"><?php echo $ttl?></h2>
-
             <!--allow editing of entry only if logged in-->
             <?php if (isset($_SESSION['logged_in'])):?>
                 <div class="entryEditButton" id="editEntry_<?php echo $entry['Entry']['id']?>">Edit</div>
@@ -87,9 +89,8 @@
             <!-- <p>
              <em><a name="bot" href="http://iam.solostyle.net/comment.php">comment</a></em>
             </p> -->
-        </div><!-- end .main -->
-
-    </div><!-- end .entry -->
+        </div><!-- end .article-content -->
+    </article><!-- end .entry -->
 
 <?php endforeach?>
 

@@ -46,7 +46,8 @@ be careful when changing or recalculating these
 #content #left {
     float: left;
     margin-top: 0.72727em;	/* 8px / 11px = 0.72727em */
-    width: 18.219%;		/* 180px / 988px = 0.18219 */
+	padding:0 1% 0 0;
+    width: 29%
 }
 /* #left {font-size:11px;} */
 
@@ -60,27 +61,8 @@ be careful when changing or recalculating these
 #content #right {
     float: right;
     margin-top: 0.72727em;  /* 8px / 11px = 0.72727em */
-    width: 79.757%;   /* 788px / 988px = 0.79757 */
-}
-
-/*#content #right #blogAddForm, #content #right #blogEntries {
-    float: right;
-    width: 100%;
-}*/
-
-/*#content #right #blogEntries .entry {
-    float: right;
-    width: 100%;
-}*/
-
-#content #right #blogEntries .entry .main {
-    float: left;
-    width: 65.876%;	/* 556px / 844px = 0.65876 */
-}
-
-#content #right #blogEntries .entry .info {
-    float: right;
-    width: 31.753%; /* 268px / 844px = 0.31753 */
+	padding:0 0 0 1%;
+    width: 69%
 }
 
 #content #right #blogAddForm .main {
@@ -92,6 +74,6 @@ be careful when changing or recalculating these
     float: right;
     width: 31.753%; /* 268px / 844px = 0.31753 */
 }
-.entry {
+article.entry {
     clear: both;
 }
