@@ -62,6 +62,7 @@ ul.article-pages li:first-child {display:inline;padding:0 2px 0 0}
 article {padding:2%;background-color:#111;margin:0 0 5% 0}
 article:last-child {margin:0 0 2.5% 0}
 article footer {font-size:.8em}
+article footer ul {margin:.5em 0 0 0}
 article footer ul li {display:inline;border-left:1px solid #666; padding:0 1%}
 article footer ul li:first-child {border:0; padding:0 1% 0 0}
 article .article-content ul li {display:list-item;list-style-type:circle;margin:0 0 0 20px}
