@@ -11,19 +11,33 @@ this.Listen = this.Listen || function (event, fn, elid) {
 
 // Now define local website namespace
 this.Iam = this.Iam || function() {
-    var convertNewLines = function (text) {
-        var finalText = "<p>" + text.replace(/\r\n\r\n/gi, "</p><p>") + "</p>";
-        finalText = finalText.replace(/\r\n/gi, "<br />");
-        // had to add the following two lines after i started using mysql_real_escape_string() on all inserts
-        finalText = finalText.replace(/\n\n/gi, "</p><p>");            
-        finalText = finalText.replace(/\n/gi, "<br />");
+	// function that converts breaks, new lines, carriage returns into
+	// html while respecting other block-level elements
+	// Use when saving text to the database, so that it is stored as HTML
+    var htmlize = function (text) {
+        var finalText = "<p>" + text.replace(/[\r\n]+/gi, "</p><p>") + "</p>";
+		// remove any p tags wrapped around headers, list items, and lists
+		finalText = finalText.replace(/<p>(<h[1-6]>|<li>|<[u|o]l>)/gi, "$1");
+		finalText = finalText.replace(/(<\/h[1-6]>|<\/li>|<\/[u|o]l>)<\/p>/gi, "$1");
+		// remove empty paragraphs?
+		//finalText = finalText.replace();
+		
         return finalText;
     };
     
-    var convertBrAndP = function (text) {
-        var finalText = text.replace(/<br \/>/gi, "\n");
+	// function that converts html paragraphs and breaks into
+	// textarea-friendly text for viewing and editing
+    var textize = function (text) {
+        var finalText = text.replace(/<br[ ]?[\/]?>/gi, "\n");
         finalText = finalText.replace(/<\/p><p>/gi, "\n\n");
-        // takes care of the beginning and ending <p> tags
+		// headers and list items
+		finalText = finalText.replace(/[\n\r]*(<h[1-6]>|<li>)[\n\r]*/gi, "\n\n$1");
+		finalText = finalText.replace(/[\n\r]*(<\/h[1-6]>|<\/li>)[\n\r]*/gi, "$1\n\n");
+		// then the list elements
+		finalText = finalText.replace(/[\n\r]*(<[u|o]l>)[\n\r]*/gi, "\n\n$1");
+		finalText = finalText.replace(/[\n\r]*(<\/[u|o]l>)[\n\r]*/gi, "$1\n\n");
+        
+		// remove beginning and ending <p> tags
         finalText = finalText.replace(/<p>/gi, "");
         finalText = finalText.replace(/<\/p>/gi, "");
         return finalText;
@@ -38,8 +52,8 @@ this.Iam = this.Iam || function() {
 	};
     
     return {
-        ConvertNewLines: convertNewLines,
-        ConvertBrAndP: convertBrAndP,
+        Htmlize: htmlize,
+        Textize: textize,
 		RootDir: rootDir,
 		Ds: ds
     };

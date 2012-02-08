@@ -89,7 +89,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
     
     var updateEntryRequest = function(id) {
-        callback.data = 'id='+id+'&title='+updTitle(id)+'&category='+updCategory(id)+'&entry='+Iam.ConvertBrAndP(updEntry(id));
+        callback.data = 'id='+id+'&title='+updTitle(id)+'&category='+updCategory(id)+'&entry='+Iam.Textize(updEntry(id));
         var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
   
@@ -172,7 +172,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editTitle_" + id);
         saveButton.innerHTML = "Edit";
         
-        var request = updateEntryRequest(id);
+        //var request = updateEntryRequest(id);
     };
     
     var makeEditableEntry = function(editButton, id) {
@@ -182,7 +182,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         
         // change behavior of the entryEntry div element
         var entryEl = formEditElem("entryEntry", id);
-        var clean = Iam.ConvertBrAndP(entryEl.innerHTML);
+        var clean = Iam.Textize(entryEl.innerHTML);
         entryEl.innerHTML = '<textarea>'+clean+'</textarea>';
     };
     
@@ -190,14 +190,14 @@ this.Iam.Admin = this.Iam.Admin || function() {
         // change behavior of the entryEntry div element
         var entryEl = formEditElem("entryEntry", id);
         var childEl = entryEl.childNodes[0];
-        var htmlized = Iam.ConvertNewLines(childEl.value);
+        var htmlized = Iam.Htmlize(childEl.value);
         entryEl.innerHTML = htmlized;
         
         // change behavior of the entryEditButton for title
         saveButton.setAttribute('id', "editEntry_" + id);
         saveButton.innerHTML = "Edit";
         
-        var request = updateEntryRequest(id);
+        //var request = updateEntryRequest(id);
     };
     
     // TODO: make this show all the categories in a <select>
@@ -223,7 +223,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editCategory_" + id);
         saveButton.innerHTML = "Edit";
         
-        var request = updateEntryRequest(id);
+        //var request = updateEntryRequest(id);
     };
     
 	var handleClick = function(e) {

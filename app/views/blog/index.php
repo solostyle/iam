@@ -33,7 +33,7 @@
 <?php 
     require_once (ROOT . DS . '235' . DS . 'presentfunc.php');
     $e = stripslashes($entry['Entry']['entry']);
-    $e = nl2p_or_br($e);
+    //$e = nl2p_or_br($e);
     $ttl = stripslashes($entry['Entry']['title']);
     $l = make_url($entry['Entry']['id']);
     $date = parse_date($entry['Entry']['time']);
