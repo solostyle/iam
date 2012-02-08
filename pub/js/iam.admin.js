@@ -89,7 +89,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
     };
     
     var updateEntryRequest = function(id) {
-        callback.data = 'id='+id+'&title='+updTitle(id)+'&category='+updCategory(id)+'&entry='+Iam.Textize(updEntry(id));
+        callback.data = 'id='+id+'&title='+updTitle(id)+'&category='+updCategory(id)+'&entry='+updEntry(id);
         var updateRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
   
@@ -172,7 +172,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editTitle_" + id);
         saveButton.innerHTML = "Edit";
         
-        //var request = updateEntryRequest(id);
+        var request = updateEntryRequest(id);
     };
     
     var makeEditableEntry = function(editButton, id) {
@@ -197,7 +197,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editEntry_" + id);
         saveButton.innerHTML = "Edit";
         
-        //var request = updateEntryRequest(id);
+        var request = updateEntryRequest(id);
     };
     
     // TODO: make this show all the categories in a <select>
@@ -223,7 +223,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
         saveButton.setAttribute('id', "editCategory_" + id);
         saveButton.innerHTML = "Edit";
         
-        //var request = updateEntryRequest(id);
+        var request = updateEntryRequest(id);
     };
     
 	var handleClick = function(e) {
