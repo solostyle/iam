@@ -83,7 +83,7 @@ if(isset($_POST['login_submit'])) {
     <h1 id="pagetitle"><a href="/">Meditations</a></h1>
 
     <!-- some lame tagline -->
-    <p id="pagesubtitle"><em>on yoga, breath, and self discovery</em></p>
+    <p id="pagesubtitle"><em>on health, breath, and self discovery</em></p>
 
     <!-- show some main navigation -->
     <ul id="mainnav"><?php 

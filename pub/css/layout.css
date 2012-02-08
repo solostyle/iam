@@ -10,10 +10,7 @@ be careful when changing or recalculating these
 }
 
 #pagetitle, #pagesubtitle {
-    margin-left: 20.243%;	/* 200px / 988px = 0.20243 */
-    margin-bottom: 0;
-    margin-top: 0.2em;
-    width: 70.85%;			/* 700px / 988px = 0.7085 */
+    margin: 0.2em 0 0 0;
 }
 
 #mainnav {
