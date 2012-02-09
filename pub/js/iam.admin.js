@@ -79,7 +79,7 @@ this.Iam.Admin = this.Iam.Admin || function() {
     
     //Handler to make XHR request for adding an entry
     var addEntryRequest = function(){
-        callback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+inpEntry()+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
+        callback.data = 'title='+inpTitle()+'&category='+inpCategory()+'&entry='+Iam.Htmlize(inpEntry())+'&time='+inpTime()+'&year='+inpYear()+'&month='+inpMonth()+'&date='+inpDate();
         var addRequest = AjaxR(Iam.RootDir()+Iam.Ds()+'blog/add', callback);
     };
 
