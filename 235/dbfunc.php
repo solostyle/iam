@@ -58,6 +58,17 @@ function strstrb($h,$n){
 }
 
 
+// this function saves arrays like $_POST and $_GET
+function save_array($elem) {
+    if(!is_array($elem))
+        //$elem = htmlentities($elem,ENT_QUOTES,"UTF-8");
+		$elem = $elem;
+    else
+        foreach ($elem as $key => $value)
+            $elem[$key] = save_array($value);
+    return $elem;
+} 
+
 //----------------------------------------------------------------------------
 // One-time Utilities --------------------------------------------------------
 // ---------------------------------------------------------------------------

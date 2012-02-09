@@ -309,24 +309,68 @@ class SQLQuery {
 
     function delete() {
         if ($this->id) {
-			// save row in backup table (added by archana)
-			// TODO: get the data first
-			$fields = '';
-            $values = '';
-            foreach ($this->_describe as $field) {
-                if ($this->$field) {
-                    $fields .= '`'.$field.'`,';
-                    $values .= '\''.mysql_real_escape_string($this->$field).'\',';
+
+			// Does row exist in backup table?
+			$search_query = 'SELECT * FROM '.$this->_backupTable.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
+			
+			$this->_result = mysql_query($search_query, $this->_dbHandle);
+	        $result = array();
+			$field = array();
+			$tempResults = array();
+			if (mysql_num_rows($this->_result) > 0) {
+                $numOfFields = mysql_num_fields($this->_result);
+                for ($i = 0; $i < $numOfFields; ++$i) {
+                    array_push($field,mysql_field_name($this->_result, $i));
+                }
+                while ($row = mysql_fetch_row($this->_result)) {
+                    for ($i = 0;$i < $numOfFields; ++$i) {
+                        $tempResults[$field[$i]] = $row[$i];
+                    }
+                    array_push($result,$tempResults);
                 }
             }
-            $values = substr($values,0,-1);
-            $fields = substr($fields,0,-1);
-
-            $query = 'INSERT INTO '.$this->_backupTable.' ('.$fields.') VALUES ('.$values.')';
+			mysql_free_result($this->_result);
 			
-			// delete row from table
-            $query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';		
-            $this->_result = mysql_query($query, $this->_dbHandle);
+			if (!empty($result)) {
+			
+				// if yes, perform update of row in backup table
+				$updates = '';
+				foreach ($this->_describe as $field) {
+					if ($this->$field) {
+						$updates .= '`'.$field.'` = \''.mysql_real_escape_string($this->$field).'\',';
+					}
+				}
+				$updates = substr($updates,0,-1);
+
+				$first_query = 'UPDATE '.$this->_backupTable.' SET '.$updates.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
+			} else {
+
+				// if no, perform insert of row in backup table
+				$fields = '';
+				$values = '';
+				foreach ($this->_describe as $field) {
+					if ($this->$field) {
+						$fields .= '`'.$field.'`,';
+						$values .= '\''.mysql_real_escape_string($this->$field).'\',';
+					}
+				}
+				$values = substr($values,0,-1);
+				$fields = substr($fields,0,-1);
+				
+				$first_query = 'INSERT INTO '.$this->_backupTable.' ('.$fields.') VALUES ('.$values.')';
+			}
+
+			// either way, delete existing row from main table
+            $delete_query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
+			
+			// run the queries (update or insert, then delete)
+			$this->_result = mysql_query($first_query, $this->_dbHandle);
+			if ($this->_result == 0) {
+                /** Error Generation **/
+                return -1;
+            }
+			
+            $this->_result = mysql_query($delete_query, $this->_dbHandle);
             $this->clear();
             if ($this->_result == 0) {
                 /** Error Generation **/
@@ -339,11 +383,37 @@ class SQLQuery {
 		
     }
 
+    /** My Version of Saving a Record **/
+
+    function my_save() {
+        $query = '';
+		$fields = '';
+		$values = '';
+		foreach ($this->_describe as $field) {
+			if ($this->$field) {
+				$fields .= '`'.$field.'`,';
+				$values .= '\''.mysql_real_escape_string($this->$field).'\',';
+			}
+		}
+		$values = substr($values,0,-1);
+		$fields = substr($fields,0,-1);
+
+		$query = 'INSERT INTO '.$this->_table.' ('.$fields.') VALUES ('.$values.')';
+	
+		//print $query;
+        $this->_result = mysql_query($query, $this->_dbHandle);
+        $this->clear();
+        if ($this->_result == 0) {
+            /** Error Generation **/
+            return -1;
+        }
+    }
+	
     /** Saves an Object i.e. Updates/Inserts Query **/
 
-    function save($upd) {
+    function save() {
         $query = '';
-        if ($upd) { // changed by archana: was if (isset($this->id))
+        if (isset($this->id)) {
             $updates = '';
             foreach ($this->_describe as $field) {
                 if ($this->$field) {

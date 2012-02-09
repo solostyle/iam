@@ -75,8 +75,8 @@ class BlogController extends Controller {
 		$this->Entry->setPage($args['currentPageNumber']);
 		$this->Entry->setLimit('5');
 
-		$entryIdList = implode("','", $args['entryIds']);
-		$this->Entry->in('id', $entryIdList);
+		$existingIdList = implode("','", $args['entryIds']);
+		$this->Entry->in('id', $existingIdList);
 		$this->Entry->orderBy('time','DESC');
 		$this->Entry->showHMABTM();
         $data = $this->Entry->search();
@@ -85,50 +85,59 @@ class BlogController extends Controller {
 
 		return array('data' => $data, 'totalPages' => $totalPages);
 	}
-	
-    function add() {
+
+	// in the spirit of defensive coding, i've decided that nothing should be deleted from
+	// the database. cases:
+	// new entry added: insert into blog table
+	// entry modified: save old version in backup table, insert modified entry into blog table
+	// entry deleted: save in backup table, delete from blog table (happens in sql class)
+	function add() {
         $this->doNotRenderHeader = true; /* i want this to be an ajax request*/
 		$this->set('isAjax', $this->doNotRenderHeader);
 
+		// modifying entry
 		if (isset($_POST['id'])) {
+			// get the existing one
 			$this->Entry->id = $_POST['id'];
-			$entry = $this->Entry->search(); // clears the object
-			if (mysql_real_escape_string($_POST['title']) == mysql_real_escape_string($entry['Entry']['title'])) {
-				// if title is the same, just update entry
-				$upd = true;
-				$this->Entry->id = $_POST['id'];
-				$this->Entry->time = $entry['Entry']['time'];
-				
-			} else {
-				// if title is different, save data and delete old entry
-				$this->Entry->id = $_POST['id'];
-				$this->Entry->delete(); // clears the object
-				// add new entry
-				$upd = false;
-				$oldIdArray = explode("/", $entry['Entry']['id']);
-				$oldYear = $oldIdArray[0];
-				$oldMonth = $oldIdArray[1];
-				$oldDate = $oldIdArray[2];
-				$this->Entry->id = create_id($_POST['title'], $oldYear, $oldMonth, $oldDate);
-				$this->Entry->time = $entry['Entry']['time'];
-			}
+			$existing = $this->Entry->search(); // clears the object
+			// save and delete it
+			$this->Entry->id = $_POST['id'];
+			$this->Entry->category = $existing['Entry']['category'];
+			$this->Entry->title = $existing['Entry']['title'];
+			$this->Entry->entry = $existing['Entry']['entry'];
+			$this->Entry->time = $existing['Entry']['time'];
+			$this->Entry->delete(); // clears the object
+			// insert new entry
+			$oldIdArray = explode("/", $existing['Entry']['id']);
+			$oldYear = $oldIdArray[0];
+			$oldMonth = $oldIdArray[1];
+			$oldDate = $oldIdArray[2];
+			$this->Entry->id = create_id($_POST['title'], $oldYear, $oldMonth, $oldDate);
+			$this->Entry->time = $existing['Entry']['time'];
 		} else {
 			// new entry only
-			$upd = false;
 			$this->Entry->id = create_id($_POST['title'], $_POST['year'], $_POST['month'], $_POST['date']);
 			$this->Entry->time = $_POST['time'];
 		}
-
+		// always insert a new row
 		$this->Entry->category = $_POST['category'];
 		$this->Entry->title = $_POST['title'];
 		$this->Entry->entry = $_POST['entry'];
-		$this->Entry->save($upd); // clears the object
+		$this->Entry->my_save(); // clears the object
 	}
 
     function delete() {
         $this->doNotRenderHeader = true;
 		$this->set('isAjax', $this->doNotRenderHeader);
-        $this->Entry->id = $_POST['id'];
-        $this->Entry->delete();
+        
+		$this->Entry->id = $_POST['id'];
+		$existing = $this->Entry->search(); // clears the object
+		
+		$this->Entry->id = $_POST['id'];
+		$this->Entry->category = $existing['Entry']['category'];
+		$this->Entry->title = $existing['Entry']['title'];
+		$this->Entry->entry = $existing['Entry']['entry'];
+		$this->Entry->time = $existing['Entry']['time'];
+		$this->Entry->delete(); // clears the object
     }
 }
