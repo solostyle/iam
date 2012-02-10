@@ -282,6 +282,8 @@ class SQLQuery {
     }
 
     /** Describes a Table **/
+	# Returns a one-dimensional array of just the field names
+	# of the table
 
     protected function _describe() {
         global $cache;
@@ -305,18 +307,48 @@ class SQLQuery {
         }
     }
 
+    /** Describes the Backup Table **/
+	# Returns a one-dimensional array of just the field names
+	# of the table
+
+    protected function _describeBackup() {
+        global $cache;
+
+        $this->_describeBackup = $cache->get('describe'.$this->_backupTable);
+
+        if (!$this->_describeBackup) {
+            $this->_describeBackup = array();
+            $query = 'DESCRIBE '.$this->_backupTable;
+            $this->_result = mysql_query($query, $this->_dbHandle);
+            while ($row = mysql_fetch_row($this->_result)) {
+                array_push($this->_describeBackup,$row[0]);
+            }
+
+            mysql_free_result($this->_result);
+            $cache->set('describe'.$this->_backupTable,$this->_describeBackup);
+        }
+
+        foreach ($this->_describeBackup as $field) {
+            $this->$field = null;
+        }
+    }
+
     /** Delete an Object **/
+	# I've made significant changes to this function:
+	# Added version control - if id exists, insert with incremented revision number, else insert with default (1) revision number
+	# never update/delete a row in backup table
 
     function delete() {
         if ($this->id) {
 
-			// Does row exist in backup table?
+			// Does row exist in backup table? Find the max revision #
 			$search_query = 'SELECT * FROM '.$this->_backupTable.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
 			
 			$this->_result = mysql_query($search_query, $this->_dbHandle);
 	        $result = array();
 			$field = array();
 			$tempResults = array();
+			// I might have multiple rows here because of mulitple revisions
 			if (mysql_num_rows($this->_result) > 0) {
                 $numOfFields = mysql_num_fields($this->_result);
                 for ($i = 0; $i < $numOfFields; ++$i) {
@@ -331,40 +363,31 @@ class SQLQuery {
             }
 			mysql_free_result($this->_result);
 			
+			// if yes, increment the revision number
+			// if no, use table default value of 1
 			if (!empty($result)) {
-			
-				// if yes, perform update of row in backup table
-				$updates = '';
-				foreach ($this->_describe as $field) {
-					if ($this->$field) {
-						$updates .= '`'.$field.'` = \''.mysql_real_escape_string($this->$field).'\',';
-					}
-				}
-				$updates = substr($updates,0,-1);
-
-				$first_query = 'UPDATE '.$this->_backupTable.' SET '.$updates.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
-			} else {
-
-				// if no, perform insert of row in backup table
-				$fields = '';
-				$values = '';
-				foreach ($this->_describe as $field) {
-					if ($this->$field) {
-						$fields .= '`'.$field.'`,';
-						$values .= '\''.mysql_real_escape_string($this->$field).'\',';
-					}
-				}
-				$values = substr($values,0,-1);
-				$fields = substr($fields,0,-1);
-				
-				$first_query = 'INSERT INTO '.$this->_backupTable.' ('.$fields.') VALUES ('.$values.')';
+				$this->revision = $result[count($result)-1]['revision'] + 1;
 			}
+			
+			// insert into backup table to save deleted row
+			$fields = '';
+			$values = '';
+			foreach ($this->_describeBackup as $field) {
+				if ($this->$field) {
+					$fields .= '`'.$field.'`,';
+					$values .= '\''.mysql_real_escape_string($this->$field).'\',';
+				}
+			}
+			$values = substr($values,0,-1);
+			$fields = substr($fields,0,-1);
+			
+			$insert_query = 'INSERT INTO '.$this->_backupTable.' ('.$fields.') VALUES ('.$values.')';
 
-			// either way, delete existing row from main table
+			// delete existing row from main table
             $delete_query = 'DELETE FROM '.$this->_table.' WHERE `id`=\''.mysql_real_escape_string($this->id).'\'';
 			
 			// run the queries (update or insert, then delete)
-			$this->_result = mysql_query($first_query, $this->_dbHandle);
+			$this->_result = mysql_query($insert_query, $this->_dbHandle);
 			if ($this->_result == 0) {
                 /** Error Generation **/
                 return -1;
